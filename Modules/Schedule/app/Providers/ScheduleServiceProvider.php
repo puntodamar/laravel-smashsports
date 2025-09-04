@@ -4,6 +4,7 @@ namespace Modules\Schedule\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Schedule\App\Http\Middleware\UseScheduleInertiaRoot;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -27,6 +28,10 @@ class ScheduleServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+        $this->app['router']->aliasMiddleware(
+            'schedule.inertia',
+            UseScheduleInertiaRoot::class
+        );
     }
 
     /**

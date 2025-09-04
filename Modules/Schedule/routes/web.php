@@ -1,8 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use Modules\Schedule\Http\Controllers\ScheduleController;
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('schedules', ScheduleController::class)->names('schedule');
-});
+Route::prefix('schedule')
+    ->name('schedule.')
+    ->middleware(['web', 'schedule.inertia'])
+    ->group(function () {
+        Route::resource('schedule', ScheduleController::class);
+    });
+
+
