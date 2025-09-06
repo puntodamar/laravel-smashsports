@@ -17,11 +17,6 @@
         })();
     </script>
 
-    <style>
-        html { background-color: oklch(1 0 0); }
-        html.dark { background-color: oklch(0.145 0 0); }
-    </style>
-
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" type="image/png" href="{{asset('favicon-96x96.png')}}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{asset('favicon.svg')}}" />

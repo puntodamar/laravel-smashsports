@@ -15,6 +15,12 @@
             }
         }
     },
+    "require" : {
+        "@fullcalendar/core": "^6.1.19",
+        "@fullcalendar/resource": "^6.1.19",
+        "@fullcalendar/resource-timeline": "^6.1.19",
+        "@fullcalendar/vue3": "^6.1.19"
+    },
     "autoload": {
         "psr-4": {
             "Modules\\Schedule\\": "app/",
