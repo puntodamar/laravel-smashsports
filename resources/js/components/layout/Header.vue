@@ -44,9 +44,9 @@
                 </div>
 
                 <div class="mt-6 flow-root">
-                    <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white">
+                    <div class="-my-6 divide-y divide-gray-500/10 dark:divide-gold">
                         <div class="space-y-2 py-6">
-                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ">{{ item.name }}</a>
+                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white ">{{ item.name }}</a>
                         </div>
                         <div class="py-6">
                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  text-white">Masuk</a>

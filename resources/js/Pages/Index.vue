@@ -84,7 +84,7 @@ const featureToko = [
     },
     {
         name: 'Jasa Pasang Senar',
-        description: 'bisa pasang senar dari berbagai macam merk. Standar BWF.',
+        description: 'tersedia pilihan dari berbagai macam merk. Standar BWF.',
         icon: HeartIcon,
     },
 ]
