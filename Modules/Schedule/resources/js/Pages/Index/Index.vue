@@ -3,8 +3,6 @@
         <div style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.06);">
             <FullCalendar :options="calendarOptions" />
         </div>
-
-
     </main>
 </template>
 
