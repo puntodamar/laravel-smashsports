@@ -35,6 +35,10 @@
     --color-gray:  #A9A9A9;
     --color-white: #FFFFFF;
     --color-gold:  #FFD700;
+    --color-fuchsia:  #D946EF;
+    --color-slate: #94A3B8;
+    --color-electric-magenta: #FF2D9B;
+    --color-magenta: #C2185B;
 
     /* Fonts (maps to utilities: font-heading, font-body) */
     --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;

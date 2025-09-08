@@ -1,41 +1,29 @@
 <!-- NavBarLinks.vue -->
 <template>
-    <nav
-        ref="navRef"
-        class="relative isolate hidden lg:flex lg:gap-x-12"
-        @mouseleave="hideIndicator"
-        @focusin="onFocusIn"
-    >
-        <!-- sliding BG highlight -->
-        <span
-            v-show="indicator.visible"
-            class="pointer-events-none absolute rounded-md bg-gold z-0
-             transition-[transform,width,height,opacity] duration-300 ease-out will-change-transform"
-            :style="{
-        transform: `translate(${indicator.x}px, ${indicator.y}px)`,
-        width: indicator.w + 'px',
-        height: indicator.h + 'px',
-        opacity: indicator.visible ? 1 : 0
-      }"
-        />
-
-        <!-- links -->
+    <nav class="relative hidden lg:flex lg:gap-x-12">
         <a
-            v-for="(item, i) in navigation.main"
+            v-for="item in navigation.main"
             :key="item.name"
             :href="item.href"
-            class="relative z-10 inline-flex items-center px-3 py-2 text-sm/6 font-semibold font-body
-             transition-colors duration-200
-             text-white dark:text-gray"
-            :class="{
-        'text-black dark:text-gray': hoveredIndex === i, // on top of gold bg
-      }"
-            @mouseenter="moveIndicator($event.currentTarget, i)"
-            @focus="moveIndicator($event.currentTarget, i)"
+            class="group relative inline-flex items-center px-3 py-2 text-sm/6 font-semibold font-body
+           text-white transition-colors duration-300 overflow-hidden rounded-md"
         >
-            {{ item.name }}
+            <!-- text flips to black on hover (both modes) -->
+            <span class="relative z-10 transition-colors duration-300
+                 group-hover:text-black dark:group-hover:text-black">
+      {{ item.name }}
+    </span>
+
+            <!-- bg slides UP -->
+            <span
+                class="absolute inset-0 -z-0 bg-gold rounded-md
+             origin-bottom scale-y-0 group-hover:scale-y-100
+             transition-transform duration-300 ease-out will-change-transform"
+            />
         </a>
     </nav>
+
+
 </template>
 
 <script setup>

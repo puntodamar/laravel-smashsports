@@ -24,7 +24,7 @@
             <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
 <!--                desktop-->
                 <PageTheme></PageTheme>
-                <div><a href="#" class="text-sm/6 font-semibold ">Masuk <span aria-hidden="true">&rarr;</span></a></div>
+                <div><a href="#" class="text-sm/6 font-semibold text-white">Masuk <span aria-hidden="true">&rarr;</span></a></div>
             </div>
         </nav>
 
@@ -46,10 +46,10 @@
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white">
                         <div class="space-y-2 py-6">
-                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold  hover:bg-gray dark:hover:bg-gold dark:hover:text-black">{{ item.name }}</a>
+                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ">{{ item.name }}</a>
                         </div>
                         <div class="py-6">
-                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  hover:bg-gray dark:hover:bg-gold dark:hover:text-black">Masuk</a>
+                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  text-white">Masuk</a>
                         </div>
 
                     </div>
