@@ -56,6 +56,12 @@
         bg-navy text-white font-medium transition
         hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy/60;
     }
+
+    .btn-accent {
+        @apply inline-flex items-center justify-center rounded-[--radius-pill] px-5 py-3
+        bg-black text-white font-medium transition
+        hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy/60;
+    }
     .card {
         @apply rounded-[--radius-card] bg-white shadow-md;
     }

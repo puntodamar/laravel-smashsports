@@ -1,9 +1,11 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import companyLogo from '../assets/images/logo.png'
+
+
 
 // App pages
 const appPages = import.meta.glob('./Pages/**/*.vue')
-
 // Module pages (support 3 variants)
 const modulePagesUpper    = import.meta.glob('../../Modules/**/Resources/js/Pages/**/*.vue')
 const modulePagesLower    = import.meta.glob('../../Modules/**/resources/js/Pages/**/*.vue')
@@ -50,8 +52,10 @@ createInertiaApp({
         return () => import('./Pages/_Missing.vue')
     },
     setup: ({ el, App, props, plugin }) =>
-        createApp({ render: () => h(App, props) }).use(plugin).mount(el),
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .provide('companyLogo', companyLogo)
+            .mount(el),
 })
-
 console.log('[glob]', Object.keys(modulePagesUpper).length, Object.keys(modulePagesLower).length, Object.keys(modulePagesSingular).length)
 
