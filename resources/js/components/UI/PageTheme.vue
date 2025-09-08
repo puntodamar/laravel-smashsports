@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="toggleTheme" class="rounded-lg bg bg-gold text-black p-2">
+        <button @click="onClick" class="rounded-lg bg bg-gold text-black p-2">
             <!-- Dark SVG Icon -->
             <svg
                 v-if="!isDark"
@@ -27,10 +27,18 @@
 <script setup>
 
 import { useDarkMode } from '@/composables/useDarkMode.js';
+import { useRippleToggle } from '@/composables/useRippleToggle.js';
 const { isDark, toggle } = useDarkMode()
 
-const toggleTheme = () => {
-    toggle()
-    console.log(localStorage.getItem('color-theme'))
+const ripple = useRippleToggle({
+    getFillColor: () => (!isDark.value ? '#0A1F44' : '#FFFFFF'),
+    duration: 550,
+    opacity: 0.9,
+})
+
+const onClick = (e) => {
+    ripple(e, () => {
+        toggle() // flips theme mid-ripple
+    })
 }
 </script>
