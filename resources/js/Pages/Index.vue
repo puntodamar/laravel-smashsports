@@ -112,28 +112,3 @@ const featureResto = [
 
 </script>
 
-<style scoped>
-.hero{
-    position: relative;
-    isolation: isolate;      /* keeps the pseudo inside this section */
-    min-height: 60vh;
-}
-
-/* Put the image on ::before and darken it */
-.hero::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: v-bind('bgMobileCss');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: brightness(.3);   /* ≈ Tailwind brightness-50 */
-    z-index: -1;              /* keep it behind content */
-}
-
-@media (min-width: 768px){
-    .hero::before{ background-image: v-bind('bgDesktopCss'); }
-}
-</style>
-
