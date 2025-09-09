@@ -45,9 +45,10 @@ import store from '../../assets/images/background/store.jpg'
 import resto from '../../assets/images/background/restaurant.jpg'
 import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
-import { FireIcon, HeartIcon, LightBulbIcon } from '@heroicons/vue/20/solid/index.js';
+import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
 import Booking from '@/components/layout/Booking.vue';
+
 
 // Pre-wrap as CSS-ready strings
 const bgMobileCss  = `url(${bgMobile})`
@@ -78,17 +79,17 @@ const featureToko = [
         name: 'Koleksi lengkap',
         description:
             'tersedia raket, sepatu, grip dll dari harga murah hingga sultan. Dijamin ori!',
-        icon: FireIcon,
+        icon: TrophyIcon,
     },
     {
         name: 'Harga Terbaik',
         description: 'jadilah member untuk mendapatkan harga promo dan penawaran menarik',
-        icon: LightBulbIcon,
+        icon: BanknotesIcon,
     },
     {
         name: 'Jasa Pasang Senar',
         description: 'tersedia pilihan dari berbagai macam merk. Standar BWF.',
-        icon: HeartIcon,
+        icon: SparklesIcon,
     },
 ]
 
@@ -97,17 +98,17 @@ const featureResto = [
         name: 'Menu untuk pemain',
         description:
             'karbo cerdas, protein tinggi, dan opsi rendah minyak',
-        icon: FireIcon,
+        icon: StarIcon,
     },
     {
         name: 'Nyaman buat tim',
         description: 'area duduk lega, bisa pre-order untuk rombongan',
-        icon: LightBulbIcon,
+        icon: UsersIcon,
     },
     {
         name: 'Cepat & hangat',
         description: 'pesanan keluar cepat di jam sibuk pertandingan',
-        icon: HeartIcon,
+        icon: ClockIcon,
     },
 ]
 

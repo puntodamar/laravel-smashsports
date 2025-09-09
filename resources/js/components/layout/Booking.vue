@@ -119,7 +119,7 @@ import { Dialog, DialogPanel } from '@headlessui/vue'
 
 /* --- membership --- */
 const membership = [
-    { id: 'insidental', title: 'Insidental' },
+    { id: 'insidental', title: 'Insidental', description: 'Sekali main' },
     { id: 'member', title: 'Member', description: 'Harga lebih murah' },
 ]
 const selectedMembershipId = ref(membership[0].id)
