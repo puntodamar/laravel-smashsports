@@ -24,7 +24,7 @@
             <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
 <!--                desktop-->
                 <PageTheme></PageTheme>
-                <div><a href="#" class="text-sm/6 font-semibold text-white">Masuk <span aria-hidden="true">&rarr;</span></a></div>
+                <div><a href="#" class="text-sm/6 font-semibold text-white">Masuk/Daftar</a></div>
             </div>
         </nav>
 
@@ -46,10 +46,16 @@
                 <div class="mt-6 flow-root ">
                     <div class="-my-6 divide-y divide-gray dark:divide-gold">
                         <div class="space-y-2 py-6">
-                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black dark:text-gray dark:hover:text-black hover:bg-gold ">{{ item.name }}</a>
+                            <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="flex flex-row items-center gap-x-2 -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black dark:text-gray dark:hover:text-black hover:bg-gold ">
+                                <component :is="item.icon" class="size-5"></component>
+                                {{ item.name }}
+                            </a>
                         </div>
                         <div class="py-6">
-                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  text-black dark:text-gray dark:hover:text-black">Masuk</a>
+                            <a href="#" class="flex flex-row items-center gap-x-2 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  text-black dark:text-gray dark:hover:text-black hover:bg-gold">
+                                <UserIcon class="size-5"></UserIcon>
+                                Masuk/Daftar
+                            </a>
                         </div>
 
                     </div>
@@ -62,9 +68,9 @@
 <script setup>
 import { inject, ref } from 'vue';
 import { Dialog, DialogPanel } from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, XMarkIcon, UserIcon } from '@heroicons/vue/24/outline'
 import PageTheme from '@/components/UI/PageTheme.vue';
-import navigation from '../../../navigation.js';
+import navigation from '../../navigation.js';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 
 const companyLogo = inject('companyLogo')

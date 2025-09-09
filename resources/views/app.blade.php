@@ -20,7 +20,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     @inertiaHead
 </head>
-<body class="bg-white dark:bg-navy">
+<body class="bg-white dark:bg-gradient-to-b dark:from-navy dark:to-black scroll-smooth" >
     @inertia
 </body>
 </html>
