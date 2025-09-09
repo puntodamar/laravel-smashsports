@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { ArrowUpIcon } from '@heroicons/vue/24/outline' // npm i @heroicons/vue if not installed
+import { ArrowUpIcon } from '@heroicons/vue/24/outline'
 
 const visible = ref(false)
 const threshold = 300 // px scrolled before showing the button

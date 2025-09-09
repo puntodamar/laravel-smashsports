@@ -132,7 +132,7 @@ const toYMD = d => {
     return `${x.getFullYear()}-${pad(x.getMonth() + 1)}-${pad(x.getDate())}`
 }
 
-/* build 3 days: today → +2 (labels in id-ID) */
+
 const days = computed(() => {
     const out = []
     const base = new Date()
@@ -147,25 +147,22 @@ const days = computed(() => {
         const d = new Date(base)
         d.setDate(base.getDate() + i)
         out.push({
-            value: toYMD(d),      // stable string for radios
-            label: fmt.format(d), // e.g. "Rab, 11 Sep"
+            value: toYMD(d),
+            label: fmt.format(d),
         })
     }
     return out
 })
 
-/* radio group name (avoid collisions) */
-const dateGroupName = `booking-date-${Math.random().toString(36).slice(2)}`
 
-/* selection (default to today) */
+const dateGroupName = `booking-date-${Math.random().toString(36).slice(2)}`
 const selectedDate = ref(days.value[0].value)
 
-/* modal + picker */
 const showPicker = ref(false)
 const minDate = days.value[days.value.length-1].value
 
 // block past dates
-let pickerDate = ref(new Date(minDate))
+const pickerDate = ref(new Date(minDate))
 pickerDate.value.setDate(pickerDate.value.getDate() + 1)
 const pickerDateSelected = ref(false)
 

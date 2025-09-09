@@ -42,7 +42,7 @@ import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outl
 <style scoped>
 .hero {
     position: relative;
-    isolation: isolate;             /* contain stacking */
+    isolation: isolate;
 }
 
 /* Background only on the pseudo element */
@@ -50,12 +50,12 @@ import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outl
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 0;                     /* keep bg behind content */
+    z-index: 0;
     background-image: v-bind('bgMobileCss');
     background-size: cover;
-    background-position: center top;/* nicer crop on phones */
+    background-position: center top;
     background-repeat: no-repeat;
-    filter: brightness(.3);         /* “brightness-50” on image only */
+    filter: brightness(.3);
 }
 
 /* Larger screens: switch image + recenter */
@@ -66,7 +66,7 @@ import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outl
     }
 }
 
-/* Respect notches on iOS if your header touches edges (optional) */
+/* Respect notches on iOS if the header touches edges*/
 :root { --sat: env(safe-area-inset-top); }
 .hero { padding-top: max(1rem, var(--sat)); }
 </style>

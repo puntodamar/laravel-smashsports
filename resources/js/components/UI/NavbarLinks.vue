@@ -8,7 +8,6 @@
             class="group relative inline-flex items-center px-3 py-2 text-sm/6 font-semibold font-body
            text-white transition-colors duration-300 overflow-hidden rounded-md">
 
-            <!-- text flips to black on hover (both modes) -->
             <span class="relative z-10 transition-colors duration-300 group-hover:text-black dark:group-hover:text-black">{{ item.name }}</span>
 
             <!-- bg slides UP -->

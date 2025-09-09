@@ -26,7 +26,7 @@ function resolveFromModules(name) {
         // Lowercase (resources)
         `../../Modules/${moduleName}/resources/js/Pages/${rest}.vue`,
         `../../Modules/${moduleName}/resources/js/Pages/${rest}/Index.vue`,
-        // Singular (resource)  <-- your structure
+        // Singular (resource)
         `../../Modules/${moduleName}/resource/js/Pages/${rest}.vue`,
         `../../Modules/${moduleName}/resource/js/Pages/${rest}/Index.vue`,
     ]
