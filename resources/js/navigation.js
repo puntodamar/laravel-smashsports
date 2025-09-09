@@ -3,7 +3,7 @@ import { ShoppingCartIcon, PencilSquareIcon, BuildingStorefrontIcon, PhoneIcon, 
 
 export default {
     main: [
-        { name: 'Booking', href: '#', icon: PencilSquareIcon },
+        { name: 'Booking', href: '#booking', icon: PencilSquareIcon },
         { name: 'Toko', href: '#', icon: ShoppingCartIcon },
         { name: 'Resto', href: '#', icon: BuildingStorefrontIcon },
         { name: 'Kontak', href: '#', icon:  PhoneIcon },

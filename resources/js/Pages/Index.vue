@@ -27,7 +27,8 @@
         :features="featureResto"
         image-position="left">
     </Feature>
-
+    <Booking id="booking"></Booking>
+    <ScrollToTop />
     <Footer></Footer>
 </template>
 
@@ -45,6 +46,8 @@ import resto from '../../assets/images/background/restaurant.jpg'
 import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon } from '@heroicons/vue/20/solid/index.js';
+import ScrollToTop from '@/components/UI/ScrollToTop.vue';
+import Booking from '@/components/layout/Booking.vue';
 
 // Pre-wrap as CSS-ready strings
 const bgMobileCss  = `url(${bgMobile})`

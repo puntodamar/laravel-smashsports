@@ -9,7 +9,7 @@
            text-white transition-colors duration-300 overflow-hidden rounded-md">
 
             <!-- text flips to black on hover (both modes) -->
-            <span class="relative z-10 transition-colors duration-300group-hover:text-black dark:group-hover:text-black">{{ item.name }}</span>
+            <span class="relative z-10 transition-colors duration-300 group-hover:text-black dark:group-hover:text-black">{{ item.name }}</span>
 
             <!-- bg slides UP -->
             <span class="absolute inset-0 -z-0 bg-gold rounded-md origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out will-change-transform" />
