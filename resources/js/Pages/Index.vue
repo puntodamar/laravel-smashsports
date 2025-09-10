@@ -30,7 +30,6 @@
         :features="featureResto"
         image-position="left">
     </Feature>
-    <Booking id="booking"></Booking>
     <ScrollToTop />
     <Footer></Footer>
 </template>
@@ -51,7 +50,6 @@ import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
-import Booking from '@/components/layout/Booking.vue';
 import { Head } from '@inertiajs/vue3';
 
 // Pre-wrap as CSS-ready strings

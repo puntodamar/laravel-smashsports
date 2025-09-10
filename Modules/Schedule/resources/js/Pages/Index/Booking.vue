@@ -1,6 +1,9 @@
 <template>
-    <Header textColor="text-black dark:text-white" :background="true"></Header>
-    <Booking class="mt-20"></Booking>
+    <Head>
+    <title>Smash Sports | Booking</title>
+    </Head>
+    <Header></Header>
+    <Booking class="mt-40"></Booking>
     <Footer></Footer>
 </template>
 
@@ -8,4 +11,5 @@
 import Booking from '@/components/layout/Booking.vue';
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
+import { Head } from '@inertiajs/vue3';
 </script>

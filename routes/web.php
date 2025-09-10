@@ -7,7 +7,7 @@ use Modules\Schedule\Http\Controllers\ScheduleController;
 
 
 Route::prefix('schedule')->name('schedule.')->group(function () {
-    Route::get('/', [ScheduleController::class, 'index'])->name('index');
+    Route::get('/booking', [ScheduleController::class, 'booking'])->name('booking');
 });
 
 Route::get('/', [IndexController::class, 'index'])->name('home');

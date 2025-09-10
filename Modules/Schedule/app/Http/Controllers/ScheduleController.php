@@ -19,6 +19,14 @@ class ScheduleController extends Controller
         ]);
     }
 
+    public function booking()
+
+    {
+        return Inertia::render('Module/Schedule/Index/Booking', [
+            'title' => 'Booking',
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
