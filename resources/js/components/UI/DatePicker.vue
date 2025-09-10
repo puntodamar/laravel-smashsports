@@ -7,7 +7,7 @@
                 :key="d.value"
                 :aria-label="d.label"
                 class="group relative flex items-center justify-center rounded-lg border border-gray bg-white p-4
-                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-electric-magenta
+                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-navy dark:has-checked:outline-gold
                  dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10"
             >
                 <input
@@ -20,7 +20,7 @@
                 />
                 <span class="block text-sm font-semibold text-gray-800 dark:text-white">{{ d.label }}</span>
                 <CheckCircleIcon
-                    class="invisible size-5 text-electric-magenta group-has-checked:visible"
+                    class="invisible size-5 text-navy dark:text-gold group-has-checked:visible"
                     aria-hidden="true"
                 />
             </label>
@@ -129,7 +129,7 @@ const pickerDateSelected = ref(false)
 const datePickerButtonClass = computed(() => {
 
     if (pickerDateSelected.value) {
-        return ['dark:border', 'border-electric-magenta', 'border-2']
+        return ['dark:border', 'border-gold', 'border-2']
     } else {
         return ['border-navy']
     }

@@ -16,7 +16,7 @@
 
 const props = defineProps({
     backgroundColor: {type: String, default: 'text-gray'},
-    fillColor: {type: String, default: 'fill-electric-magenta'},
+    fillColor: {type: String, default: 'fill-navy'},
     darkFillColor: {type: String, default: 'dark:fill-gold'}
 })
 

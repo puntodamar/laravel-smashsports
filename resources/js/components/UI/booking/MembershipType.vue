@@ -6,7 +6,7 @@
                 :key="m.id"
                 :aria-label="m.title"
                 class="group relative flex rounded-lg border border-gray bg-white p-4
-                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-electric-magenta
+                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-navy dark:has-checked:outline-gold
                  has-focus-visible:outline-3 has-focus-visible:-outline-offset-1
                  has-disabled:border-gray has-disabled:bg-gray has-disabled:opacity-25
                  dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10">
@@ -22,7 +22,7 @@
                     <span v-if="m.description" class="mt-1 block text-xs text-gray-500 dark:text-gray-400">{{ m.description }}</span>
                 </div>
                 <CheckCircleIcon
-                    class="invisible size-5 text-electric-magenta group-has-checked:visible dark:text-electric-magenta"
+                    class="invisible size-5 text-navy group-has-checked:visible dark:text-gold"
                     aria-hidden="true"
                 />
             </label>

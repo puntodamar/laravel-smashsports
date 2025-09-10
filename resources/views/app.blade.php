@@ -21,7 +21,7 @@
     @inertiaHead
 </head>
 {{-- dark:bg-gradient-to-b dark:from-navy dark:to-black  --}}
-<body class="bg-white dark:bg-navy scroll-smooth" >
+<body class="bg-white dark:bg-gray-800 scroll-smooth" >
     @inertia
 </body>
 </html>
