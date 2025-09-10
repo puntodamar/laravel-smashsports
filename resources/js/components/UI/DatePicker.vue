@@ -11,7 +11,7 @@
                  dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10"
             >
                 <input
-                    @click="pickerDateSelected = false"
+                    @click="applyDate(d.value)"
                     type="radio"
                     :name="dateGroupName"
                     :value="d.value"
@@ -33,7 +33,7 @@
                      dark:bg-gray-900 dark:text-gray-400"
                 :class="datePickerButtonClass">
                 <CalendarDaysIcon class="mr-2 size-5" aria-hidden="true" />
-                <span class="text-sm font-semibold text-black dark:text-white">{{ pickerDateSelected ? selectedDate : 'Pilih tanggal lain'}}</span>
+                <span class="text-xs md:text-sm font-semibold text-black  dark:text-white">{{ pickerDateSelected ? selectedDate : 'Pilih tanggal lain'}}</span>
             </button>
         </div>
     </fieldset>
@@ -66,10 +66,12 @@
 </template>
 
 <script setup>
-import {ref, computed, defineProps} from 'vue'
+import {ref, computed, defineProps, defineEmits} from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue';
 import { CalendarDaysIcon } from '@heroicons/vue/24/outline';
 import { CheckCircleIcon } from '@heroicons/vue/20/solid';
+
+const emit = defineEmits(['update:picker']);
 
 const props = defineProps({
     minDate: {type: Date},
@@ -139,5 +141,11 @@ function applyPicker() {
     if (pickerDate.value) selectedDate.value = toYMD(pickerDate.value)
     showPicker.value = false
     pickerDateSelected.value = true
+    emit('update:picker', selectedDate.value)
+}
+
+function applyDate(selectedDate) {
+    pickerDateSelected.value = false
+    emit('update:picker', selectedDate)
 }
 </script>

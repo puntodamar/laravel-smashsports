@@ -39,7 +39,6 @@ const props = defineProps({
 })
 
 const featureClass = () => {
-    console.log(props.imagePosition)
     if(props.imagePosition === 'left') {
         return ['justify-end', 'lg:order-first']
     } else {

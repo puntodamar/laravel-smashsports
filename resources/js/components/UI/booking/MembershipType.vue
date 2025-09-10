@@ -9,8 +9,7 @@
                  has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-electric-magenta
                  has-focus-visible:outline-3 has-focus-visible:-outline-offset-1
                  has-disabled:border-gray has-disabled:bg-gray has-disabled:opacity-25
-                 dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10"
-            >
+                 dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10">
                 <input
                     type="radio"
                     name="membership"
