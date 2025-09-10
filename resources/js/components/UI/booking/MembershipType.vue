@@ -1,5 +1,4 @@
 <template>
-    <h4 class="text-electric-magenta text-sm font-semibold mt-5">Jenis Paket</h4>
     <fieldset>
         <div class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
             <label
