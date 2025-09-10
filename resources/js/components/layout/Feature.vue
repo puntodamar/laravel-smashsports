@@ -19,8 +19,8 @@
                         </dl>
                     </div>
                 </div>
-                <div class="flex items-start" :class="{'justify-end': props.imagePosition === 'left', 'lg:order-first': props.imagePosition === 'left', 'justify-start': props.imagePosition === 'right'}">
-                    <img :src="props.image" :alt="props.title" class="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 dark:ring-white/10 h-80 md:h-auto" />
+                <div class="flex items-start" :class="featureClass()">
+                    <img :src="props.image" :alt="props.title" class="w-xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 dark:ring-white/10 h-80 sm:h-sm md:h-auto" />
                 </div>
             </div>
         </div>
@@ -38,6 +38,13 @@ const props = defineProps({
     features: {required: true, type: Array}
 })
 
-console.log(props.image)
+const featureClass = () => {
+    console.log(props.imagePosition)
+    if(props.imagePosition === 'left') {
+        return ['justify-end', 'lg:order-first']
+    } else {
+        return ['justify-start']
+    }
+}
 
 </script>
