@@ -1,5 +1,8 @@
 <template>
-    <Header :absolute="absolute"></Header>
+    <Head>
+        <title>Smash Sports | Your One Stop Badminton Center</title>
+    </Head>
+    <Header></Header>
     <Hero></Hero>
     <Feature
         hook="Rasakan"
@@ -49,7 +52,7 @@ import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
 import Booking from '@/components/layout/Booking.vue';
-const absolute = true
+import { Head } from '@inertiajs/vue3';
 
 // Pre-wrap as CSS-ready strings
 const bgMobileCss  = `url(${bgMobile})`

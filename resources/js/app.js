@@ -42,6 +42,7 @@ function resolveFromModules(name) {
 }
 
 createInertiaApp({
+    // title: 'Smash Sports | Your One Stop Badminton Center',
     resolve: (name) => {
         const mod = resolveFromModules(name)
         if (mod) return mod
