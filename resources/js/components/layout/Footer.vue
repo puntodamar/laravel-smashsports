@@ -11,7 +11,7 @@
                     </div>
                     <address class="not-italic text-sm leading-5 text-gray-600 dark:text-white text-center sm:text-left">
                         <div class="font-medium">Smash Sports</div>
-                        <div>Jl. Contoh No. 123, Jakarta</div>
+                        <div>Jl. Olahraga No. 123, Yogyakarta</div>
                         <a href="mailto:hello@smashsports.id" class="underline hover:text-navy">hello@smashsports.id</a>
                     </address>
                 </div>
