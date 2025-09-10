@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center">
-        <h2 class="font-heading text-3xl font-semibold tracking-tight text-pretty text-black dark:text-gold">
+        <h2 class="font-heading text-3xl font-semibold tracking-tight text-pretty text-black dark:text-white">
             Booking Lapangan
         </h2>
 

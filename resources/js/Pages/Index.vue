@@ -1,5 +1,5 @@
 <template>
-    <Header></Header>
+    <Header :absolute="absolute"></Header>
     <Hero></Hero>
     <Feature
         hook="Rasakan"
@@ -33,22 +33,23 @@
 </template>
 
 <script setup>
-// (Optional) remove unused imports to avoid linter warnings
+
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/components/layout/Header.vue'
 
-// Use your alias if configured; otherwise keep your relative path
-import bgMobile from '../../assets/images/background/bg-hero-mobile.jpg'
-import bgDesktop from '../../assets/images/background/bg-hero-desktop.jpg'
-import lapangan from '../../assets/images/background/lapangan.jpg'
-import store from '../../assets/images/background/store.jpg'
-import resto from '../../assets/images/background/restaurant.jpg'
+
+import bgMobile from '@assets/images/background/bg-hero-mobile.jpg'
+import bgDesktop from '@assets/images/background/bg-hero-desktop.jpg'
+import lapangan from '@assets/images/background/lapangan.jpg'
+import store from '@assets/images/background/store.jpg'
+import resto from '@assets/images/background/restaurant.jpg'
+
 import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
 import Booking from '@/components/layout/Booking.vue';
-
+const absolute = true
 
 // Pre-wrap as CSS-ready strings
 const bgMobileCss  = `url(${bgMobile})`

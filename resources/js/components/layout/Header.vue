@@ -1,8 +1,8 @@
 <template>
-    <header class="absolute inset-x-0 top-0 z-50 text-white dark:text-gray">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header class="inset-x-0 top-0 z-50 text-white dark:text-gray" :class="headerClass()">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 bg-s" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                <a :href="route('home')" class="-m-1.5 p-1.5">
                     <span class="sr-only">Smash Sports</span>
                     <img class="h-8 w-auto" :src="companyLogo" alt="" />
                 </a>
@@ -19,12 +19,12 @@
                 </div>
             </div>
 
-            <NavbarLinks :navigation="navigation"></NavbarLinks>
+            <NavbarLinks :navigation="navigation" :text-color="textColor"></NavbarLinks>
 
             <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
 <!--                desktop-->
                 <PageTheme></PageTheme>
-                <div><a href="#" class="text-sm/6 font-semibold text-white">Masuk/Daftar</a></div>
+                <div><a href="#" :class="`text-sm/6 font-semibold ${textColor}`">Masuk/Daftar</a></div>
             </div>
         </nav>
 
@@ -66,15 +66,37 @@
 </template>
 
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, defineProps } from 'vue';
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon, UserIcon } from '@heroicons/vue/24/outline'
 import PageTheme from '@/components/UI/PageTheme.vue';
-import navigation from '../../navigation.js';
+import navigation from '@/navigation.js';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
+import { route } from 'ziggy-js';
+
+const props = defineProps({
+    absolute: {type: Boolean, default: false},
+    background: {type: Boolean, default: false},
+    textColor: {type: String, default: 'text-white'},
+})
+
 
 const companyLogo = inject('companyLogo')
+const headerClass = () => {
+    let arrClass = []
+    if(props.absolute === true) {
+        arrClass.push('absolute')
+    }
 
+    if (props.background === true) {
+        // dark:bg-gradient-to-b dark:from-navy dark:to-black
+        arrClass = arrClass.concat(['border-b-black  border-1 dark:bg-gradient-to-b dark:from-black dark:to-navy dark:border-0'])
+    }
+
+    return arrClass
+}
+
+console.log(headerClass())
 
 const mobileMenuOpen = ref(false)
 </script>

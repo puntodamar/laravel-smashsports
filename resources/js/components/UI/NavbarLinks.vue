@@ -5,8 +5,7 @@
             v-for="item in navigation.main"
             :key="item.name"
             :href="item.href"
-            class="group relative inline-flex items-center px-3 py-2 text-sm/6 font-semibold font-body
-           text-white transition-colors duration-300 overflow-hidden rounded-md">
+            :class="`group relative inline-flex items-center px-3 py-2 text-sm/6 font-semibold font-body  transition-colors duration-300 overflow-hidden rounded-md ${props.textColor}`">
 
             <span class="relative z-10 transition-colors duration-300 group-hover:text-black dark:group-hover:text-black">{{ item.name }}</span>
 
@@ -22,8 +21,11 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-    navigation: { type: Object, required: true }, // { main: [{ name, href }, ...] }
+    navigation: { type: Object, required: true },
+    textColor: { type: String, default: 'text-white' },
 })
+
+console.log(props.textColor)
 
 const navRef = ref(null)
 const hoveredIndex = ref(null)

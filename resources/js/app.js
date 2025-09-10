@@ -2,8 +2,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import companyLogo from '../assets/images/logo.png'
 import VCalendar from 'v-calendar'
-import 'v-calendar/style.css'   // <-- required styles
-
+import 'v-calendar/style.css'
+import { ZiggyVue } from 'ziggy'
 
 // App pages
 const appPages = import.meta.glob('./Pages/**/*.vue')
@@ -22,7 +22,7 @@ function resolveFromModules(name) {
     const candidates = [
         // Capital R (Resources)
         `../../Modules/${moduleName}/Resources/js/Pages/${rest}.vue`,
-        `../../Modules/${moduleName}/Resources/js/Pages/${rest}/Index.vue`,
+        `../../Modules/${moduleName}/Resources/js/Pages/${rest}/import { ZiggyVue } from 'ziggy'.vue`,
         // Lowercase (resources)
         `../../Modules/${moduleName}/resources/js/Pages/${rest}.vue`,
         `../../Modules/${moduleName}/resources/js/Pages/${rest}/Index.vue`,
@@ -54,7 +54,7 @@ createInertiaApp({
     },
     setup: ({ el, App, props, plugin }) =>
         createApp({ render: () => h(App, props) })
-            .use(plugin)
+            .use(plugin).use(ZiggyVue)
             .use(VCalendar, {
                 componentPrefix: 'V',
                 locales: {

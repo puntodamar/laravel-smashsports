@@ -15,12 +15,13 @@
     <link rel="manifest" href="{{asset('site.webmanifest')}}" />
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
+    @routes
     {{-- JS-only build: include app.js and (since we keep CSS separate) app.css --}}
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     @inertiaHead
 </head>
-<body class="bg-white dark:bg-gradient-to-b dark:from-navy dark:to-black scroll-smooth" >
+{{-- dark:bg-gradient-to-b dark:from-navy dark:to-black  --}}
+<body class="bg-white dark:bg-navy scroll-smooth" >
     @inertia
 </body>
 </html>
