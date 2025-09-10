@@ -1,5 +1,5 @@
 <template>
-    <header :class="[baseHeader, isOverHero ? overHeroClasses : afterHeroClasses]">
+    <header :class="[baseHeader, (isOverHero && props.dynamic) ? overHeroClasses : afterHeroClasses]">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a :href="route('home')" class="-m-1.5 p-1.5">
@@ -78,13 +78,17 @@
 </template>
 
 <script setup>
-import { inject, ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { inject, ref, computed, onMounted, onBeforeUnmount, defineProps } from 'vue';
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon, UserIcon } from '@heroicons/vue/24/outline'
 import PageTheme from '@/components/UI/PageTheme.vue';
 import navigation from '@/navigation.js';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 import { route } from 'ziggy-js';
+
+const props = defineProps({
+    dynamic: {required: false, type: Boolean, default: false},
+})
 
 const isOverHero = ref(true)
 const baseHeader = 'inset-x-0 top-0 z-50'

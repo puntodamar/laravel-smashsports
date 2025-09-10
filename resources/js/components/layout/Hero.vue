@@ -11,7 +11,7 @@
                             <h1 class="font-heading text-5xl font-semibold tracking-tight text-pretty text-gold sm:text-7xl"><i>Your One Stop Badminton Center!</i></h1>
                             <p class="mt-8 text-lg font-medium font-body text-pretty text-white sm:max-w-md sm:text-xl/8 lg:max-w-none ">Nikmati rasanya badminton di lapangan standar BWF, toko olahraga yang lengkap, dan resto yang enak!</p>
                             <div class="mt-10 flex items-center gap-x-6">
-                                <a href="#"
+                                <a :href="route('schedule.index')"
                                    class="flex gap-x-2 rounded-md btn-accent px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-gold  text-black ">
                                     <PencilSquareIcon class="size-5"></PencilSquareIcon>
                                     Booking Lapangan
@@ -37,6 +37,7 @@ import bgDesktop from '../../../assets/images/background/bg-hero-desktop.jpg'
 const bgMobileCss  = `url(${bgMobile})`
 const bgDesktopCss = `url(${bgDesktop})`
 import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outline'
+import { route } from 'ziggy-js';
 </script>
 
 <style scoped>

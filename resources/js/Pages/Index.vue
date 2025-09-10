@@ -2,7 +2,7 @@
     <Head>
         <title>Smash Sports | Your One Stop Badminton Center</title>
     </Head>
-    <Header></Header>
+    <Header :dynamic="true"></Header>
     <Hero></Hero>
     <Feature
         hook="Rasakan"
