@@ -30,20 +30,15 @@
                 type="button"
                 @click="showPicker = true"
                 class="relative flex items-center justify-center rounded-lg border bg-white p-4 text-gray-600
-                    dark:border-electric-magenta dark:bg-gray-900 dark:text-gray-400"
-                :class="{
-                        'dark:border-electric-magenta': pickerDateSelected,
-                        'dark:border': pickerDateSelected,
-                        'border-electric-magenta': pickerDateSelected,
-                        'border-gray': !pickerDateSelected,
-                        'border-2': pickerDateSelected}">
+                     dark:bg-gray-900 dark:text-gray-400"
+                :class="datePickerButtonClass">
                 <CalendarDaysIcon class="mr-2 size-5" aria-hidden="true" />
                 <span class="text-sm font-semibold text-black dark:text-white">{{ pickerDateSelected ? selectedDate : 'Pilih tanggal lain'}}</span>
             </button>
         </div>
     </fieldset>
 
-    <!-- Modal with VDatePicker -->
+
     <Dialog :open="showPicker" @close="showPicker = false" class="relative z-50">
         <div class="fixed inset-0 bg-black/40" aria-hidden="true" />
         <div class="fixed inset-0 flex items-center justify-center p-4">
@@ -115,12 +110,28 @@ const dateGroupName = `booking-date-${Math.random().toString(36).slice(2)}`
 const selectedDate = ref(days.value[0].value)
 
 const showPicker = ref(false)
-const minDate = props.minDate ? new Date(props.minDate) : days.value[days.value.length-1].value
+const minDate = ref(
+    props.minDate
+        ? new Date(props.minDate)
+        : new Date(days.value[days.value.length - 1].value)
+)
+minDate.value.setDate(minDate.value.getDate() + 1)
 
 // block past dates
 const pickerDate = ref(new Date(minDate))
 pickerDate.value.setDate(pickerDate.value.getDate() + 1)
+
 const pickerDateSelected = ref(false)
+
+
+const datePickerButtonClass = computed(() => {
+
+    if (pickerDateSelected.value) {
+        return ['dark:border', 'border-electric-magenta', 'border-2']
+    } else {
+        return ['border-navy']
+    }
+})
 
 
 
