@@ -3,8 +3,8 @@
         type="button"
         @click="toggle"
         :aria-pressed="selected.toString()"
-        class="relative group w-full text-left flex flex-col items-center justify-center rounded-sm border-2 p-1 transition-colors hover:border-electric-magenta"
-        :class="selected ? 'border-electric-magenta text-electric-magenta' : 'border-gray '">
+        class="relative group w-full text-center flex flex-col items-center justify-center rounded-sm border-1 p-1 transition-colors hover:border-electric-magenta"
+        :class="selected ? 'border-electric-magenta text-electric-magenta border-2' : 'border-gray text-gray-600 dark:text-gray-400'">
         <div class="text-xs">{{time}}</div>
         <div class="text-xs opacity-50">{{price}}</div>
 
