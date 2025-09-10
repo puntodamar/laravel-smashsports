@@ -1,9 +1,10 @@
 import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from './icons.js';
 import { ShoppingCartIcon, PencilSquareIcon, BuildingStorefrontIcon, PhoneIcon,  } from '@heroicons/vue/24/outline';
+import { route } from 'ziggy-js';
 
 export default {
     main: [
-        { name: 'Booking', href: '#booking', icon: PencilSquareIcon },
+        { name: 'Booking', href: route('schedule.booking'), icon: PencilSquareIcon },
         { name: 'Toko', href: '#', icon: ShoppingCartIcon },
         { name: 'Resto', href: '#', icon: BuildingStorefrontIcon },
         { name: 'Kontak', href: '#', icon:  PhoneIcon },
@@ -26,6 +27,11 @@ export default {
             icon: XIcon,
         },
 
+        {
+            name: 'YouTube',
+            href: '#',
+            icon: YoutubeIcon,
+        },
         {
             name: 'YouTube',
             href: '#',
