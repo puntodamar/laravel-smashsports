@@ -1,6 +1,5 @@
 <template>
     <button @click="onClick" class="rounded-lg bg bg-white text-black p-2 dark:bg-black dark:text-white">
-
         <component :is="isDark ? SunIcon : MoonIcon" class="size-5" aria-hidden="true" />
     </button>
 </template>

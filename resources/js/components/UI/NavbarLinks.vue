@@ -19,40 +19,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import {route} from 'ziggy-js'
 
 const props = defineProps({
     navigation: { type: Object, required: true },
     textColor: { type: String, default: 'text-white' },
 })
 
-console.log(props.textColor)
-
-const navRef = ref(null)
-const hoveredIndex = ref(null)
-const indicator = ref({ x: 0, y: 0, w: 0, h: 0, visible: false })
-
-function moveIndicator(el, i) {
-    if (!navRef.value || !el) return
-    const navBox = navRef.value.getBoundingClientRect()
-    const box = el.getBoundingClientRect()
-
-    indicator.value = {
-        x: box.left - navBox.left,
-        y: box.top - navBox.top,
-        w: box.width,
-        h: box.height,
-        visible: true,
-    }
-    hoveredIndex.value = i
-}
-
-function hideIndicator() {
-    indicator.value.visible = false
-    hoveredIndex.value = null
-}
-
-function onFocusIn(e) {
-    const link = e.target.closest('a')
-    if (link) moveIndicator(link, [...link.parentNode.children].indexOf(link))
-}
 </script>

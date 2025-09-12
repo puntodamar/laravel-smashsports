@@ -1,6 +1,6 @@
 <template>
 <!--    dark:bg-gradient-to-b dark:from-navy dark:to-black dark:text-white-->
-    <footer class="border-t-1 border-t-gray-400  dark:border-t-gray opacity-80 py-5 bg-gradient-to-b from-white to-gray-300 dark:from-gray-800 dark:to-navy" >
+    <footer class="border-t-1 border-t-gray-200  dark:border-t-gray-700 opacity-80 py-5 bg-gradient-to-b from-white to-gray-300 dark:from-gray-800 dark:to-navy" >
         <div class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
             <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between">
 
@@ -12,7 +12,7 @@
                     <address class="not-italic text-sm leading-5 text-gray-600 dark:text-white text-center sm:text-left">
                         <div class="font-medium">Smash Sports</div>
                         <div>Jl. Olahraga No. 123, Yogyakarta</div>
-                        <a href="mailto:hello@smashsports.id" class="underline hover:text-navy">hello@smashsports.id</a>
+                        <a href="mailto:hello@smashsports.id" class="underline hover:text-navy dark:hover:text-gold">hello@smashsports.id</a>
                     </address>
                 </div>
 
