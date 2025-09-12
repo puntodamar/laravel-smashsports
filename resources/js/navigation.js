@@ -1,4 +1,4 @@
-import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from './icons.js';
+import { FacebookIcon, InstagramIcon, TiktokIcon, XIcon, YoutubeIcon } from './icons.js';
 import { ShoppingCartIcon, PencilSquareIcon, BuildingStorefrontIcon, PhoneIcon,  } from '@heroicons/vue/24/outline';
 import { route } from 'ziggy-js';
 
@@ -33,9 +33,9 @@ export default {
             icon: YoutubeIcon,
         },
         {
-            name: 'YouTube',
+            name: 'Tiktok',
             href: '#',
-            icon: YoutubeIcon,
+            icon: TiktokIcon,
         },
     ],
 };

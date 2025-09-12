@@ -113,5 +113,25 @@ const SunIcon = defineComponent({
     },
 })
 
+const TiktokIcon = defineComponent({
+    name: 'HtmlIcon',
+    render: () =>
+        h(
+            'svg',
+            {
+                xmlns: 'http://www.w3.org/2000/svg',
+                viewBox: '0 0 24 24',
+                fill: 'currentColor',
+                role: 'img',
+                'aria-label': 'HTML5 logo',
+            },
+            [
+                h('path', {
+                    d: 'M12 2 3.5 3.27l1 14.59L12 20.73l7.5-2.87 1-14.59L12 2Zm5.07 4.9-.19 2.21H12v2.21h4.71l-.4 4.88L12 17.57l-4.31-1.37-.25-2.85h2.23l.13 1.39 2.2.61 2.2-.61.18-2.12H6.65l-.18-2.21H12V8.2H7l-.07-1.3h10.14Z',
+                }),
+            ]
+        ),
+})
 
-export {UserIcon, FacebookIcon, InstagramIcon, XIcon, YoutubeIcon, MoonIcon, SunIcon}
+
+export {UserIcon, FacebookIcon, InstagramIcon, XIcon, YoutubeIcon, MoonIcon, SunIcon, TiktokIcon}
