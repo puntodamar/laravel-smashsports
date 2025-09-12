@@ -5,15 +5,18 @@ namespace Modules\Schedule\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Schedule\Http\Requests\FindAvailableCourtRequest;
 
 class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-
+    public function index(FindAvailableCourtRequest $request)
     {
+
+
+
         return Inertia::render('Module/Schedule/Index', [
             'title' => 'Schedule',
         ]);

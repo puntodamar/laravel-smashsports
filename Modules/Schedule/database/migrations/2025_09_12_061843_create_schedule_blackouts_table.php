@@ -34,17 +34,14 @@ return new class extends Migration
             $table->index(['court_id', 'start_at', 'end_at', 'scope']);
         });
 
-        $driver = Schema::getConnection()->getDriverName();
-
-        if ($driver === 'pgsql') {
-            DB::statement("
+        DB::statement("
                 ALTER TABLE schedule_blackouts
                 ADD CONSTRAINT schedule_blackouts_chk CHECK (end_at > start_at)
             ");
 
-            //prevent overlapping blackouts on the same court
-            DB::statement('CREATE EXTENSION IF NOT EXISTS btree_gist;');
-            DB::statement("
+        //prevent overlapping blackouts on the same court
+        DB::statement('CREATE EXTENSION IF NOT EXISTS btree_gist;');
+        DB::statement("
                 ALTER TABLE schedule_blackouts
                 ADD CONSTRAINT schedule_blackouts_no_overlap
                 EXCLUDE USING gist (
@@ -52,27 +49,14 @@ return new class extends Migration
                     tstzrange(start_at, end_at) WITH &&
                 )
             ");
-        } elseif ($driver === 'mysql') {
-            DB::statement("
-                ALTER TABLE schedule_blackouts
-                ADD CONSTRAINT schedule_blackouts_chk CHECK (end_at > start_at)
-            ");
-        }
     }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void {
-        $driver = Schema::getConnection()->getDriverName();
-
-        if ($driver === 'pgsql') {
-            DB::statement('ALTER TABLE schedule_blackouts DROP CONSTRAINT IF EXISTS schedule_blackouts_no_overlap;');
-            DB::statement('ALTER TABLE schedule_blackouts DROP CONSTRAINT IF EXISTS schedule_blackouts_chk;');
-        } elseif ($driver === 'mysql') {
-            DB::statement('ALTER TABLE schedule_blackouts DROP CHECK schedule_blackouts_chk;');
-        }
-
+        DB::statement('ALTER TABLE schedule_blackouts DROP CONSTRAINT IF EXISTS schedule_blackouts_no_overlap;');
+        DB::statement('ALTER TABLE schedule_blackouts DROP CONSTRAINT IF EXISTS schedule_blackouts_chk;');
         Schema::dropIfExists('schedule_blackouts');
     }
 };

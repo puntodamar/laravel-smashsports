@@ -15,8 +15,7 @@ class CourtSchedule extends Model
     ];
 
     protected $casts = [
-        'date' => 'date:Y-m-d', // stored as DATE
-        // start_time / end_time are TIME; keep as strings, and expose combined datetimes below
+        'date' => 'date:Y-m-d',
         'price' => 'integer',
     ];
 
@@ -30,7 +29,7 @@ class CourtSchedule extends Model
         return $this->hasOne(CourtBooking::class, 'court_schedule_id');
     }
 
-    /** Combined start/end as immutable Carbon (server TZ) */
+
     public function getStartAtAttribute(): CarbonImmutable
     {
         return CarbonImmutable::parse($this->date->format('Y-m-d').' '.$this->start_time);
@@ -47,7 +46,6 @@ class CourtSchedule extends Model
         return $q->whereDate('date', $date);
     }
 
-    /** Scope: schedules for a court id */
     public function scopeForCourt(Builder $q, int $courtId): Builder
     {
         return $q->where('court_id', $courtId);
