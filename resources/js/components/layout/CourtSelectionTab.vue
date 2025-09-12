@@ -36,14 +36,14 @@
 
             <div id="lapangan-3" v-show="tabIndex === 3" class="text-white">
                 <div class="grid grid-cols-4 gap-2 mt-5">
-                    <CourtTimeGridItem time="08:00-09:00" price="Rp 45.000"></CourtTimeGridItem>
-                    <CourtTimeGridItem time="09:00-10:00" price="Rp 45.000"></CourtTimeGridItem>
+                    <CourtTimeGridItem :court-id="Number(3)" time="08:00 09:00" price="Rp 45.000"></CourtTimeGridItem>
+                    <CourtTimeGridItem :court-id="Number(3)" time="09:00 10:00" price="Rp 45.000"></CourtTimeGridItem>
                 </div>
             </div>
 
             <div id="lapangan-4" v-show="tabIndex === 4" class="text-white">
                 <div class="grid grid-cols-4 gap-2 mt-5">
-                    <CourtTimeGridItem time="18:00-17:00" price="Rp 50.000"></CourtTimeGridItem>
+                    <CourtTimeGridItem :court-id="Number(4)" time="18:00 17:00" price="Rp 50.000"></CourtTimeGridItem>
                 </div>
             </div>
         </div>
