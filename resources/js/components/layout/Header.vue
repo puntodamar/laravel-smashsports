@@ -89,13 +89,14 @@ const props = defineProps({
     dynamic: {required: false, type: Boolean, default: false},
 })
 
+
 const isOverHero = ref(true)
 const baseHeader = 'inset-x-0 top-0 z-50'
 const overHeroClasses = 'absolute text-white'
 const afterHeroClasses = 'fixed bg-gray-300/80 dark:bg-gray-900/70 backdrop-blur supports-[backdrop-filter]:bg-gray-300/60 text-slate-900 dark:text-gray-100 shadow-sm'
 
-const linkColor = computed(() => (isOverHero.value ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
-const iconColor = computed(() => (isOverHero.value ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
+const linkColor = computed(() => (isOverHero.value && props.dynamic ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
+const iconColor = computed(() => (isOverHero.value && props.dynamic ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
 
 let observer = null
 

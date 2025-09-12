@@ -1,5 +1,5 @@
 <template>
-    <button @click="onClick" class="rounded-lg bg bg-gold text-black p-2">
+    <button @click="onClick" class="rounded-lg bg bg-white text-black p-2">
 
         <component :is="isDark ? SunIcon : MoonIcon" class="size-5" aria-hidden="true" />
     </button>
@@ -20,8 +20,8 @@ const ripple = useRippleToggle({
 
 const onClick = (e) => {
     ripple(e, () => {
-        toggle() // flips theme mid-ripple
-        console.log(localStorage.getItem('color-theme'))
+        toggle()
+
     })
 
 }
