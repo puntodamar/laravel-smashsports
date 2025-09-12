@@ -1,6 +1,6 @@
 <template>
     <fieldset>
-        <div class="mt-6 grid grid-cols-2 gap-x-4">
+        <div class="mt-6 grid grid-cols-2 gap-x-4 px-5">
             <label
                 v-for="m in membership"
                 :key="m.id"
