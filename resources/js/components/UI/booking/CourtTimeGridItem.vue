@@ -2,10 +2,13 @@
     <button
         type="button"
         @click="toggle"
+        :value="time"
+        :name="`court[${props.courtId}]time[]`"
         :aria-pressed="selected.toString()"
-        class="relative group w-full text-center flex flex-col items-center justify-center rounded-sm border-1 p-1 transition-colors hover:navy"
+        class="relative group w-full text-center flex flex-col items-center justify-center rounded-sm border-1 p-3 transition-colors hover:navy"
         :class="selected ? 'border-navy dark:border-gold  border-2 text-gray-900 dark:text-white ' : 'border-gray bg-gray-200 text-gray-600 dark:text-gray-400  dark:bg-gray-700 ' +
          ''">
+
         <div class="text-xs">{{time}}</div>
         <div class="text-xs opacity-50">{{price}}</div>
 
@@ -23,9 +26,11 @@ import { CheckCircleIcon } from '@heroicons/vue/20/solid/index.js';
 
 
 const props = defineProps({
+    courtId: {required: true, type: Number},
     price: { type: String, required: true },
     time: {type: String, required: true},
 })
+
 
 const selected = ref(false)
 const toggle = () => { selected.value = !selected.value }

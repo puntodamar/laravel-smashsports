@@ -3,7 +3,7 @@
     <title>Smash Sports | Booking</title>
     </Head>
     <Header></Header>
-    <Booking class="mt-40"></Booking>
+    <Booking class="my-40"></Booking>
     <Footer></Footer>
 </template>
 
