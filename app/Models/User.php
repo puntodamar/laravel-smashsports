@@ -47,4 +47,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public static function superAdmin(): User {
+        return User::where('role', 'super_admin')->first();
+    }
 }

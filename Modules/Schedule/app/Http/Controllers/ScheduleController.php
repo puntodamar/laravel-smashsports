@@ -3,9 +3,11 @@
 namespace Modules\Schedule\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Schedule\Http\Requests\FindAvailableCourtRequest;
+use Modules\Schedule\Models\CourtSchedule;
 
 class ScheduleController extends Controller
 {
@@ -14,19 +16,38 @@ class ScheduleController extends Controller
      */
     public function index(FindAvailableCourtRequest $request)
     {
-
+        $available = CourtSchedule::findAvailableSchedules($request->query('membership_type'), $request->query('date'));
 
 
         return Inertia::render('Module/Schedule/Index', [
             'title' => 'Schedule',
+            'available' => $available,
         ]);
     }
 
-    public function booking()
-
+    public function booking(Request $request)
     {
+        $validated = $request->validate([
+            'membership_type' => 'nullable|in:incidental,membership',
+            'date'            => 'nullable|date_format:Y-m-d',
+        ]);
+
+
+
+        $membershipType = $validated['membership_type'] ?? null;
+        $date           = $validated['date'] ?? null;
+
+        $available = collect();
+        if ($membershipType && $date) {
+            CourtSchedule::ensureForDate($request->query('date'), User::superAdmin()->id);
+            // ensure this matches your model method name
+            $available = CourtSchedule::findAvailableByTypeAndDate($membershipType, $date);
+        }
+
         return Inertia::render('Module/Schedule/Index/Booking', [
-            'title' => 'Booking',
+            'title'     => 'Booking',
+            'available' => $available,
+            'filters'   => compact('membershipType', 'date'),
         ]);
     }
 

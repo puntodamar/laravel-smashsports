@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Court extends Model
 {
     protected $fillable = ['name'];
+    public $timestamps = false;
 
     public function schedules(): HasMany
     {
