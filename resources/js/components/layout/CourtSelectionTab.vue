@@ -15,9 +15,11 @@
             <div class="border-b border-gray-200 dark:border-white/10">
                 <nav class="-mb-px flex" aria-label="Tabs">
                     <a v-for="tab in tabs" :key="tab.name" :href="tab.href" @click="viewTab(tab.tabIndex)"
+                       @click.prevent="() => history.pushState(null, '', '#features')"
                        class="w-1/4 border-b-2 px-1 py-4 text-center text-sm font-medium"
                        :class="currentTabClass(tab.tabIndex)"
                        :aria-current="tab.current ? 'page' : undefined">{{ tab.name }}
+
                         <span class="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 inset-ring inset-ring-gray-500/10 dark:bg-gray-400/10 dark:text-gray-400 dark:inset-ring-gray-400/20">{{availableText(tab.available)}}</span>
                     </a>
                 </nav>

@@ -1,8 +1,4 @@
 <template>
-    <Head>
-        <title>Smash Sports | Your One Stop Badminton Center</title>
-    </Head>
-    <Header :dynamic="true"></Header>
     <Hero></Hero>
     <Feature
         hook="Rasakan"
@@ -31,17 +27,11 @@
         image-position="left">
     </Feature>
     <ScrollToTop />
-    <Footer></Footer>
 </template>
+
 
 <script setup>
 
-import Footer from '@/components/layout/Footer.vue'
-import Header from '@/components/layout/Header.vue'
-
-
-import bgMobile from '@assets/images/background/bg-hero-mobile.jpg'
-import bgDesktop from '@assets/images/background/bg-hero-desktop.jpg'
 import lapangan from '@assets/images/background/lapangan.jpg'
 import store from '@assets/images/background/store.jpg'
 import resto from '@assets/images/background/restaurant.jpg'
@@ -50,12 +40,16 @@ import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
-import { Head } from '@inertiajs/vue3';
+import Header from '@/components/layout/Header.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
-// Pre-wrap as CSS-ready strings
-const bgMobileCss  = `url(${bgMobile})`
-const bgDesktopCss = `url(${bgDesktop})`
-
+defineOptions({
+    layout: (h, page) =>
+        h(AppLayout, {}, {
+            body: () => page,
+            header : () => h(Header, { dynamic: true })
+        }),
+})
 
 const featureLapangan = [
     {
@@ -113,7 +107,6 @@ const featureResto = [
         icon: ClockIcon,
     },
 ]
-
 
 
 </script>
