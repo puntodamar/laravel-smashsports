@@ -28,7 +28,7 @@
             <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
                 <PageTheme />
                 <div>
-                    <a href="#" class="text-sm/6 font-semibold" :class="linkColor">Masuk/Daftar</a>
+                    <Link :href="route('login')" class="text-sm/6 font-semibold" :class="linkColor">Masuk/Daftar</Link>
                 </div>
             </div>
         </nav>
@@ -63,11 +63,11 @@
                             </a>
                         </div>
                         <div class="py-6">
-                            <a href="#" class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold
+                            <Link :href="route('login')" class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold
                                 text-black dark:text-gray-200 hover:bg-gold dark:hover:text-black">
                                 <UserIcon class="size-5" />
                                 Masuk/Daftar
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -84,6 +84,7 @@ import PageTheme from '@/components/UI/PageTheme.vue';
 import navigation from '@/navigation.js';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 import { route } from 'ziggy-js';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     dynamic: {required: false, type: Boolean, default: false},
