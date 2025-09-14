@@ -14,8 +14,8 @@ Route::middleware('guest')->group(function () {
         Route::get('/booking', [ScheduleController::class, 'booking'])->name('booking');
     });
     Route::get('/', [IndexController::class, 'index'])->name('home');
-    Route::get('/login', fn () => Inertia::render('Auth/Login', []))->name('login');
-    // Route::get('/register', fn () => Inertia::render('Auth/Register'))->name('register'); // if you enable registration
+    Route::get('/login', fn () => Inertia::render('Auth/Login', ['mode' => 'login']))->name('login');
+     Route::get('/register', fn () => Inertia::render('Auth/Register', ['mode' => 'register']))->name('register');
 });
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 

@@ -142,6 +142,3 @@ createInertiaApp({
             .provide('companyLogo', companyLogo)
             .mount(el),
 })
-
-
-console.log('[pages]', Object.keys(appPages))

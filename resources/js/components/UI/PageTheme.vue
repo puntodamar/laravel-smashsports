@@ -16,8 +16,6 @@ const props = defineProps({
     text: {type: String, default: 'text-black dark:text-white'},
 })
 
-console.log(props.bg)
-
 const css = 'rounded-lg p-2 dark:bg-black '
 
 const ripple = useRippleToggle({

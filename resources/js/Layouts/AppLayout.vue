@@ -18,7 +18,6 @@
     import Header from '@/components/layout/Header.vue';
 
     onMounted(async () => {
-        console.log('app lauout mounted.');
         // const { InertiaProgress } = await import('@inertiajs/progress')
         // InertiaProgress.init()
     })
