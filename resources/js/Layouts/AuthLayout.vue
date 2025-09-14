@@ -1,5 +1,6 @@
 <template>
     <Head :title="`Smash Sports | ${props.title}`" />
+
     <div class="flex h-screen flex-1">
         <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
@@ -35,11 +36,9 @@
                             </div>
                         </div>
                         <form @submit.prevent="submitForm"  class="space-y-6">
-                            <Transition name="fade-slide" mode="out-in">
-                                <div :key="mode">
-                                    <slot name="form" :form="form" :mode="mode" />
-                                </div>
-                            </Transition>
+                            <div :key="mode">
+                                <slot name="form" :form="form" :mode="mode" />
+                            </div>
                             <div>
                                 <button type="submit" class="flex w-full justify-center rounded-md btn-gray dark:bg-black">{{isLogin ? 'Masuk' : 'Daftar'}}</button>
                             </div>
@@ -77,13 +76,14 @@
             <img class="absolute inset-0 size-full object-cover" :src="bgDesktop" alt="" />
         </div>
     </div>
+
 </template>
 
 <script setup>
 import { NoSymbolIcon } from '@heroicons/vue/20/solid'
 import bgDesktop from '@assets/images/background/bg-hero-desktop.jpg'
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { computed, inject, reactive } from 'vue';
+import { computed, inject, onMounted, reactive } from 'vue';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import { FacebookIconColor, GoogleIcon } from '@/icons.js';
 import { route } from 'ziggy-js';
@@ -92,12 +92,20 @@ import { Head, useForm } from '@inertiajs/vue3';
 const isLogin = computed(() => props.mode === 'login')
 
 const companyLogo = inject('companyLogo')
+
+
 const props = defineProps({
     title: {required: false, type: String},
     mode: {required: true, type: String},
     loginUrl: { type: String, default: '/login' },
     registerUrl: { type: String, default: '/register' },
  })
+
+
+defineOptions({
+    // AppLayout persists across Inertia visits, so the Transition can run
+    layout: (h, page) => h(AppLayout, {header: false, footer: false}, { default: () => page }),
+})
 
 const form = useForm({
     name: null,
@@ -132,15 +140,6 @@ const submitForm = () => {
         },
     })
 }
-
-
-defineOptions({
-    layout: (h, page) =>
-        h(AppLayout, {header: false, footer: false}, {
-            default: () => page,
-        }),
-})
-
 
 </script>
 

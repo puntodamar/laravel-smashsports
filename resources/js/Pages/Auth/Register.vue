@@ -52,8 +52,14 @@
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const title = "Daftar"
 const mode = "register"
 
+defineOptions({
+    // This keeps AppLayout mounted across Inertia visits,
+    // so the Transition inside AppLayout can animate page swaps.
+    layout: (h, page) => h(AppLayout, {header: false, footer: false}, { default: () => page }),
+})
 </script>

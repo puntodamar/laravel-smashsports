@@ -50,15 +50,15 @@
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const title = "Masuk"
 const mode = "login"
 
-// defineOptions({
-//     layout: (h, page) =>
-//         h(AuthLayout, {title: title, mode: mode}, {
-//             default: () => page,
-//         }),
-// })
+defineOptions({
+    // This keeps AppLayout mounted across Inertia visits,
+    // so the Transition inside AppLayout can animate page swaps.
+    layout: (h, page) => h(AppLayout, {header: false, footer: false}, { default: () => page }),
+})
 
 </script>
