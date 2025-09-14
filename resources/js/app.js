@@ -119,7 +119,9 @@ createInertiaApp({
     resolve: async (name) => {
         // load module first
         const moduleLoader = resolveFromModules(name)
-        if (moduleLoader) return load(moduleLoader)
+        if (moduleLoader) {
+            return load(moduleLoader)
+        }
 
         //fallback to app page
         const page = await resolveAppPage(name)
