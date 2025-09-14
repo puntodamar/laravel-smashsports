@@ -101,6 +101,7 @@ const iconColor = computed(() => (isOverHero.value && props.dynamic ? 'text-whit
 let observer = null
 
 onMounted(() => {
+
     const sentinel = document.getElementById('hero-sentinel')
     if (sentinel) {
         observer = new IntersectionObserver(

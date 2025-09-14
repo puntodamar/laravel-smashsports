@@ -18,9 +18,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import {route} from 'ziggy-js'
-
 const props = defineProps({
     navigation: { type: Object, required: true },
     textColor: { type: String, default: 'text-white' },

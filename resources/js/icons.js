@@ -114,24 +114,138 @@ const SunIcon = defineComponent({
 })
 
 const TiktokIcon = defineComponent({
-    name: 'HtmlIcon',
-    render: () =>
-        h(
+    name: 'TikTokIconOutline',
+    props: {
+        size: { type: [Number, String], default: 24 },
+        strokeWidth: { type: [Number, String], default: 1.8 },
+        title: { type: String, default: 'TikTok' },
+    },
+    render() {
+        const size = typeof this.size === 'number' ? `${this.size}` : this.size;
+        const strokeWidth =
+            typeof this.strokeWidth === 'number' ? `${this.strokeWidth}` : this.strokeWidth;
+
+        // Stylized mono-outline of the TikTok note
+        return h(
             'svg',
             {
                 xmlns: 'http://www.w3.org/2000/svg',
                 viewBox: '0 0 24 24',
-                fill: 'currentColor',
+                width: size,
+                height: size,
                 role: 'img',
-                'aria-label': 'HTML5 logo',
+                'aria-label': this.title,
+                fill: 'none',
+                stroke: 'currentColor',
+                'stroke-width': strokeWidth,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
             },
             [
+                // stem + head path (built to resemble the TikTok mark in outline)
                 h('path', {
-                    d: 'M12 2 3.5 3.27l1 14.59L12 20.73l7.5-2.87 1-14.59L12 2Zm5.07 4.9-.19 2.21H12v2.21h4.71l-.4 4.88L12 17.57l-4.31-1.37-.25-2.85h2.23l.13 1.39 2.2.61 2.2-.61.18-2.12H6.65l-.18-2.21H12V8.2H7l-.07-1.3h10.14Z',
+                    d: [
+                        // vertical stem
+                        'M12 4', 'v9',
+                        // transition to circle (note head) using a small arc
+                        'a4 4 0 1 1 -4 4',
+                        // keep outline continuous
+                        'm4 -9',
+                        // top-right “hook” (the short arm that follows the brand style)
+                        'c0 0 1.6 2.1 5 2.4',
+                        'M17 10.4',
+                    ].join(' '),
+                }),
+                // note head circle (kept separate so stroke joins look crisp)
+                h('circle', { cx: 8, cy: 17, r: 3.5 }),
+            ]
+        );
+    },
+});
+
+const FacebookIconColor = defineComponent({
+    name: 'FacebookIcon',
+    props: {
+        size: { type: [Number, String], default: 24 },
+        title: { type: String, default: 'Facebook' },
+    },
+    render() {
+        const size = typeof this.size === 'number' ? `${this.size}` : this.size;
+
+        return h(
+            'svg',
+            {
+                xmlns: 'http://www.w3.org/2000/svg',
+                viewBox: '0 0 24 24',
+                width: size,
+                height: size,
+                role: 'img',
+                'aria-label': this.title,
+            },
+            [
+                // Blue rounded-square background
+                h('rect', {
+                    x: 0,
+                    y: 0,
+                    width: 24,
+                    height: 24,
+                    rx: 4,
+                    fill: '#1877F2',
+                }),
+                // White "f"
+                h('path', {
+                    fill: '#FFFFFF',
+                    d: 'M15.5 6.75H14.2c-1.52 0-2.45.96-2.45 2.54V11H9.5v2.4h2.25V20h2.6v-6.6h2.17l.38-2.4h-2.55V9.62c0-.52.35-.87.93-.87h1.22V6.78l-.1-.03Z',
                 }),
             ]
-        ),
-})
+        );
+    },
+});
+
+const GoogleIcon = defineComponent({
+    name: 'GoogleIcon',
+    props: {
+        size: { type: [Number, String], default: 24 },
+        title: { type: String, default: 'Google' },
+    },
+    render() {
+        const size = typeof this.size === 'number' ? `${this.size}` : this.size;
+
+        return h(
+            'svg',
+            {
+                xmlns: 'http://www.w3.org/2000/svg',
+                viewBox: '0 0 24 24',
+                width: size,
+                height: size,
+                role: 'img',
+                'aria-label': this.title,
+            },
+            [
+                // Blue
+                h('path', {
+                    fill: '#4285F4',
+                    d: 'M23.49 12.27c0-.78-.07-1.53-.2-2.27H12v4.3h6.44c-.28 1.5-1.12 2.77-2.39 3.62v3h3.86c2.26-2.08 3.59-5.14 3.59-8.65z',
+                }),
+                // Green
+                h('path', {
+                    fill: '#34A853',
+                    d: 'M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.86-3c-1.08.73-2.47 1.16-4.09 1.16-3.14 0-5.8-2.12-6.75-4.98H1.24v3.13C3.22 21.33 7.3 24 12 24z',
+                }),
+                // Yellow
+                h('path', {
+                    fill: '#FBBC05',
+                    d: 'M5.25 14.27c-.24-.73-.38-1.51-.38-2.27s.14-1.54.38-2.27V6.6H1.24C.45 8.22 0 10.06 0 12s.45 3.78 1.24 5.4l4.01-3.13z',
+                }),
+                // Red
+                h('path', {
+                    fill: '#EA4335',
+                    d: 'M12 4.75c1.76 0 3.34.6 4.58 1.78l3.43-3.43C17.95 1.25 15.23 0 12 0 7.3 0 3.22 2.67 1.24 6.6l4.01 3.13C6.2 6.87 8.86 4.75 12 4.75z',
+                }),
+            ]
+        );
+    },
+});
 
 
-export {UserIcon, FacebookIcon, InstagramIcon, XIcon, YoutubeIcon, MoonIcon, SunIcon, TiktokIcon}
+export {UserIcon, FacebookIcon, FacebookIconColor, InstagramIcon, XIcon, YoutubeIcon, MoonIcon, SunIcon, TiktokIcon, GoogleIcon}

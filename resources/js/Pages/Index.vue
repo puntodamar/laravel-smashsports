@@ -40,14 +40,12 @@ import Hero from '@/components/layout/Hero.vue';
 import Feature from '@/components/layout/Feature.vue';
 import { FireIcon, HeartIcon, LightBulbIcon, TrophyIcon, BanknotesIcon, SparklesIcon, StarIcon, UsersIcon, ClockIcon } from '@heroicons/vue/20/solid/index.js';
 import ScrollToTop from '@/components/UI/ScrollToTop.vue';
-import Header from '@/components/layout/Header.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 defineOptions({
     layout: (h, page) =>
-        h(AppLayout, {}, {
-            body: () => page,
-            header : () => h(Header, { dynamic: true })
+        h(AppLayout, {dynamicHeader: true}, {
+            default: () => page,
         }),
 })
 
