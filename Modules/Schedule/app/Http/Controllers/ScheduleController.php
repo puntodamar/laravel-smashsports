@@ -44,7 +44,7 @@ class ScheduleController extends Controller
             $available = CourtSchedule::findAvailableByTypeAndDate($membershipType, $date);
         }
 
-        return Inertia::render('Module/Schedule/Index/Booking', [
+        return Inertia::render('Module/Schedule/Booking', [
             'title'     => 'Booking',
             'available' => $available,
             'filters'   => compact('membershipType', 'date'),

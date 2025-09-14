@@ -56,9 +56,16 @@
         bg-gold text-black font-semibold transition
         hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60;
     }
+
     .btn-secondary {
         @apply inline-flex items-center justify-center rounded-[--radius-pill] px-5 py-3
         bg-navy text-white font-medium transition
+        hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy/60;
+    }
+
+    .btn-gray {
+        @apply inline-flex items-center justify-center rounded-[--radius-pill] px-5 py-3
+        bg-gray-800 text-white font-medium transition
         hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy/60;
     }
 
