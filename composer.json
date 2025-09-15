@@ -35,12 +35,16 @@
             "App\\": "app/",
             "Modules\\": "Modules/",
             "Modules\\Schedule\\": "Modules/Schedule/app/",
+            "Modules\\Store\\": "Modules/Store/app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
         "classmap": [
             "Modules/Schedule/database/seeders",
-            "Modules/Schedule/database/factories"
+            "Modules/Schedule/database/factories",
+
+            "Modules/Store/database/seeders",
+            "Modules/Store/database/factories"
         ]
     },
     "autoload-dev": {

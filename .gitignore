@@ -26,3 +26,4 @@ yarn-error.log
 /.vscode
 /.zed
 Modules/Schedule/node_modules
+Modules/Store/node_modules
