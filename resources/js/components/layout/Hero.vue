@@ -8,25 +8,62 @@
                 <div class="my-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
                     <div class="my-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                         <div class="relative w-full lg:max-w-2xl lg:shrink-0 xl:max-w-3xl">
-                            <h1 class="font-heading text-5xl font-semibold tracking-tight text-pretty text-gold sm:text-7xl"><i>Your One Stop Badminton Center!</i></h1>
-                            <p class="mt-8 text-lg font-medium font-body text-pretty text-white sm:max-w-md sm:text-xl/8 lg:max-w-none ">Nikmati rasanya badminton di lapangan standar BWF, toko olahraga yang lengkap, dan resto yang enak!</p>
-                            <div class="mt-10 flex items-center gap-x-6">
-                                <Link :href="route('schedule.booking')" class="flex gap-x-2 rounded-md btn-accent px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-gold  text-black ">
-                                    <PencilSquareIcon class="size-5"></PencilSquareIcon>
+
+                            <Transition
+                                appear
+                                enter-from-class="opacity-0 translate-y-2"
+                                enter-to-class="opacity-100 translate-y-0"
+                                enter-active-class="transition-all duration-500 ease-out delay-0">
+                                <p class="text-sm text-white font-semibold pl-3">Jogja Smash Sports</p>
+                            </Transition>
+
+                            <Transition
+                                appear
+                                enter-from-class="opacity-0 translate-y-2"
+                                enter-to-class="opacity-100 translate-y-0"
+                                enter-active-class="transition-all duration-[1s] ease-out delay-150">
+                                <h1 class="font-heading text-5xl font-semibold tracking-tight text-pretty text-gold sm:text-7xl">
+                                    <i>Your One Stop Badminton Center!</i>
+                                </h1>
+                            </Transition>
+
+                            <Transition
+                                appear
+                                enter-from-class="opacity-0 translate-y-2"
+                                enter-to-class="opacity-100 translate-y-0"
+                                enter-active-class="transition-all duration-700 ease-out delay-300">
+                                <p class="mt-8 text-lg font-medium font-body text-pretty text-white sm:max-w-md sm:text-xl/8 lg:max-w-none">
+                                    Nikmati rasanya badminton di lapangan standar BWF, toko olahraga yang lengkap, dan resto yang enak!
+                                </p>
+                            </Transition>
+
+                            <TransitionGroup
+                                appear
+                                tag="div"
+                                class="mt-10 flex items-center gap-x-6"
+                                enter-from-class="opacity-0 translate-y-2"
+                                enter-to-class="opacity-100 translate-y-0"
+                                enter-active-class="transition-all duration-500 ease-out delay-300"
+                                leave-from-class="opacity-100 translate-y-0"
+                                leave-to-class="opacity-0 -translate-y-2"
+                                leave-active-class="transition-all duration-300 ease-in"
+                                move-class="transition-transform"
+                            >
+                                <Link
+                                    :key="'book'"
+                                    :href="route('schedule.booking')"
+                                    class="flex gap-x-2 rounded-md btn-accent px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-gold text-black">
+                                    <PencilSquareIcon class="size-5" />
                                     Booking Lapangan
                                 </Link>
 
-<!--                                <a :href="route('schedule.booking')"-->
-<!--                                   class="flex gap-x-2 rounded-md btn-accent px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-gold  text-black ">-->
-<!--                                    <PencilSquareIcon class="size-5"></PencilSquareIcon>-->
-<!--                                    Booking Lapangan-->
-<!--                                </a>-->
-
-                                <a href="#" class="text-sm/6 font-semibold text-white hover:text-gold flex items-center gap-x-2">
-                                    <BuildingStorefrontIcon class="size-5"></BuildingStorefrontIcon>
-                                    Toko
+                                <a :key="'store'" href="#" class="text-sm/6 font-semibold text-white hover:text-gold flex items-center gap-x-2 [transition-delay:450ms]">
+                                <BuildingStorefrontIcon class="size-5" />
+                                Toko
                                 </a>
-                            </div>
+                            </TransitionGroup>
+
+
                         </div>
                     </div>
                 </div>

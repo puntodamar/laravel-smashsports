@@ -8,7 +8,7 @@ import AppLayout from '@js/Layouts/AppLayout.vue';
 
 defineOptions({
     layout: (h, page) =>
-        h(AppLayout, {dynamicHeader: true}, {
+        h(AppLayout, {dynamicHeader: false}, {
             default: () => page,
         }),
 })
