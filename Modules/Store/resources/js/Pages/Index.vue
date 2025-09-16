@@ -11,12 +11,12 @@
 <script setup>
 import StoreLayout from '../Layouts/StoreLayout.vue'
 import ProductGrid from '../components/layout/ProductGrid.vue';
-import { route } from 'ziggy-js';
+
 
 
 defineOptions({
     layout: (h, page) =>
-        h(StoreLayout, {}, {
+        h(StoreLayout, {title: "Toko"}, {
             default: () => page,
         }),
 })

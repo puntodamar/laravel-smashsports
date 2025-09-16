@@ -20,7 +20,7 @@
     import ScrollToTop from '@/components/UI/ScrollToTop.vue';
     import { Head, usePage } from '@inertiajs/vue3';
     import { computed, defineProps, onMounted } from 'vue';
-    import Header from '@/components/layout/Header.vue';
+    import Header from '@/components/layout/header/Header.vue';
     import { route } from 'ziggy-js';
 
     const appName = computed(() => usePage().props.app.name)

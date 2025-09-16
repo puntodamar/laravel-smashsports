@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import HeaderDesktop from '@/components/layout/HeaderDesktop.vue';
-import HeaderMobile from '@/components/layout/HeaderMobile.vue';
+import HeaderDesktop from '@/components/layout/header/HeaderDesktop.vue';
+import HeaderMobile from '@/components/layout/header/HeaderMobile.vue';
 import { computed, defineProps, inject, onBeforeUnmount, onMounted, ref, provide } from 'vue';
 import navigation from '@/navigation.js'
 import { usePage } from '@inertiajs/vue3';

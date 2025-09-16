@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-2">
+    <div class="space-y-2 mb-6">
         <div v-for="(category, i) in navigation.categories" :key="category.name" class="group rounded-lg">
             <div
                 class="mx-2 flex cursor-pointer items-center justify-between rounded-lg px-2 select-none group-hover:bg-gold"
@@ -96,13 +96,10 @@ function hasChildren(cat) {
     return !!((cat?.collection && cat.collection.length) || (cat?.brands && cat.brands.length) || (cat?.categories && cat.categories.length));
 }
 
-/**
- * Clicking anywhere on the header toggles when there are children.
- * If no children, allow the Link to navigate normally.
- */
+
 function onHeaderClick(e, i, category) {
-    if (!hasChildren(category)) return; // let Link navigate
-    e.preventDefault(); // stop Link navigation when expanding
+    if (!hasChildren(category)) return;
+    e.preventDefault();
     toggle(i);
 }
 </script>

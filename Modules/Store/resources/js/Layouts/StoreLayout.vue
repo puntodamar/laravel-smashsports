@@ -1,6 +1,6 @@
 <template>
     <Head :title="`${appName} | ${props.title}`" />
-    <StoreHeader/>
+    <StoreHeader :appName="appName" />
     <div class="h-40 md:h-20"></div>
     <main class="bg-red">
         <Transition name="fade-slide" mode="out-in">
@@ -19,19 +19,19 @@
 
 <script setup>
 
-import StoreHeader from '../components/UI/StoreHeader.vue';
+import StoreHeader from '../components/UI/header/StoreHeader.vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import Footer from '@js/components/layout/Footer.vue';
 import PageTheme from '@js/components/UI/PageTheme.vue'
+const appName = computed(() => usePage().props.app.name)
 
 const props = defineProps({
-    title: {required: true, type: String, default: 'Toko' },
+    title: {required: false, type: String},
 })
 
 const page = usePage()
 const transitionKey = computed(() => page.url)
-const appName = computed(() => usePage().props.app.name)
 
 </script>
 

@@ -39,7 +39,7 @@ import { ref } from 'vue';
 import LoadingSpinner from '@/components/UI/LoadingSpinner.vue';
 import { ShoppingCartIcon } from '@heroicons/vue/24/outline'
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Header from '@/components/layout/Header.vue';
+import Header from '@/components/layout/header/Header.vue';
 const findingInProgress = ref(false);
 
 const selectedTime = ref(null)
