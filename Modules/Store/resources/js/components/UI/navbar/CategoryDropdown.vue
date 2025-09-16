@@ -31,7 +31,7 @@
                     />
                 </svg>
             </div>
-            
+
             <Transition name="acc">
                 <div v-show="isOpen(i)" :id="`panel-${i}`" class="px-4 pb-2">
                     <div v-if="category?.collection?.length" class="mt-2 pl-4">
