@@ -8,7 +8,7 @@ import AppLayout from '@js/Layouts/AppLayout.vue';
 
 defineOptions({
     layout: (h, page) =>
-        h(AppLayout, {dynamicHeader: false}, {
+        h(AppLayout, {dynamicHeader: false, title: 'Booking'}, {
             default: () => page,
         }),
 })

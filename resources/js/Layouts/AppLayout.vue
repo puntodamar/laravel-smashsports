@@ -1,5 +1,5 @@
 <template>
-    <Head :title="props.title"></Head>
+    <Head :title="`${appName} | ${props.title}`"></Head>
     <Header v-if="props.header" :dynamic="props.dynamicHeader"/>
     <main>
         <slot name="header" />
@@ -23,6 +23,8 @@
     import Header from '@/components/layout/Header.vue';
     import { route } from 'ziggy-js';
 
+    const appName = computed(() => usePage().props.app.name)
+
     onMounted(async () => {
         // const { InertiaProgress } = await import('@inertiajs/progress')
         // InertiaProgress.init()
@@ -32,7 +34,7 @@
     const transitionKey = computed(() => page.url)
 
     const props = defineProps({
-        title: {type: String, default: "Smash Sports | Your One Stop Badminton Center"},
+        title: {type: String, default: "Your One Stop Badminton Center"},
         header: {type: Boolean, default: true},
         footer: {type: Boolean, default: true},
         dynamicHeader: {type: Boolean, default: false},

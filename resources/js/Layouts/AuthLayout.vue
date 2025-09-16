@@ -1,5 +1,5 @@
 <template>
-    <Head :title="`Smash Sports | ${props.title}`" />
+    <Head :title="`${appName} | ${props.title}`" />
 
     <div class="flex h-screen flex-1">
         <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -87,10 +87,10 @@ import { computed, inject, onMounted, reactive } from 'vue';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import { FacebookIconColor, GoogleIcon } from '@/icons.js';
 import { route } from 'ziggy-js';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
 
 const isLogin = computed(() => props.mode === 'login')
-
+const appName = computed(() => usePage().props.app.name)
 const companyLogo = inject('companyLogo')
 
 

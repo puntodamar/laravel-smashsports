@@ -7,10 +7,10 @@
                 <div class="flex w-full sm:w-auto justify-center sm:justify-start items-start sm:items-center gap-3">
                     <div class="flex h-15 w-15 items-center justify-center">
                         <img :src="companyLogo" alt="">
-                        <span class="sr-only text-gray-600 dark:text-white">Smash Sports</span>
+                        <span class="sr-only text-gray-600 dark:text-white">{{appName}}</span>
                     </div>
                     <address class="not-italic text-sm leading-5 text-gray-600 dark:text-white text-center sm:text-left">
-                        <div class="font-medium">Smash Sports</div>
+                        <div class="font-medium">{{appName}}</div>
                         <div>Jl. Olahraga No. 123, Yogyakarta</div>
                         <a href="mailto:hello@smashsports.id" class="underline hover:text-navy dark:hover:text-gold">hello@smashsports.id</a>
                     </address>
@@ -37,6 +37,9 @@
 
 <script setup>
     import navigation from '@/navigation.js';
-    import { inject } from 'vue';
+    import { computed, inject } from 'vue';
+    import { usePage } from '@inertiajs/vue3';
     const companyLogo = inject('companyLogo')
+
+    const appName = computed(() => usePage().props.app.name)
 </script>

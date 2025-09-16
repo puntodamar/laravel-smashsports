@@ -14,7 +14,7 @@
                                 enter-from-class="opacity-0 translate-y-2"
                                 enter-to-class="opacity-100 translate-y-0"
                                 enter-active-class="transition-all duration-500 ease-out delay-0">
-                                <p class="text-sm text-white font-semibold pl-3">Jogja Smash Sports</p>
+                                <p class="text-sm text-white font-semibold pl-3">{{appName}}</p>
                             </Transition>
 
                             <Transition
@@ -76,11 +76,15 @@
 <script setup>
 import bgMobile from '../../../assets/images/background/bg-hero-mobile.jpg'
 import bgDesktop from '../../../assets/images/background/bg-hero-desktop.jpg'
-const bgMobileCss  = `url(${bgMobile})`
-const bgDesktopCss = `url(${bgDesktop})`
 import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outline'
 import { route } from 'ziggy-js';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const bgMobileCss  = `url(${bgMobile})`
+const bgDesktopCss = `url(${bgDesktop})`
+
+const appName = computed(() => usePage().props.app.name)
 </script>
 
 <style scoped>

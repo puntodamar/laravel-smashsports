@@ -3,7 +3,7 @@
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <Link :href="route('home')" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Smash Sports</span>
+                    <span class="sr-only">{{appName}}</span>
                     <img class="h-8 w-auto" :src="companyLogo" alt="" />
                 </Link>
             </div>
@@ -39,7 +39,7 @@
                 class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-gray-800 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
                     <Link :href="route('home')" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Smash Sports</span>
+                        <span class="sr-only">{{appName}}</span>
                         <img class="h-8 w-auto" :src="companyLogo" alt="" />
                     </Link>
                     <button type="button" class="-m-2.5 rounded-md p-2.5" :class="iconColor" @click="mobileMenuOpen = false">
@@ -84,7 +84,9 @@ import PageTheme from '@/components/UI/PageTheme.vue';
 import navigation from '@/navigation.js';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 import { route } from 'ziggy-js';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+
+const appName = computed(() => usePage().props.app.name)
 
 const props = defineProps({
     dynamic: {required: false, type: Boolean, default: false},
