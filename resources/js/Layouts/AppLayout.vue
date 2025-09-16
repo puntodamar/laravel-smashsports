@@ -12,7 +12,7 @@
     </main>
 
     <ScrollToTop  />
-    <Footer v-if="footer"></Footer>
+    <Footer v-if="footer" />
 </template>
 
 <script setup>

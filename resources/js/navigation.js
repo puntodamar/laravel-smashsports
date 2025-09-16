@@ -5,7 +5,7 @@ import { route } from 'ziggy-js';
 export default {
     main: [
         { name: 'Booking', routeName: 'schedule.booking', href: route('schedule.booking'),  icon: PencilSquareIcon },
-        { name: 'Toko', href: '#', icon: ShoppingCartIcon },
+        { name: 'Toko', routeName: 'store.index', href: route('store.index'), icon: ShoppingCartIcon },
         { name: 'Resto', href: '#', icon: BuildingStorefrontIcon },
         { name: 'Kontak', href: '#', icon:  PhoneIcon },
     ],

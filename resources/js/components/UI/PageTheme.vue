@@ -1,5 +1,5 @@
 <template>
-    <button @click="onClick" :class="[css, props.bg, props.text]">
+    <button @click="onClick" class="float-right" :class="[css, props.bg, props.text]">
         <component :is="isDark ? SunIcon : MoonIcon" class="size-5" aria-hidden="true" />
     </button>
 </template>

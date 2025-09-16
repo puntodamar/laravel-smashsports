@@ -40,7 +40,7 @@ class ScheduleController extends Controller
         $available = collect();
         if ($membershipType && $date) {
             CourtSchedule::ensureForDate($request->query('date'), User::superAdmin()->id);
-            // ensure this matches your model method name
+
             $available = CourtSchedule::findAvailableByTypeAndDate($membershipType, $date);
         }
 

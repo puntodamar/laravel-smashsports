@@ -28,12 +28,10 @@
 <script setup>
 import { route } from 'ziggy-js';
 
-console.log(route().current());
-console.log(route('schedule.booking'))
+
 
 const props = defineProps({
     navigation: { type: Object, required: true },
     textColor: { type: String, default: 'text-white' },
 })
-
 </script>
