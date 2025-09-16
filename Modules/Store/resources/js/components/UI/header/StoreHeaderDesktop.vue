@@ -1,7 +1,7 @@
 <template>
     <header class="relative">
         <nav aria-label="Top">
-            
+
             <!-- Secondary navigation -->
             <div class="fixed  z-10 bg-gray-300/80 w-full dark:bg-gray-900/70 backdrop-blur supports-[backdrop-filter]:bg-gray-300/60  dark:text-gray-100 shadow-sm">
                 <div class="bg-navy dark:bg-black dark:text-gray h-8 flex items-center">

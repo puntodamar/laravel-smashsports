@@ -57,10 +57,10 @@
                                     Booking Lapangan
                                 </Link>
 
-                                <a :key="'store'" href="#" class="text-sm/6 font-semibold text-white hover:text-gold flex items-center gap-x-2 [transition-delay:450ms]">
+                                <Link :key="'store'" :href="route('store.index')" class="text-sm/6 font-semibold text-white hover:text-gold flex items-center gap-x-2 [transition-delay:450ms]">
                                 <BuildingStorefrontIcon class="size-5" />
                                 Toko
-                                </a>
+                                </Link>
                             </TransitionGroup>
 
 
