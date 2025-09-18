@@ -125,11 +125,22 @@
 
                                     <div class="flow-root">
                                         <a href="#" class="group -m-2 flex items-center p-2">
-                                            <ShoppingCartIcon class="size-6 shrink-0 text-gray-500  hover:text-gray-300" aria-hidden="true" />
-                                            <span class="inline-flex items-center rounded-full bg-red-700 px-2 py-1 text-xs font-medium text-red-200">2</span>
-                                            <span class="sr-only">items in cart, view bag</span>
+                                        <span class="relative inline-block">
+                                          <ShoppingCartIcon
+                                              class="size-6 shrink-0 text-gray-500 group-hover:text-gray-300"
+                                              aria-hidden="true"
+                                          />
+                                          <span
+                                              v-if="cartCount > 0"
+                                              class="absolute -bottom-1 -right-1 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-red-700 px-1 text-[10px] font-medium leading-none text-red-50"
+                                          >
+                                            {{ cartCount }}
+                                          </span>
+                                        </span>
+                                        <span class="sr-only">items in cart, view bag</span>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -147,13 +158,17 @@ import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/
 import InfoRotator from '../../layout/InfoRotator.vue';
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
-import {inject} from 'vue'
+import { computed, inject } from 'vue';
+import { useCartStore } from '@store/js/stores/cart_store.js';
 
+const cartStore = useCartStore()
+const cartCount = computed(() => cartStore.cartItems.length)
 const props = defineProps({
     navigation: {type: Object, required: true},
     appName: {type: String, required: true},
     companyLogo: {type: String, required: true},
     rotatorText: {type: Array, required: true},
 })
+
 const open = inject('open')
 </script>

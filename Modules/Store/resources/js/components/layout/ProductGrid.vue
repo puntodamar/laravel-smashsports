@@ -3,11 +3,12 @@
     <div :id="props.title.concat(' ', '')" class="mb-20 md:mt-0 md:mb-0">
         <div class="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <div class="md:flex md:items-center md:justify-between">
-                <h2 class="text-2xl font-bold tracking-tight text-navy dark:text-white">{{props.title}}</h2>
-                <a href="#" class="hidden text-sm font-medium text-magenta 0 dark:text-gold md:block">
+                <h2 class="flex flex-row items-center gap-2 text-2xl font-bold tracking-tight text-navy dark:text-white">
+                    <component :is="props.icon" class="size-5" />{{props.title}}</h2>
+                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gold md:block">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
-                </a>
+                </Link>
             </div>
 
             <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
@@ -19,10 +20,10 @@
                         </svg>
                     </div>
                     <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">
-                        <a :href="product.href">
+                        <Link :href="product.href">
                             <span class="absolute inset-0" />
                             {{ product.name }}
-                        </a>
+                        </Link>
                     </h3>
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray">{{ product.color }}</p>
                     <p class="mt-1 text-sm font-medium text-gray-900 dark:text-white">{{ product.price }}</p>
@@ -30,10 +31,10 @@
             </div>
 
             <div class="mt-8 text-sm md:hidden">
-                <a href="#" class="font-medium text-magenta 0 dark:text-gold">
+                <Link href="#" class="font-medium text-navy 0 dark:text-gold">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
-                </a>
+                </Link>
             </div>
         </div>
     </div>
@@ -41,8 +42,12 @@
 
 <script setup>
 
+import { Link } from '@inertiajs/vue3';
+import { route } from 'ziggy-js';
+
 const props = defineProps({
     title: {type: String, required: true},
+    icon: {type: Object, required: true}
 
 })
 
@@ -52,7 +57,7 @@ const products = [
         name: 'Produk 1',
         color: 'Natural',
         price: 'Rp 100.000',
-        href: '#',
+        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
         imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-02.jpg',
         imageAlt: 'lorem   ',
     },
@@ -61,7 +66,7 @@ const products = [
         name: 'Produk 2',
         color: 'Black',
         price: 'Rp 100.000',
-        href: '#',
+        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
         imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-03.jpg',
         imageAlt: '12-sided, machined black pencil and pen.',
     },
@@ -70,7 +75,7 @@ const products = [
         name: 'Produk 3',
         color: 'Light Brown',
         price: 'Rp 100.000',
-        href: '#',
+        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
         imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-04.jpg',
         imageAlt: 'Set of three light and dark brown mini sketch books.',
     },
@@ -79,7 +84,7 @@ const products = [
         name: 'Produk 4',
         color: 'Walnut',
         price: 'Rp 100.000',
-        href: '#',
+        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
         imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-01.jpg',
         imageAlt: 'Beautiful walnut organizer set with multiple white compartments',
     },

@@ -27,6 +27,7 @@ export default defineConfig({
             '@public': path.resolve(__dirname, 'public'),
             '@assets': path.resolve(__dirname, 'resources/assets'),
             '@js': path.resolve(__dirname, 'resources/js'),
+            '@store': path.resolve(__dirname, 'Modules/Store/resources'),
             ziggy: path.resolve(__dirname, 'vendor/tightenco/ziggy')
         },
     },

@@ -41,5 +41,5 @@
     import { usePage } from '@inertiajs/vue3';
     const companyLogo = inject('companyLogo')
 
-    const appName = computed(() => usePage().props.app.name)
+    const appName = computed(() => usePage().props.app?.name || "Smash Sports")
 </script>

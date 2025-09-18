@@ -24,7 +24,7 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import Footer from '@js/components/layout/Footer.vue';
 import PageTheme from '@js/components/UI/PageTheme.vue'
-const appName = computed(() => usePage().props.app.name)
+const appName = computed(() => usePage().props.app?.name || "Smash Sports")
 
 const props = defineProps({
     title: {required: false, type: String},

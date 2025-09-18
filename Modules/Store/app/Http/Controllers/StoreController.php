@@ -5,6 +5,8 @@ namespace Modules\Store\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Store\Models\Product;
+use Modules\Store\Models\ProductType;
 
 class StoreController extends Controller
 {
@@ -14,9 +16,7 @@ class StoreController extends Controller
     public function index()
     {
 
-        return Inertia::render('Module/Store/Index', [
-            'title'     => 'Toko',
-        ]);
+        return Inertia::render('Module/Store/Index', []);
     }
 
     /**
@@ -35,9 +35,13 @@ class StoreController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show(string $productType, Product $product)
     {
-        return view('store::show');
+
+//        dd($product->exists());
+        return Inertia::render('Module/Store/ProductDetail', [
+            'product' => $product,
+        ]);
     }
 
     /**

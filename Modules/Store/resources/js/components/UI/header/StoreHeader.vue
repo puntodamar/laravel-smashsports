@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { inject, ref, provide, defineProps } from 'vue';
+import { inject, ref, provide, defineProps, computed } from 'vue';
 
 import { route } from 'ziggy-js';
 
@@ -22,18 +22,20 @@ import { IconBag, IconRacket, IconShoe, IconShirt, IconShuttlecock } from '@js/i
 import StoreHeaderMobile from './StoreHeaderMobile.vue';
 import StoreHeaderDesktop from './StoreHeaderDesktop.vue';
 import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outline'
+import { useCartStore } from '@store/js/stores/cart_store.js';
 
 const companyLogo = inject('companyLogo')
 const props = defineProps({
     appName: String,
 })
 
-const open = ref(false)
-provide('open', open);
+const open = ref(false); provide('open', open);
+
+
 
 const rotatorText = [
     `Dapatkan harga khusus dengan menjadi <a href="#" class="underline text-gold dark:brightness-80" data-inertia>member!</a>`,
-    `Para sultan merapat! Nanoflare 1000ZZ bisa dibeli <a href="#" class="text-gold underline" data-inertia>di sini</a>.`,
+    `Para sultan merapat! Nanoflare 1000ZZ bisa dibeli <a href="${route('store.product.detail', { product_type: 'raket', product: 'test' })}" class="text-gold underline" data-inertia>di sini</a>.`,
     `Cobain deh, menu baru spesial: <span class="text-gold">Ayam Katsu Blackpepper</span>`,
 ]
 

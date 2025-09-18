@@ -6,6 +6,9 @@ import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
 import { ZiggyVue } from 'ziggy'
 import axios from 'axios'
+import { createPinia } from 'pinia'
+
+
 
 window.axios = axios
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -14,7 +17,7 @@ const appPages = import.meta.glob('./Pages/**/*.vue')
 const modulePagesUpper    = import.meta.glob('../../Modules/**/Resources/js/Pages/**/*.vue')
 const modulePagesLower    = import.meta.glob('../../Modules/**/resources/js/Pages/**/*.vue')
 const modulePagesSingular = import.meta.glob('../../Modules/**/resource/js/Pages/**/*.vue')
-
+const pinia = createPinia()
 
 async function load(candidate) {
     const mod = await (typeof candidate === 'function' ? candidate() : candidate)
@@ -135,6 +138,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(pinia)
             .use(VCalendar, {
                 componentPrefix: 'V',
                 locales: { 'id-ID': { firstDayOfWeek: 1 } }, // Senin
