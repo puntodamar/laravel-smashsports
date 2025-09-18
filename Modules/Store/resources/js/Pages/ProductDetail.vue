@@ -38,19 +38,30 @@
 
                         <div class="mt-10 flex">
 
-                            <button
-                                type="submit"
-                                class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gold dark:opacity-80 px-8 py-3 text-base font-medium text-navy  sm:w-full"
-                            :class="[product.stock > 0 ? 'hover:opacity-100 hover:cursor-pointer' : 'opacity-50 hover:cursor-not-allowed']">
 
+                            <button
+                                v-if="product.stock > 0"
+                                type="submit"
+                                class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gold dark:opacity-80 px-8 py-3 text-base font-medium text-navy  sm:w-full hover:opacity-100 hover:cursor-pointer">
                                 <div v-if="addToCartProgress.inProgress" class="flex flex-row items-center gap-x-2"><LoadingSpinner height="h-5" width="w-5" /> Menambahkan</div>
                                 <div v-else class="flex flex-row items-center gap-x-2"><ShoppingCartIcon class="size-5"/> Masukkan keranjang </div>
                             </button>
 
+                            <button
+                                v-else
+                                type="submit"
+                                class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gray px-8 py-3 text-base font-medium opacity-50 text-navy  sm:w-full hover:opacity-100 hover:cursor-not-allowed">
+                                <div class="flex flex-row items-center gap-x-2"><ShoppingCartIcon class="size-5"/> Stok  habis</div>
+                            </button>
+
+
 
                             <button type="button" class="ml-4 flex items-center justify-center rounded-md px-3 py-3 ">
-<!--                                <HeartIcon class="size-6 shrink-0" aria-hidden="true" />-->
-                                <HeartIconSolid class="size-6 shrink-0 text-electric-magenta" aria-hidden="true"  />
+
+                                <component
+                                    :is="isWishlisted ? HeartIconSolid : HeartIcon"
+                                    @click="toggleWishlist"
+                                    class="size-6 shrink-0 text-electric-magenta" aria-hidden="true"  />
                                 <span class="sr-only">Wishlist</span>
                             </button>
                         </div>
@@ -76,7 +87,7 @@
 
                     </Transition>
 
-                    <section aria-labelledby="summary-heading" class="mt-16">
+                    <section aria-labelledby="summary-heading" class="mt-6 md:mt-16">
                         <h2 id="summary-heading" class="text-lg font-bold text-navy dark:text-white">Spesifikasi</h2>
 
                         <div class="mt-6 grid grid-cols-[10rem_1fr] gap-x-10 gap-y-2">
@@ -106,7 +117,7 @@
 </template>
 
 <script setup>
-import { defineOptions, reactive } from 'vue';
+import { computed, defineOptions, reactive, ref } from 'vue';
 import { HeartIcon, ShoppingCartIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from'@heroicons/vue/24/solid';
 import StoreLayout from '@store/js/Layouts/StoreLayout.vue';
@@ -122,6 +133,40 @@ import raket4 from '@assets/images/raket4.webp'
 import Breadcrumbs from '@store/js/components/layout/detail/Breadcrumbs.vue';
 import { useCartStore } from '@store/js/stores/cart_store.js';
 import LoadingSpinner from '@/components/UI/LoadingSpinner.vue';
+
+const product = {
+    name: 'Astrox 1000 Z',
+    price: 'Rp 3.000.000',
+    rating: 4,
+    stock: 1,
+    isWishlisted: false,
+    images: [
+        {
+            id: 1,
+            name: 'Angled view',
+            src: raket1,
+
+        },
+        {
+            id: 2,
+            name: 'Front view',
+            src: raket2,
+
+        },
+        {
+            id: 3,
+            name: 'Back view',
+            src: raket3,
+
+        },
+        {
+            id: 4,
+            name: 'Back angle open view',
+            src: raket4,
+        },
+    ],
+    description: `<p>For advanced players looking for immediate access to power to maintain a relentless attack</p>`,
+}
 
 const addToCartProgress = reactive({inProgress: null, success: null, message: null})
 const cartStore = useCartStore()
@@ -156,38 +201,12 @@ const addToCart = () => {
 
 }
 
-const product = {
-    name: 'Astrox 1000 Z',
-    price: 'Rp 3.000.000',
-    rating: 4,
-    stock: 1,
-    images: [
-        {
-            id: 1,
-            name: 'Angled view',
-            src: raket1,
+const isWishlisted = ref(product.isWishlisted)
 
-        },
-        {
-            id: 2,
-            name: 'Front view',
-            src: raket2,
-
-        },
-        {
-            id: 3,
-            name: 'Back view',
-            src: raket3,
-
-        },
-        {
-            id: 4,
-            name: 'Back angle open view',
-            src: raket4,
-        },
-    ],
-    description: `<p>For advanced players looking for immediate access to power to maintain a relentless attack</p>`,
+const toggleWishlist = () => {
+    isWishlisted.value = !isWishlisted.value
 }
+
 
 defineOptions({
     layout: (h, page) =>
