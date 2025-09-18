@@ -1,6 +1,6 @@
 <template>
-    <nav  class="flex -mt-5 mb-10" aria-label="Breadcrumb">
-        <ol role="list" class="flex items-center space-x-4">
+    <nav  class="flex ml-2 md:ml-0 -mt-5 mb-10" aria-label="Breadcrumb">
+        <ol role="list" class="flex items-center space-x-1">
             <li>
                 <div>
                     <Link :href="route('store.index')" class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300">
