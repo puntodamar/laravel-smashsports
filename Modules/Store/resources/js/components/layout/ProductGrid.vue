@@ -5,7 +5,7 @@
             <div class="md:flex md:items-center md:justify-between">
                 <h2 class="flex flex-row items-center gap-2 text-2xl font-bold tracking-tight text-navy dark:text-white">
                     <component :is="props.icon" class="size-5" />{{props.title}}</h2>
-                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-white md:block">
+                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gray md:block">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="mt-8 text-sm md:hidden">
-                <Link href="#" class="font-medium text-navy dark:text-white 0">
+                <Link href="#" class="font-medium text-navy dark:text-gray 0">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>

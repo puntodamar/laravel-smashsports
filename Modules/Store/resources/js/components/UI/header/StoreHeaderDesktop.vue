@@ -107,18 +107,19 @@
                                 <div class="flex items-center lg:ml-8">
                                     <div class="flex space-x-8">
                                         <div class="hidden lg:flex">
-                                            <a href="#" class="-m-2 p-2 text-gray-500 hover:text-gray-400">
+                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500  dark:text-gray-500 dark:hover:text-gray-400">
                                                 <span class="sr-only">Search</span>
                                                 <MagnifyingGlassIcon class="size-6" aria-hidden="true" />
                                             </a>
                                         </div>
 
                                         <div v-if="userStore.getUser" class="flex">
-                                            <a href="#" class="-m-2 p-2 flex flex-row items-center justify-center text-gray-500 hover:text-gray-400">
-                                                <span class="sr-only">Account</span>
-                                                <UserIcon class="size-6" aria-hidden="true" />
-                                                <span class="text-xs">{{userStore.getUser.name.split(" ")[0]}}</span>
-                                            </a>
+                                            <UserDropdown  v-if="userStore.getUser" class="text-gray-400 hover:text-gray-500  dark:text-gray-500 dark:hover:text-gray-400"  :username="userStore.getUser.name.split(' ')[0]"/>
+<!--                                            <a href="#" class="-m-2 p-2 flex flex-row items-center justify-center text-gray-500 hover:text-gray-400">-->
+<!--                                                <span class="sr-only">Account</span>-->
+<!--                                                <UserIcon class="size-6" aria-hidden="true" />-->
+<!--                                                <span class="text-xs">{{userStore.getUser.name.split(" ")[0]}}</span>-->
+<!--                                            </a>-->
                                         </div>
                                     </div>
 
@@ -128,14 +129,14 @@
                                         <a href="#" class="group -m-2 flex items-center p-2">
                                         <span class="relative inline-block">
                                           <ShoppingCartIcon
-                                              class="size-6 shrink-0 text-gray-500 group-hover:text-gray-400"
+                                              class="size-6 shrink-0 text-gray-400 hover:text-gray-500  dark:text-gray-500 dark:hover:text-gray-400"
                                               aria-hidden="true"
                                           />
                                         <span
                                             v-if="cartCount === 0"
                                             class="absolute -bottom-1 -right-1 inline-flex h-4 min-w-[1rem] items-center justify-center
                                                  rounded-full bg-red-700 px-1 text-[10px] font-medium leading-none text-red-50
-                                                 opacity-80 group-hover:opacity-100 transition-opacity duration-200">
+                                                 opacity-70 dark:opacity-80 group-hover:opacity-100 transition-opacity duration-200">
                                           {{ cartCount }}
                                         </span>
                                         </span>
@@ -162,6 +163,7 @@ import { Link } from '@inertiajs/vue3';
 import { computed, inject } from 'vue';
 import { useTokoStore } from '@store/js/stores/toko_store.js';
 import { useUserStore } from '@store/js/stores/user_store.js';
+import UserDropdown from '@/components/UI/navbar/UserDropdown.vue';
 
 const tokoStore = useTokoStore();
 const cartStore = useTokoStore()
