@@ -7,7 +7,7 @@
                 :key="d.value"
                 :aria-label="d.label"
                 class="group relative flex items-center justify-center rounded-lg border border-gray bg-white p-4
-                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-navy dark:has-checked:outline-gold
+                 has-checked:outline-2 has-checked:-outline-offset-2 has-checked:outline-pocari-blue
                  dark:border-navy dark:bg-gray-900 dark:has-checked:bg-indigo-500/10"
             >
                 <input
@@ -18,9 +18,9 @@
                     v-model="selectedDate"
                     class="absolute inset-0 cursor-pointer appearance-none focus:outline-none"
                 />
-                <span class="block text-sm font-semibold text-gray-800 dark:text-white">{{ d.label }}</span>
+                <span class="block text-sm font-semibold text-gray-800 dark:text-gray">{{ d.label }}</span>
                 <CheckCircleIcon
-                    class="invisible size-5 text-navy dark:text-gold group-has-checked:visible"
+                    class="invisible size-5 text-pocari-blue group-has-checked:visible"
                     aria-hidden="true"
                 />
             </label>
@@ -33,7 +33,7 @@
                      dark:bg-gray-900 dark:text-gray-400"
                 :class="datePickerButtonClass">
                 <CalendarDaysIcon class="mr-2 size-5" aria-hidden="true" />
-                <span class="text-xs md:text-sm font-semibold text-black  dark:text-white">{{ pickerDateSelected ? selectedDate : 'Pilih tanggal lain'}}</span>
+                <span class="text-xs md:text-sm font-semibold text-black  dark:text-gray">{{ pickerDateSelected ? selectedDate : 'Pilih tanggal lain'}}</span>
             </button>
         </div>
     </fieldset>

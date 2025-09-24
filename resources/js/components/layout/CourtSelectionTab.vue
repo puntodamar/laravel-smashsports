@@ -83,9 +83,9 @@ const currentTabClass = computed(() => (tabIndex) => {
     const tab = tabs.value.find((t) => t.tabIndex === tabIndex)
     if (tab.current){
         // tabIndex.value = tab.tabIndex
-        return ['border-navy', 'text-navy', 'dark:border-gold', 'dark:text-gold']
+        return ['border-pocari-blue', 'text-pocari-blue']
     } else {
-        return ['border-transparent', 'text-black', 'dark:text-gray', 'dark:hover:text-white', 'hover:text-pocari-blue']
+        return ['border-transparent', 'text-black', 'dark:text-gray/60', 'dark:hover:text-white', 'hover:text-pocari-blue']
     }
 })
 

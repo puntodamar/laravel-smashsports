@@ -21,7 +21,6 @@
     import { Head, usePage } from '@inertiajs/vue3';
     import { computed, defineProps, onMounted } from 'vue';
     import Header from '@/components/layout/header/Header.vue';
-    import { route } from 'ziggy-js';
 
     const appName = computed(() => usePage().props.app.name)
 
@@ -40,8 +39,6 @@
         dynamicHeader: {type: Boolean, default: false},
 
     })
-
-    onMounted(() => console.log(route().current()))
 </script>
 
 <style scoped>

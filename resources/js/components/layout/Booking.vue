@@ -6,11 +6,11 @@
 
 
         <form @submit.prevent="" class="text-center">
-            <h4 class="text-pocari-blue dark:text-white text-sm font-semibold mt-10">Paket</h4>
+            <h4 class="text-black dark:text-white text-sm font-semibold mt-10">Paket</h4>
             <MembershipType></MembershipType>
 
 
-            <h4 class="text-pocari-blue dark:text-white text-sm font-semibold mt-5">Tanggal</h4>
+            <h4 class="text-black dark:text-white text-sm font-semibold mt-5">Tanggal</h4>
             <DatePicker @update:picker="findAvailableCourt"></DatePicker>
 
             <div class="relative w-full flex justify-center items-start min-h-[28rem] mt-5">
