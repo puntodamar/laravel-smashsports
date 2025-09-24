@@ -18,37 +18,48 @@ class StoreDatabaseSeeder extends Seeder
             $types = [
                 ["name" => "Raket", "slug" => "raket",
                     "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Paket Hemat", "type" => "category"],
+                        ["name" => "Pro Series", "type" => "category"],
+
+                        ["name" => "Terbaru", "type" => "collection"],
+                        ["name" => "Diskon", "type" => "category"],
+
+                        ["name" => "Yonex","type" => "brand" ],
+                        ["name" => "Lining", "type" => "brand" ]
                     ]],
                 ["name" => "Sepatu", "slug" => "shoes",
                     "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Terbaru", "type" => "collection"],
+                        ["name" => "Diskon", "type" => "category"],
+
+                        ["name" => "Yonex","type" => "brand" ],
+                        ["name" => "Lining", "type" => "brand" ]
                     ]],
                 ["name" => "Tas", "slug" => "tas",
                     "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Terbaru", "type" => "collection"],
+                        ["name" => "Diskon", "type" => "category"],
+
+                        ["name" => "Yonex", "type" => "brand" ],
+                        ["name" => "Lining", "type" => "brand" ]
                     ]],
                 ["name" => "Apparel", "slug" => "apparel",
                     "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Terbaru", "type" => "collection"],
+                        ["name" => "Diskon", "type" => "category"],
+
+                        ["name" => "Yonex", "type" => "brand" ],
+                        ["name" => "Lining", "type" => "brand" ]
                     ]],
                 ["name" => "Asesoris", "slug" => "asesoris",
                     "children" => [
-                        ["name" => "Grip", "slug" => "grip"],
-                    ]],
-                ["name" => "Senar", "slug" => "senar",
-                    "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Grip", "type" => "category" ],
+                        ["name" => "Senar", "type" => "category" ],
                     ]],
                 ["name" => "Shuttlecocks", "slug" => "shuttlecocks",
                     "children" => [
-                        ["name" => "Yonex", "slug" => "yonex"],
-                        ["name" => "Lining", "slug" => "lining",]
+                        ["name" => "Yonex", "type" => "brand"],
+                        ["name" => "Lining", "type" => "brand"]
                     ]],
             ];
 
@@ -61,7 +72,7 @@ class StoreDatabaseSeeder extends Seeder
     }
 
     private function createProductType(array $type, ?ProductType $parent = null): void {
-        $slug = Str::slug($type['slug']);
+        $slug = Str::slug($type['name']);
 
         if ($parent) {
             $slug = trim($parent->slug, '.') . '.' . trim($slug, '.');
@@ -71,6 +82,7 @@ class StoreDatabaseSeeder extends Seeder
             'name'      => $type['name'],
             'slug'      => $slug,
             'parent_id' => $parent?->id,
+            'type' => $type['type'] ?? null,
         ];
         $productType = ProductType::create($payload);
 
