@@ -107,14 +107,14 @@
                                 <div class="flex items-center lg:ml-8">
                                     <div class="flex space-x-8">
                                         <div class="hidden lg:flex">
-                                            <a href="#" class="-m-2 p-2 text-gray-500 hover:text-gray-300">
+                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
                                                 <span class="sr-only">Search</span>
                                                 <MagnifyingGlassIcon class="size-6" aria-hidden="true" />
                                             </a>
                                         </div>
 
                                         <div class="flex">
-                                            <a href="#" class="-m-2 p-2 text-gray-500 hover:text-gray-300">
+                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
                                                 <span class="sr-only">Account</span>
                                                 <UserIcon class="size-6" aria-hidden="true" />
                                             </a>
@@ -123,19 +123,20 @@
 
                                     <span class="mx-4 h-6 w-px bg-gray-500 lg:mx-6" aria-hidden="true" />
 
-                                    <div class="flow-root">
+                                    <div class="flow-root group">
                                         <a href="#" class="group -m-2 flex items-center p-2">
                                         <span class="relative inline-block">
                                           <ShoppingCartIcon
-                                              class="size-6 shrink-0 text-gray-500 group-hover:text-gray-300"
+                                              class="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                                               aria-hidden="true"
                                           />
-                                          <span
-                                              v-if="cartCount > 0"
-                                              class="absolute -bottom-1 -right-1 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-red-700 px-1 text-[10px] font-medium leading-none text-red-50"
-                                          >
-                                            {{ cartCount }}
-                                          </span>
+                                        <span
+                                            v-if="cartCount === 0"
+                                            class="absolute -bottom-1 -right-1 inline-flex h-4 min-w-[1rem] items-center justify-center
+                                                 rounded-full bg-red-700 px-1 text-[10px] font-medium leading-none text-red-50
+                                                 opacity-80 group-hover:opacity-100 transition-opacity duration-200">
+                                          {{ cartCount }}
+                                        </span>
                                         </span>
                                         <span class="sr-only">items in cart, view bag</span>
                                         </a>

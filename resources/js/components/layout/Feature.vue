@@ -5,7 +5,7 @@
                 <div class="lg:ml-auto lg:pt-4 lg:pl-4">
                     <div class="lg:max-w-lg">
                         <h2
-                            class="text-base/7 font-semibold text-blue-700 transition-all duration-500 ease-out dark:text-gold"
+                            class="text-base/7 font-semibold text-pocari-blue transition-all duration-500 ease-out dark:text-gold"
                             :class="started ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'"
                             style="transition-delay: 100ms"
                         >
@@ -39,7 +39,7 @@
                                 <dt class="inline font-semibold text-gray-900 dark:text-white">
                                     <component
                                         :is="feature.icon"
-                                        class="absolute top-1 left-1 size-5 text-blue-700 dark:text-gold"
+                                        class="absolute top-1 left-1 size-5 text-pocari-blue dark:text-gold"
                                         aria-hidden="true"
                                     />
                                     {{ feature.name }}

@@ -85,7 +85,7 @@ const currentTabClass = computed(() => (tabIndex) => {
         // tabIndex.value = tab.tabIndex
         return ['border-navy', 'text-navy', 'dark:border-gold', 'dark:text-gold']
     } else {
-        return ['border-transparent', 'text-black', 'dark:text-gray', 'dark:hover:text-white', 'hover:text-blue-700']
+        return ['border-transparent', 'text-black', 'dark:text-gray', 'dark:hover:text-white', 'hover:text-pocari-blue']
     }
 })
 

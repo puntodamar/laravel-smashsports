@@ -32,7 +32,9 @@
     /* Colors (premium palette) */
     --color-black: #0D0D0D;
     --color-navy:  #0A1F44;
-    --color-gray:  #A9A9A9;
+    --color-pocari-blue: #127BCA;
+    --color-gray: #C0C0C0;
+    /*--color-gray:  #A9A9A9;*/
     --color-white: #FFFFFF;
     --color-gold:  #FFD700;
     --color-fuchsia:  #D946EF;

@@ -5,7 +5,7 @@
             <p class="mt-2 text-sm/6 text-gray-500 dark:text-gray-400">
                 Belum punya akun?
                 {{ ' ' }}
-                <Link :href="route('register')" class="font-semibold text-blue-700 dark:text-gold">Daftar</Link>
+                <Link :href="route('register')" class="font-semibold text-pocari-blue dark:text-gold">Daftar</Link>
             </p>
         </template>
 
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="text-sm/6">
-                    <a href="#" class="font-semibold text-blue-700 dark:text-gold">Lupa password?</a>
+                    <a href="#" class="font-semibold text-pocari-blue dark:text-gold">Lupa password?</a>
                 </div>
             </div>
         </template>
