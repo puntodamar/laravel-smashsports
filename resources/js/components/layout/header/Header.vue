@@ -1,7 +1,20 @@
 <template>
     <header :class="[baseHeader, (isOverHero && props.dynamic) ? overHeroClasses : afterHeroClasses]">
-    <HeaderDesktop :appName="appName" :companyLogo="companyLogo" :navigation="navigation" :linkColor="linkColor" :iconColor="iconColor" />
-    <HeaderMobile  :navigation="navigation" :appName="appName"  :companyLogo="companyLogo" :iconColor="iconColor" />
+    <HeaderDesktop
+        :app-name="appName"
+        :company-logo="companyLogo"
+        :navigation="navigation"
+        :link-color="linkColor"
+        :icon-color="iconColor"
+        :auth-user="authUser"/>
+
+    <HeaderMobile
+        :navigation="navigation"
+        :app-name="appName"
+        :company-logo="companyLogo"
+        :icon-color="iconColor"
+        :auth-user="authUser"
+    />
     </header>
 </template>
 
@@ -17,9 +30,12 @@ const baseHeader = 'inset-x-0 top-0 z-50'
 const overHeroClasses = 'absolute text-white'
 const afterHeroClasses = 'fixed bg-gray-300/80 dark:bg-gray-900/70 backdrop-blur supports-[backdrop-filter]:bg-gray-300/60 text-slate-900 dark:text-gray-100 shadow-sm'
 const mobileMenuOpen = ref(false)
+const page = usePage()
 const linkColor = computed(() => (isOverHero.value && props.dynamic ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
 const iconColor = computed(() => (isOverHero.value && props.dynamic ? 'text-white' : 'text-slate-900 dark:text-gray-100'))
-const appName = computed(() => usePage().props.app.name)
+const appName = computed(() => page.props.app.name)
+const authUser = computed(() => page.props.auth?.user)
+
 const companyLogo = inject('companyLogo')
 
 provide('mobileMenuOpen', mobileMenuOpen)

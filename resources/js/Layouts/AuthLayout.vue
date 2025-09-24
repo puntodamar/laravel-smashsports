@@ -19,28 +19,16 @@
 
                 <div class="mt-10">
                     <div>
-                        <div v-if="errorList.length" class="rounded-md bg-red-50 p-4 dark:bg-red-500/15 dark:outline dark:outline-red-500/25">
-                            <div  class="flex">
-                                <div class="shrink-0">
-                                    <NoSymbolIcon class="size-5 text-red-400" aria-hidden="true" />
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Error!</h3>
-                                    <div class="mt-2 text-sm text-red-100 dark:text-red-200/80">
-                                        <ul role="list" class="list-disc space-y-1 pl-5">
-                                            <li v-for="(error, i) in errorList" :key="i">{{error}}</li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mb-8">
+                            <MessageInfoStatus  message="Error!" :error-list="errorList" type="error"/>
+                            <MessageInfoStatus :message="messageStatus" type="status"/>
                         </div>
                         <form @submit.prevent="submitForm"  class="space-y-6">
                             <div :key="mode">
                                 <slot name="form" :form="form" :mode="mode" />
                             </div>
                             <div>
-                                <button type="submit" class="flex w-full justify-center rounded-md btn-gray dark:bg-black">{{isLogin ? 'Masuk' : 'Daftar'}}</button>
+                                <button type="submit" class="flex w-full justify-center rounded-md btn-gray dark:bg-black hover:cursor-pointer">{{isLogin ? 'Masuk' : 'Daftar'}}</button>
                             </div>
                         </form>
 
@@ -80,14 +68,14 @@
 </template>
 
 <script setup>
-import { NoSymbolIcon } from '@heroicons/vue/20/solid'
 import bgDesktop from '@assets/images/background/bg-hero-desktop.jpg'
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { computed, inject, onMounted, reactive } from 'vue';
+import { computed, inject, reactive } from 'vue';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import { FacebookIconColor, GoogleIcon } from '@/icons.js';
 import { route } from 'ziggy-js';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
+import MessageInfoStatus from '@/components/MessageInfoStatus.vue';
 
 const isLogin = computed(() => props.mode === 'login')
 const appName = computed(() => usePage().props.app.name)
@@ -97,13 +85,14 @@ const companyLogo = inject('companyLogo')
 const props = defineProps({
     title: {required: false, type: String},
     mode: {required: true, type: String},
-    loginUrl: { type: String, default: '/login' },
-    registerUrl: { type: String, default: '/register' },
+    loginUrl: { required: true, type: String, default: '/login' },
+    registerUrl: {required: true, type: String, default: '/register' },
  })
 
+const page = usePage()
+const messageStatus = computed(() => page.props.flash?.status)
 
 defineOptions({
-    // AppLayout persists across Inertia visits, so the Transition can run
     layout: (h, page) => h(AppLayout, {header: false, footer: false}, { default: () => page }),
 })
 
@@ -118,9 +107,9 @@ const form = useForm({
 const state = reactive({ serverErrors: {} })
 
 const errorList = computed(() => {
-    if (Array.isArray(props.errors)) return props.errors
+    if (Array.isArray(state.serverErrors)) return props.errors
     const out = []
-    for (const v of Object.values(props.errors || {})) {
+    for (const v of Object.values(props.errors || state.serverErrors || {})) {
         if (Array.isArray(v)) out.push(...v.map(String))
         else if (v) out.push(String(v))
     }
@@ -128,15 +117,19 @@ const errorList = computed(() => {
 })
 
 const submitForm = () => {
+
     state.serverErrors = {}
     const url = isLogin.value ? props.loginUrl : props.registerUrl
 
     form.post(url, {
         preserveScroll: true,
-        onError: (errs) => (state.serverErrors = { ...errs }),
+        onError: (errs) => {
+            state.serverErrors = { ...errs }
+            console.log(state.serverErrors)
+            console.log(errorList)
+        },
         onSuccess: () => {
-            state.serverErrors = {}
-
+            // Inertia.visit(route('dashboard'), { replace: true }
         },
     })
 }

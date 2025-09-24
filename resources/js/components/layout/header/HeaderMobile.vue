@@ -29,8 +29,13 @@
                         </Link>
                     </div>
                     <div class="py-6">
-                        <Link :href="route('login')" class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold
-                                text-black dark:text-gray-200 hover:bg-gold dark:hover:text-black">
+                        <div v-if="authUser">
+
+                        </div>
+                        <Link
+                            v-else
+                            :href="route('login')"
+                            class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semiboldtext-black dark:text-gray-200 hover:bg-gold dark:hover:text-black">
                             <UserIcon class="size-5" />
                             Masuk/Daftar
                         </Link>
@@ -52,6 +57,7 @@ const props = defineProps({
     appName: {type: String, required: true},
     companyLogo: {type: String, required: true},
     iconColor: {type: String, required: true},
+    authUser: {type: Object}
 })
 
 const mobileMenuOpen = inject('mobileMenuOpen')

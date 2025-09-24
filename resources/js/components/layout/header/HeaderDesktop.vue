@@ -22,12 +22,21 @@
             </div>
         </div>
 
-        <NavbarLinks :navigation="navigation" :textColor="props.linkColor" />
+        <NavbarLinks :navigation="navigation" :text-color="props.linkColor"/>
 
         <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
             <PageTheme />
             <div>
-                <Link :href="route('login')" class="text-sm/6 font-semibold" :class="props.linkColor">Masuk/Daftar</Link>
+                <UserDropdown  v-if="props.authUser"  :username="props.authUser.name"/>
+                <Link
+                    v-else
+                    :href="route('login')"
+                    class="text-sm/6 font-semibold"
+                    :class="props.linkColor">
+                    Masuk/Daftar
+                </Link>
+
+
             </div>
         </div>
     </nav>
@@ -40,6 +49,7 @@ import { Link } from '@inertiajs/vue3';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 import {defineProps, inject } from 'vue';
+import UserDropdown from '@/components/UI/navbar/UserDropdown.vue';
 
 const mobileMenuOpen = inject('mobileMenuOpen')
 
@@ -50,7 +60,9 @@ const props = defineProps({
     navigation: {type: Object, required: true},
     linkColor: {type: String, required: true},
     iconColor: {type: String},
+    authUser: {type: Object}
 })
+
 
 
 
