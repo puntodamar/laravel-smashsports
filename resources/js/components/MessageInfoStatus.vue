@@ -2,10 +2,10 @@
     <div v-if="props.type === 'status' && props.message"  class="rounded-md bg-blue-200 dark:bg-blue-300 p-4 dark:outline-blue-500/20">
         <div class="flex">
             <div class="shrink-0">
-                <InformationCircleIcon class="size-5 text-blue-400" aria-hidden="true" />
+                <InformationCircleIcon class="size-5 text-pocari-blue" aria-hidden="true" />
             </div>
             <div class="ml-3 flex-1 md:flex md:justify-between">
-                <p class="text-sm text-pocari-blue dark:text-blue-300">{{props.message}}</p>
+                <p class="text-sm text-navy">{{props.message}}</p>
                 <p v-if="link" class="mt-3 text-sm md:mt-0 md:ml-6">
                     <a href="#" class="font-medium whitespace-nowrap text-pocari-blue dark:text-blue-300 dark:hover:text-blue-200">
                         Details

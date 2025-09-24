@@ -104,30 +104,34 @@
                             </a>
 
                             <div class="flex flex-1 items-center justify-end">
+
+
+
                                 <div class="flex items-center lg:ml-8">
                                     <div class="flex space-x-8">
                                         <div class="hidden lg:flex">
-                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                                            <a href="#" class="-m-2 p-2 text-gray-500 hover:text-gray-400">
                                                 <span class="sr-only">Search</span>
                                                 <MagnifyingGlassIcon class="size-6" aria-hidden="true" />
                                             </a>
                                         </div>
 
-                                        <div class="flex">
-                                            <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                                        <div v-if="props.authUser" class="flex">
+                                            <a href="#" class="-m-2 p-2 flex flex-row items-center justify-center text-gray-500 hover:text-gray-400">
                                                 <span class="sr-only">Account</span>
                                                 <UserIcon class="size-6" aria-hidden="true" />
+                                                <span class="text-xs">{{props.authUser.name.split(" ")[0]}}</span>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <span class="mx-4 h-6 w-px bg-gray-500 lg:mx-6" aria-hidden="true" />
+                                    <span v-if="props.authUser" class="mx-4 h-6 w-px bg-gray-500 lg:mx-6" aria-hidden="true" />
 
-                                    <div class="flow-root group">
+                                    <div v-if="props.authUser" class="flow-root group">
                                         <a href="#" class="group -m-2 flex items-center p-2">
                                         <span class="relative inline-block">
                                           <ShoppingCartIcon
-                                              class="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
+                                              class="size-6 shrink-0 text-gray-500 group-hover:text-gray-400"
                                               aria-hidden="true"
                                           />
                                         <span
@@ -138,10 +142,9 @@
                                           {{ cartCount }}
                                         </span>
                                         </span>
-                                        <span class="sr-only">items in cart, view bag</span>
+                                            <span class="sr-only">items in cart, view bag</span>
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -169,6 +172,7 @@ const props = defineProps({
     appName: {type: String, required: true},
     companyLogo: {type: String, required: true},
     rotatorText: {type: Array, required: true},
+    authUser: {type: Object}
 })
 
 const open = inject('open')

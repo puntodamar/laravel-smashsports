@@ -26,12 +26,29 @@
                             </div>
                         </div>
 
-                        <div class="space-y-6 border-t dark:border-gold border-gray-200 px-4 py-6">
+                        <div  class="space-y-6 border-t dark:border-gold border-gray-200 px-4 py-6">
                             <div class="flow-root">
-                                <Link href="#" class="flex flex-row items-center gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                <Link
+                                    v-if="props.authUser"
+                                    :href="route('logout')"
+                                    method="post"
+                                    as="button"
+                                    replace
+                                    @click="open = false"
+                                    class="flex flex-row items-center gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                    <ArrowRightEndOnRectangleIcon class="size-5" />
+                                    Logout
+                                </Link>
+
+                                <Link
+                                    v-else
+                                    :href="route('login')"
+                                    class="flex flex-row items-center gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
                                     <UserIcon class="size-5" />
                                     Masuk/Daftar
                                 </Link>
+
+
                             </div>
                         </div>
                     </DialogPanel>
@@ -47,9 +64,12 @@ import { UserIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import CategoryDropdown from '../..//UI/navbar/CategoryDropdown.vue';
 import { Link } from '@inertiajs/vue3';
 import {inject} from 'vue'
+import { route } from 'ziggy-js';
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline/index.js';
 
 const props = defineProps({
     navigation: {type: Object, required: true},
+    authUser: {type: Object}
 })
 const open = inject('open');
 </script>

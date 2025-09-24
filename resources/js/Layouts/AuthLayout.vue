@@ -82,6 +82,7 @@ const appName = computed(() => usePage().props.app.name)
 const companyLogo = inject('companyLogo')
 
 
+
 const props = defineProps({
     title: {required: false, type: String},
     mode: {required: true, type: String},
@@ -119,14 +120,13 @@ const errorList = computed(() => {
 const submitForm = () => {
 
     state.serverErrors = {}
+    console.log(form.data())
     const url = isLogin.value ? props.loginUrl : props.registerUrl
 
     form.post(url, {
         preserveScroll: true,
         onError: (errs) => {
             state.serverErrors = { ...errs }
-            console.log(state.serverErrors)
-            console.log(errorList)
         },
         onSuccess: () => {
             // Inertia.visit(route('dashboard'), { replace: true }

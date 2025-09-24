@@ -10,7 +10,7 @@
             <p class="mt-2 text-sm/6 text-gray-500 dark:text-gray-400">
                 Belum punya akun?
                 {{ ' ' }}
-                <Link :href="route('register')" class="font-semibold text-pocari-blue dark:text-gold">Daftar</Link>
+                <Link :href="route('register')" class="font-semibold text-pocari-blue">Daftar</Link>
             </p>
         </template>
 
@@ -18,14 +18,14 @@
             <div>
                 <label for="email" class="block text-sm/6 font-medium black dark:text-white">Alamat email</label>
                 <div class="mt-2">
-                    <input v-model="form.email" type="email" name="email" id="email" autocomplete="email" required="" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-navy sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-gold" />
+                    <input v-model="form.email" type="email" name="email" id="email" autocomplete="email" required="" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-pocari-blue sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 " />
                 </div>
             </div>
 
             <div>
                 <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Password</label>
                 <div class="mt-2">
-                    <input v-model="form.password" type="password" name="password" id="password" autocomplete="current-password" required="" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-navy sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-gold" />
+                    <input v-model="form.password" type="password" name="password" id="password" autocomplete="current-password" required="" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-pocari-blue sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 " />
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="text-sm/6">
-                    <a href="#" class="font-semibold text-pocari-blue dark:text-gold">Lupa password?</a>
+                    <a href="#" class="font-semibold text-pocari-blue ">Lupa password?</a>
                 </div>
             </div>
         </template>

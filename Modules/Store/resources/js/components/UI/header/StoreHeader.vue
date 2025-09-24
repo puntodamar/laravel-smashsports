@@ -1,13 +1,14 @@
 <template>
     <div>
 
-    <StoreHeaderMobile :navigation="navigation"  />
+    <StoreHeaderMobile :navigation="navigation" :auth-user="authUser"  />
 
     <StoreHeaderDesktop
-        :rotatorText="rotatorText"
-        :companyLogo="companyLogo"
-        :appName="props.appName"
+        :rotator-text="rotatorText"
+        :company-logo="companyLogo"
+        :app-name="props.appName"
         :navigation="navigation"
+        :auth-user="authUser"
     />
 
     </div>
@@ -22,8 +23,10 @@ import { IconBag, IconRacket, IconShoe, IconShirt, IconShuttlecock } from '@js/i
 import StoreHeaderMobile from './StoreHeaderMobile.vue';
 import StoreHeaderDesktop from './StoreHeaderDesktop.vue';
 import { PencilSquareIcon, BuildingStorefrontIcon } from '@heroicons/vue/24/outline'
-import { useCartStore } from '@store/js/stores/cart_store.js';
-
+import { usePage } from '@inertiajs/vue3';
+const page = usePage()
+const authUser = computed(() => page.props?.auth?.user)
+console.log(authUser)
 const companyLogo = inject('companyLogo')
 const props = defineProps({
     appName: String,
