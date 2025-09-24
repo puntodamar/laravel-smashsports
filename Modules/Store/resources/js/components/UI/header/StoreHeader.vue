@@ -89,7 +89,15 @@ const navigation = {
         },
 
         { name: "Apparel", icon: IconShirt },
-        { name: "Shuttlecocks", icon: IconShuttlecock },
+        {
+            name: "Shuttlecocks",
+            icon: IconShuttlecock,
+            brands: [
+                { name: 'Yonex', href: '#' },
+                { name: 'Lining', href: '#' },
+                { name: 'Victor', href: '#' },
+            ],
+        },
 
     ],
     pages: [

@@ -12,7 +12,7 @@
 
                 <!-- Product info -->
                 <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-                    <h1 class="text-3xl font-bold tracking-tight text-navy dark:text-white">{{ product.name }}</h1>
+                    <h1 class="text-4xl font-bold tracking-tight text-navy dark:text-white">{{ product.name }}</h1>
 
                     <div class="mt-3">
                         <h2 class="sr-only">Product information</h2>
@@ -21,7 +21,7 @@
                             <span class="block text-xs line-through text-red-500">Rp 3.300.000</span>
                             <span class="items-center rounded-sm bg-red-300 text-red-800 px-2 py-1 text-xs font-light">-30%</span>
                         </div>
-                        <span class="block text-3xl font-semibold tracking-tight text-green-700 mt-2">{{ product.price }}</span>
+                        <span class="block text-2xl font-semibold tracking-tight text-green-700 mt-2">{{ product.price }}</span>
                     </div>
 
 

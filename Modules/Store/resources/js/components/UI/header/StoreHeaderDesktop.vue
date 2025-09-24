@@ -52,7 +52,7 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                                <div>
+                                                                <div v-if="category.collection">
                                                                     <p id="desktop-collection-heading" class="font-medium text-navy dark:text-gold">Koleksi</p>
                                                                     <ul role="list" aria-labelledby="desktop-collection-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.collection" :key="item.name" class="flex">
@@ -61,7 +61,7 @@
                                                                     </ul>
                                                                 </div>
 
-                                                                <div>
+                                                                <div v-if="category.brands">
                                                                     <p id="desktop-brand-heading" class="font-medium text-navy dark:text-gold">Merk</p>
                                                                     <ul role="list" aria-labelledby="desktop-brand-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.brands" :key="item.name" class="flex">
