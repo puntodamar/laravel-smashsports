@@ -1,5 +1,5 @@
 <template>
-    <div v-if="props.type ===  'status' && props.message" class="rounded-md bg-blue-50 p-4 dark:bg-blue-200/10 dark:outline dark:outline-blue-500/20">
+    <div v-if="props.type === 'status' && props.message"  class="rounded-md bg-blue-200 dark:bg-blue-300 p-4 dark:outline-blue-500/20">
         <div class="flex">
             <div class="shrink-0">
                 <InformationCircleIcon class="size-5 text-blue-400" aria-hidden="true" />

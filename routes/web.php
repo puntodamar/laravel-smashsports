@@ -14,8 +14,5 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', fn () => Inertia::render('Auth/Register', ['mode' => 'register']))->name('register');
 });
 
-
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

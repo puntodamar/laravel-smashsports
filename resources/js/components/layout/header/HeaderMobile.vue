@@ -30,12 +30,23 @@
                     </div>
                     <div class="py-6">
                         <div v-if="authUser">
+                            <Link
+                                :href="route('logout')"
+                                method="post"
+                                as="button"
+                                replace
+                                @click="mobileMenuOpen = false"
+                                class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semiboldtext-black dark:text-gray-200 hover:bg-gold dark:hover:text-black"
+                            >
+                                <ArrowRightEndOnRectangleIcon class="size-5" />
+                                Logout
+                            </Link>
 
                         </div>
                         <Link
                             v-else
                             :href="route('login')"
-                            class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semiboldtext-black dark:text-gray-200 hover:bg-gold dark:hover:text-black">
+                            class="flex flex-row items-center gap-x-2 -mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-black dark:text-gray-200 hover:bg-gold dark:hover:text-black">
                             <UserIcon class="size-5" />
                             Masuk/Daftar
                         </Link>
@@ -48,7 +59,7 @@
 <script setup>
 import { route } from 'ziggy-js';
 import { Dialog, DialogPanel } from '@headlessui/vue';
-import { UserIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { UserIcon, XMarkIcon, ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
 import { inject, } from 'vue';
 

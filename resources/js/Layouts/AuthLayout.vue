@@ -6,10 +6,10 @@
             <div class="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                     <div class="flex flex-row items-center justify-between">
-                        <a :href="route('home')">
+                        <Link :href="route('home')">
                             <img class="h-10 w-auto dark:hidden" :src="companyLogo" alt="logo" />
                             <img class="h-10 w-auto not-dark:hidden" :src='companyLogo' alt="logo" />
-                        </a>
+                        </Link>
 
                         <PageTheme :bg="'bg-gray-800'" :text="'text-white'"/>
                     </div>
@@ -74,7 +74,7 @@ import { computed, inject, reactive } from 'vue';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import { FacebookIconColor, GoogleIcon } from '@/icons.js';
 import { route } from 'ziggy-js';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import MessageInfoStatus from '@/components/MessageInfoStatus.vue';
 
 const isLogin = computed(() => props.mode === 'login')
