@@ -175,7 +175,5 @@ const props = defineProps({
     rotatorText: {type: Array, required: true},
 })
 
-console.log(userStore.getUser)
-
 const open = inject('open')
 </script>
