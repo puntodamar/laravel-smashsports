@@ -1,6 +1,4 @@
 <template>
-
-
     <main class="mx-auto max-w-7xl sm:px-6 sm:py-16 lg:px-8">
 
         <div class="mx-auto max-w-2xl lg:max-w-none">
@@ -131,7 +129,7 @@ import raket2 from '@assets/images/raket2.jpg'
 import raket3 from '@assets/images/raket3.jpg'
 import raket4 from '@assets/images/raket4.webp'
 import Breadcrumbs from '@store/js/components/layout/detail/Breadcrumbs.vue';
-import { useCartStore } from '@store/js/stores/cart_store.js';
+import { useTokoStore } from '@store/js/stores/toko_store.js';
 import LoadingSpinner from '@/components/UI/LoadingSpinner.vue';
 
 const product = {
@@ -169,7 +167,7 @@ const product = {
 }
 
 const addToCartProgress = reactive({inProgress: null, success: null, message: null})
-const cartStore = useCartStore()
+const cartStore = useTokoStore()
 let timer
 
 

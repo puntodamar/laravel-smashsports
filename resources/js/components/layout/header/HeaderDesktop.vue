@@ -26,18 +26,14 @@
 
         <div class="hidden lg:flex lg:flex-1 flex-row lg:justify-end gap-x-5">
             <PageTheme />
-            <div>
-                <UserDropdown  v-if="props.authUser"  :username="props.authUser.name"/>
-                <Link
-                    v-else
-                    :href="route('login')"
-                    class="text-sm/6 font-semibold"
-                    :class="props.linkColor">
-                    Masuk/Daftar
-                </Link>
-
-
-            </div>
+            <UserDropdown  v-if="userStore.getUser"  :username="userStore.getUser.name.split(' ')[0]"/>
+            <Link
+                v-else
+                :href="route('login')"
+                class="text-sm/6 font-semibold"
+                :class="props.linkColor">
+                Masuk/Daftar
+            </Link>
         </div>
     </nav>
 </template>
@@ -50,7 +46,9 @@ import PageTheme from '@/components/UI/PageTheme.vue';
 import NavbarLinks from '@/components/UI/NavbarLinks.vue';
 import {defineProps, inject } from 'vue';
 import UserDropdown from '@/components/UI/navbar/UserDropdown.vue';
+import { useUserStore } from '@store/js/stores/user_store.js';
 
+const userStore = useUserStore();
 const mobileMenuOpen = inject('mobileMenuOpen')
 
 
@@ -60,7 +58,6 @@ const props = defineProps({
     navigation: {type: Object, required: true},
     linkColor: {type: String, required: true},
     iconColor: {type: String},
-    authUser: {type: Object}
 })
 
 

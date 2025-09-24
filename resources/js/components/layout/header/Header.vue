@@ -5,15 +5,13 @@
         :company-logo="companyLogo"
         :navigation="navigation"
         :link-color="linkColor"
-        :icon-color="iconColor"
-        :auth-user="authUser"/>
+        :icon-color="iconColor" />
 
     <HeaderMobile
         :navigation="navigation"
         :app-name="appName"
         :company-logo="companyLogo"
         :icon-color="iconColor"
-        :auth-user="authUser"
     />
     </header>
 </template>

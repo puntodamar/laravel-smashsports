@@ -29,7 +29,7 @@
                         </Link>
                     </div>
                     <div class="py-6">
-                        <div v-if="authUser">
+                        <div v-if="userStore.getUser">
                             <Link
                                 :href="route('logout')"
                                 method="post"
@@ -62,13 +62,14 @@ import { Dialog, DialogPanel } from '@headlessui/vue';
 import { UserIcon, XMarkIcon, ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
 import { inject, } from 'vue';
+import { useUserStore } from '@store/js/stores/user_store.js';
 
+const userStore = useUserStore();
 const props = defineProps({
     navigation: {type: Object, required: true},
     appName: {type: String, required: true},
     companyLogo: {type: String, required: true},
     iconColor: {type: String, required: true},
-    authUser: {type: Object}
 })
 
 const mobileMenuOpen = inject('mobileMenuOpen')

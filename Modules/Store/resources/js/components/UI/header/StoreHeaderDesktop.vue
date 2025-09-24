@@ -14,7 +14,7 @@
                             <div class="hidden lg:flex lg:items-center">
                                 <Link :href="route('home')">
                                     <span class="sr-only">{{props.appName}}</span>
-                                    <img class="h-8 w-auto" :src="props.companyLogo" alt="" />
+                                    <img class="h-8 w-auto" :src="tokoStore.companyLogo" alt="" />
                                 </Link>
                             </div>
 
@@ -22,7 +22,7 @@
                                 <!-- Mega menus -->
                                 <PopoverGroup class="inset-x-0 bottom-0 px-4">
                                     <div class="flex h-full justify-center space-x-8">
-                                        <Popover v-for="category in props.navigation.categories" :key="category.name" class="flex" v-slot="{ open }">
+                                        <Popover v-for="category in tokoStore.navigation.categories" :key="category.name" class="flex" v-slot="{ open }">
                                             <div class="relative flex">
 
                                                 <PopoverButton
@@ -42,7 +42,7 @@
                                                                 <div v-if="category.categories">
 
                                                                     <div >
-                                                                        <p id="desktop-categories-heading" class="font-medium text-navy dark:text-gold">Kategori</p>
+                                                                        <p id="desktop-categories-heading" class="font-medium text-magenta dark:text-gold">Kategori</p>
                                                                         <ul role="list" aria-labelledby="desktop-categories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                             <li v-for="item in category.categories" :key="item.name" class="flex">
                                                                                 <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-white">
@@ -53,7 +53,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div v-if="category.collection">
-                                                                    <p id="desktop-collection-heading" class="font-medium text-navy dark:text-gold">Koleksi</p>
+                                                                    <p id="desktop-collection-heading" class="font-medium text-magenta dark:text-gold">Koleksi</p>
                                                                     <ul role="list" aria-labelledby="desktop-collection-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.collection" :key="item.name" class="flex">
                                                                             <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-gray-300">{{ item.name }}</a>
@@ -62,7 +62,7 @@
                                                                 </div>
 
                                                                 <div v-if="category.brands">
-                                                                    <p id="desktop-brand-heading" class="font-medium text-navy dark:text-gold">Merk</p>
+                                                                    <p id="desktop-brand-heading" class="font-medium text-magenta dark:text-gold">Merk</p>
                                                                     <ul role="list" aria-labelledby="desktop-brand-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.brands" :key="item.name" class="flex">
                                                                             <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-gray-300">{{ item.name }}</a>
@@ -76,7 +76,7 @@
                                             </transition>
                                         </Popover>
 
-                                        <Link v-for="page in navigation.pages" :key="page.name" :href="page.href" class="flex items-center text-sm font-medium text-navy dark:text-gray-300 hover:text-magenta dark:hover:text-gold">
+                                        <Link v-for="page in tokoStore.navigation.pages" :key="page.name" :href="page.href" class="flex items-center text-sm font-medium text-navy dark:text-gray-300 hover:text-magenta dark:hover:text-gold">
                                             {{ page.name }}
                                         </Link>
                                     </div>
@@ -100,13 +100,10 @@
                             <!-- Logo (lg-) -->
                             <a href="#" class="lg:hidden">
                                 <span class="sr-only">{{appName}}</span>
-                                <img :src="companyLogo" alt="" class="h-8 w-auto" />
+                                <img :src="tokoStore.getCompanyLogo" alt="" class="h-8 w-auto" />
                             </a>
 
                             <div class="flex flex-1 items-center justify-end">
-
-
-
                                 <div class="flex items-center lg:ml-8">
                                     <div class="flex space-x-8">
                                         <div class="hidden lg:flex">
@@ -116,18 +113,18 @@
                                             </a>
                                         </div>
 
-                                        <div v-if="props.authUser" class="flex">
+                                        <div v-if="userStore.getUser" class="flex">
                                             <a href="#" class="-m-2 p-2 flex flex-row items-center justify-center text-gray-500 hover:text-gray-400">
                                                 <span class="sr-only">Account</span>
                                                 <UserIcon class="size-6" aria-hidden="true" />
-                                                <span class="text-xs">{{props.authUser.name.split(" ")[0]}}</span>
+                                                <span class="text-xs">{{userStore.getUser.name.split(" ")[0]}}</span>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <span v-if="props.authUser" class="mx-4 h-6 w-px bg-gray-500 lg:mx-6" aria-hidden="true" />
+                                    <span v-if="userStore.getUser" class="mx-4 h-6 w-px bg-gray-500 lg:mx-6" aria-hidden="true" />
 
-                                    <div v-if="props.authUser" class="flow-root group">
+                                    <div v-if="userStore.getUser" class="flow-root group">
                                         <a href="#" class="group -m-2 flex items-center p-2">
                                         <span class="relative inline-block">
                                           <ShoppingCartIcon
@@ -163,17 +160,20 @@ import InfoRotator from '../../layout/InfoRotator.vue';
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
 import { computed, inject } from 'vue';
-import { useCartStore } from '@store/js/stores/cart_store.js';
+import { useTokoStore } from '@store/js/stores/toko_store.js';
+import { useUserStore } from '@store/js/stores/user_store.js';
 
-const cartStore = useCartStore()
+const tokoStore = useTokoStore();
+const cartStore = useTokoStore()
+const userStore = useUserStore()
+
 const cartCount = computed(() => cartStore.cartItems.length)
 const props = defineProps({
-    navigation: {type: Object, required: true},
     appName: {type: String, required: true},
-    companyLogo: {type: String, required: true},
     rotatorText: {type: Array, required: true},
-    authUser: {type: Object}
 })
+
+console.log(userStore.getUser)
 
 const open = inject('open')
 </script>

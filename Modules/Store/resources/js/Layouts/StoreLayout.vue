@@ -1,6 +1,6 @@
 <template>
     <Head :title="`${appName} | ${props.title}`" />
-    <StoreHeader :appName="appName" />
+    <StoreHeader :app-name="appName" />
     <div class="h-40 md:h-20"></div>
     <main class="bg-red">
         <Transition name="fade-slide" mode="out-in">
@@ -24,13 +24,14 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import Footer from '@js/components/layout/Footer.vue';
 import PageTheme from '@js/components/UI/PageTheme.vue'
-const appName = computed(() => usePage().props.app?.name || "Smash Sports")
+
+const page = usePage();
+const appName = computed(() => page.props.app?.name || "Smash Sports")
 
 const props = defineProps({
     title: {required: false, type: String},
 })
 
-const page = usePage()
 const transitionKey = computed(() => page.url)
 
 </script>

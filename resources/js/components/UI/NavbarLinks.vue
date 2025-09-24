@@ -1,10 +1,7 @@
 <!-- NavBarLinks.vue -->
 <template>
     <nav class="relative hidden lg:flex lg:gap-x-12">
-
-
-
-        <a
+        <Link
             v-for="item in navigation.main"
             :key="item.name"
             :href="item.href"
@@ -19,7 +16,7 @@
                 <span class="absolute inset-0 -z-0 bg-gold rounded-md origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out will-change-transform" />
             </div>
 
-        </a>
+        </Link>
     </nav>
 
 
@@ -27,6 +24,7 @@
 
 <script setup>
 import { route } from 'ziggy-js';
+import { Link } from '@inertiajs/vue3';
 
 
 

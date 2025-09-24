@@ -1,12 +1,13 @@
 // resources/js/app.js
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, router } from '@inertiajs/vue3';
 import companyLogo from '../assets/images/logo.png'
 import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
 import { ZiggyVue } from 'ziggy'
 import axios from 'axios'
 import { createPinia } from 'pinia'
+import { useUserStore } from '@store/js/stores/user_store.js';
 
 
 
@@ -134,15 +135,39 @@ createInertiaApp({
         return load(() => import('./Pages/_Missing.vue'))
     },
 
-    setup: ({ el, App, props, plugin }) =>
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
+    setup({ el, App, props, plugin }) {
+        const app = createApp({ render: () => h(App, props) })
+
+        const pinia = createPinia()
+        app.use(pinia)
+        const userStore = useUserStore()
+
+        router.on('success', (event) => {
+            const nextUser = event.detail.page?.props?.auth?.user ?? null
+            userStore.setUser(nextUser)
+        })
+
+
+        app.use(plugin)
             .use(ZiggyVue)
-            .use(pinia)
             .use(VCalendar, {
-                componentPrefix: 'V',
-                locales: { 'id-ID': { firstDayOfWeek: 1 } }, // Senin
-            })
+                    componentPrefix: 'V',
+                    locales: { 'id-ID': { firstDayOfWeek: 1 } }, // Senin
+                })
             .provide('companyLogo', companyLogo)
-            .mount(el),
+            .mount(el);
+        return app
+    }
+
+    // setup: ({ el, App, props, plugin }) =>
+    //     createApp({ render: () => h(App, props) })
+    //         .use(plugin)
+    //         .use(ZiggyVue)
+    //         .use(pinia)
+    //         .use(VCalendar, {
+    //             componentPrefix: 'V',
+    //             locales: { 'id-ID': { firstDayOfWeek: 1 } }, // Senin
+    //         })
+    //         .provide('companyLogo', companyLogo)
+    //         .mount(el),
 })

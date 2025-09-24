@@ -74,14 +74,15 @@ import { computed, inject, reactive } from 'vue';
 import PageTheme from '@/components/UI/PageTheme.vue';
 import { FacebookIconColor, GoogleIcon } from '@/icons.js';
 import { route } from 'ziggy-js';
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import MessageInfoStatus from '@/components/MessageInfoStatus.vue';
+import { useUserStore } from '@store/js/stores/user_store.js';
 
 const isLogin = computed(() => props.mode === 'login')
 const appName = computed(() => usePage().props.app.name)
 const companyLogo = inject('companyLogo')
 
-
+const userStore = useUserStore()
 
 const props = defineProps({
     title: {required: false, type: String},
@@ -120,7 +121,6 @@ const errorList = computed(() => {
 const submitForm = () => {
 
     state.serverErrors = {}
-    console.log(form.data())
     const url = isLogin.value ? props.loginUrl : props.registerUrl
 
     form.post(url, {
@@ -129,7 +129,6 @@ const submitForm = () => {
             state.serverErrors = { ...errs }
         },
         onSuccess: () => {
-            // Inertia.visit(route('dashboard'), { replace: true }
         },
     })
 }

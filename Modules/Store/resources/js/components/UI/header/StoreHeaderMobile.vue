@@ -15,10 +15,10 @@
                             </button>
                         </div>
 
-                        <CategoryDropdown :navigation="props.navigation" />
+                        <CategoryDropdown :navigation="tokoStore.navigation" />
                         <div class="border-t border-gray-200  dark:border-gold"></div>
                         <div class="space-y-6 px-4 py-6 border-gray-200 ">
-                            <div v-for="page in navigation.pages" :key="page.name" class="flow-root">
+                            <div v-for="page in tokoStore.navigation.pages" :key="page.name" class="flow-root">
                                 <Link :href="page.href" class="flex flex-row items-start gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
                                     <component :is="page.icon" class="size-5"></component>
                                     {{ page.name }}
@@ -29,7 +29,7 @@
                         <div  class="space-y-6 border-t dark:border-gold border-gray-200 px-4 py-6">
                             <div class="flow-root">
                                 <Link
-                                    v-if="props.authUser"
+                                    v-if="userStore.getUser"
                                     :href="route('logout')"
                                     method="post"
                                     as="button"
@@ -66,10 +66,11 @@ import { Link } from '@inertiajs/vue3';
 import {inject} from 'vue'
 import { route } from 'ziggy-js';
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline/index.js';
+import {useTokoStore} from '@store/js/stores/toko_store.js';
+import { useUserStore } from '@store/js/stores/user_store.js';
 
-const props = defineProps({
-    navigation: {type: Object, required: true},
-    authUser: {type: Object}
-})
+const tokoStore = useTokoStore();
+const userStore = useUserStore();
+
 const open = inject('open');
 </script>
