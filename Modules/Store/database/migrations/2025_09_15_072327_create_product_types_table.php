@@ -31,10 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('product_types', function (Blueprint $table) {
             $table->dropConstrainedForeignId('parent_id');
         });
 
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_types');
     }
 };
