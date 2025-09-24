@@ -21,7 +21,13 @@
     import { Head, usePage } from '@inertiajs/vue3';
     import { computed, defineProps, onMounted } from 'vue';
     import Header from '@/components/layout/header/Header.vue';
-    import { route } from 'ziggy-js';
+    import { useUserStore } from '@store/js/stores/user_store.js';
+
+    const page = usePage();
+    const userStore = useUserStore()
+    if (page.props.auth?.user && !userStore.getUser) {
+        userStore.setUser(page.props.auth?.user)
+    }
 
     const appName = computed(() => usePage().props.app.name)
 
@@ -30,7 +36,6 @@
         // InertiaProgress.init()
     })
 
-    const page = usePage()
     const transitionKey = computed(() => page.url)
 
     const props = defineProps({
