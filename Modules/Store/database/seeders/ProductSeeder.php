@@ -18,28 +18,28 @@ class ProductSeeder extends Seeder
 
         $sepatuYonex = ProductType::where('slug', 'sepatu.yonex')->first();
 
-        if (Product::exists()) {
+        if (!Product::exists()) {
             $products = [
-//                [
-//                    "name" => "Yonex 1000 Z",
-//                    "product_type_id" => $raketYonex->id,
-//                    "price" => 3000000,
-//                    "description" => 'For advanced players looking for immediate access to power to maintain a relentless attack',
-//                    'product_variants' => [
-//                        ["name" => "G5", "amount" => 5],
-//                        ["name" => "G6", "amount" => 0],
-//                    ],
-//                    "product_specs" => [
-//                        ["label" => "Flex", "description" => "Stiff"],
-//                        ["label" => "Frame", "description" => "HM Graphite, NANOMETRIC DR, M40X, EX-HYPER MG"],
-//                        ["label" => "Tarikan Senar", "description" => "4U: 20 - 28 lbs <br/> 3U: 21 - 29 lbs"],
-//                        ["label" => "Shaft", "description" => "HM Graphite, Ultra PE FIBER"],
-//                    ],
-//                ],
+                [
+                    "name" => "Yonex 1000 Z",
+                    "product_type_id" => $raketYonex->id,
+                    "price" => 3000000,
+                    "description" => 'For advanced players looking for immediate access to power to maintain a relentless attack',
+                    'product_variants' => [
+                        ["name" => "G5", "amount" => 5],
+                        ["name" => "G6", "amount" => 0],
+                    ],
+                    "product_specs" => [
+                        ["label" => "Flex", "description" => "Stiff"],
+                        ["label" => "Frame", "description" => "HM Graphite, NANOMETRIC DR, M40X, EX-HYPER MG"],
+                        ["label" => "Tarikan Senar", "description" => "4U: 20 - 28 lbs <br/> 3U: 21 - 29 lbs"],
+                        ["label" => "Shaft", "description" => "HM Graphite, Ultra PE FIBER"],
+                    ],
+                ],
                 [
                     "name" => "Lining Axforce 90 White Tiger",
                     "product_type_id" => $raketLining->id,
-                    "price" => 3000000,
+                    "price" => 3250000,
                     "description" => 'For advanced players looking for immediate access to power to maintain a relentless attack',
                     'product_variants' => [
                         ["name" => "G5", "amount" => 5],
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
                 [
                     "name" => "Lining Windstorm 72 Nano",
                     "product_type_id" => $raketLining->id,
-                    "price" => 3000000,
+                    "price" => 1300000,
                     "description" => 'For advanced players looking for immediate access to power to maintain a relentless attack',
                     'product_variants' => [
                         ["name" => "G5", "amount" => 5],
