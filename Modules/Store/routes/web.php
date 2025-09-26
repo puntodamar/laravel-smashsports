@@ -10,6 +10,8 @@ Route::prefix('toko')->name('store.')->group(function () {
 
     Route::prefix('produk')->name('product.')->group(function () {
 
+        Route::get('{product_type}/{sub_product?}', [StoreController::class, 'index'])->name('filter-by-type');
+
         Route::get('/{product_type}/{sub_product}/{product:slug}', [StoreController::class, 'show'])->name('detail');;
 
 //        Route::get('/{product_type}/{sub_product}/{product:slug}', [StoreController::class, 'show'])->name('detail')->missing(function () {

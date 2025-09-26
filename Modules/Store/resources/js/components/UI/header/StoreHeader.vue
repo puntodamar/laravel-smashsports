@@ -17,7 +17,7 @@ import { route } from 'ziggy-js';
 import StoreHeaderMobile from './StoreHeaderMobile.vue';
 import StoreHeaderDesktop from './StoreHeaderDesktop.vue';
 import {useTokoStore} from '@store/js/stores/toko_store.js';
-import { useUserStore } from '@store/js/stores/user_store.js';
+
 
 const tokoStore = useTokoStore();
 tokoStore.setCompanyLogo(inject('companyLogo'));

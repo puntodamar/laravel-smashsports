@@ -19,12 +19,23 @@
     </nav>
 </template>
 <script setup>
-import { route } from 'ziggy-js';
+import { route as ziggyRoute, useRoute } from 'ziggy-js';
 import { ChevronRightIcon, HomeIcon } from '@heroicons/vue/20/solid';
 import { Link } from '@inertiajs/vue3';
 
+const route = useRoute()
+const productType = ziggyRoute().params.product_type
+const subProduct = ziggyRoute().params.sub_product
+
+const breadcrumbFormatter = (slug) => {
+    return slug.split(/[-_]/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+}
+
 const pages = [
-    { name: 'Raket', href: '#', current: false },
-    { name: 'Yonex', href: '#', current: true },
+    {name : breadcrumbFormatter(productType), href: route('store.product.filter-by-type', {product_type: productType})},
+    {name : breadcrumbFormatter(subProduct), href: route('store.product.filter-by-type', {product_type: productType, sub_product: subProduct}), current: true},
 ]
+
 </script>

@@ -2,7 +2,7 @@
 
     <div :id="props.title.concat(' ', '')" class="mb-20 md:mt-0 md:mb-0">
         <div class="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <div class="md:flex md:items-center md:justify-between">
+            <div v-if="showMore"  class="md:flex md:items-center md:justify-between">
                 <h2 class="flex flex-row items-center gap-2 text-2xl font-bold tracking-tight text-navy dark:text-white">
                     <component :is="props.icon" class="size-5" />{{props.title}}</h2>
                 <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gray hover:text-magenta dark:hover:text-electric-magenta md:block">
@@ -20,7 +20,7 @@
                             class="size-full object-cover" />
                         <svg
                             v-else
-                            class="size-full border border-gray-300 bg-white text-gray-300 dark:border-white/15 dark:bg-gray-900 dark:text-white/15" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true">
+                            class="size-full border border-gray-300 bg-gray-50 text-gray-300 dark:border-white/15 dark:bg-gray-900 dark:text-white/15" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true">
                             <path vector-effect="non-scaling-stroke" stroke-width="1" d="M0 0l200 200M0 200L200 0" />
                         </svg>
                     </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 text-sm md:hidden">
+            <div v-if="showMore" class="mt-8 text-sm md:hidden">
                 <Link href="#" class="font-medium text-navy hover:text-magenta dark:hover:text-electric-magenta dark:text-gray 0">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
@@ -54,7 +54,8 @@ import { currencyFormatter } from '@js/composables/currencyFormatter.js';
 const props = defineProps({
     title: {type: String, required: true},
     icon: {type: Object, required: true},
-    items: {type: Array}
+    items: {type: Array},
+    showMore: {type: Boolean, default: false},
 })
 
 const formatProductHref = (slug, itemSlug) => {

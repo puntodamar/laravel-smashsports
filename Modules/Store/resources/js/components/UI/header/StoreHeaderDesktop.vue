@@ -27,9 +27,9 @@
 
                                                 <PopoverButton
                                                     class="hover:cursor-pointer"
-                                                    :class="[open ? 'text-magenta dark:text-electric-magenta' : 'text-gray-700 dark:text-gray-300 hover:text-magenta dark:hover:text-electric-magenta', 'relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out space-x-2']">
+                                                    :class="[open || currentNavigation === category.name.toLowerCase() ? 'text-magenta dark:text-electric-magenta' : 'text-gray-700 dark:text-gray-300 hover:text-magenta dark:hover:text-electric-magenta', 'relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out space-x-2']">
                                                     {{ category.name }}
-                                                    <span :class="[open ? 'bg-magenta dark:bg-electric-magenta' : 'hover:text-magenta dark:hover:text-electric-magenta', 'absolute inset-x-0 -bottom-px z-30 h-0.5 transition duration-200 ease-out']" aria-hidden="true" />
+                                                    <span :class="[open || currentNavigation === category.name.toLowerCase() ? 'bg-magenta dark:bg-electric-magenta' : 'hover:text-magenta dark:hover:text-electric-magenta', 'absolute inset-x-0 -bottom-px z-30 h-0.5 transition duration-200 ease-out']" aria-hidden="true" />
                                                 </PopoverButton>
                                             </div>
                                             <transition v-if="category.collection || category.brands || category.categories" enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0" enter-to-class="" leave-active-class="transition ease-in duration-150" leave-from-class="" leave-to-class="opacity-0">
@@ -168,6 +168,9 @@ import UserDropdown from '@/components/UI/navbar/UserDropdown.vue';
 const tokoStore = useTokoStore();
 const cartStore = useTokoStore()
 const userStore = useUserStore()
+
+const currentNavigation = route().params.product_type
+
 
 const cartCount = computed(() => cartStore.cartItems.length)
 const props = defineProps({

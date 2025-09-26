@@ -1,20 +1,23 @@
 <template>
-    <Head :title="`${appName} | ${ page.props?.title || props.title}`" />
-    <StoreHeader :app-name="appName" />
-    <div class="h-40 md:h-20"></div>
-    <main class="bg-red">
-        <Transition name="fade-slide" mode="out-in">
-            <!-- Key by current URL (or $page.component) -->
-            <div :key="transitionKey">
-                <slot />
+    <div class="min-h-screen flex flex-col">
+        <Head :title="`${appName} | ${ page.props?.title || props.title}`" />
+        <StoreHeader :app-name="appName" />
+        <div class="h-40 md:h-20"></div>
+        <main class="flex-1">
+            <Transition name="fade-slide" mode="out-in">
+                <!-- Key by current URL (or $page.component) -->
+                <div :key="transitionKey">
+                    <slot />
+                </div>
+            </Transition>
+            <div class="fixed bottom-8 right-8 z-10">
+                <PageTheme bg="bg-gold dark:bg-gold" text="text-black" />
             </div>
-        </Transition>
-        <div class="fixed bottom-8 right-8 z-10">
-            <PageTheme bg="bg-gold dark:bg-gold" text="text-black" />
-        </div>
-    </main>
+        </main>
 
-    <Footer/>
+        <Footer/>
+    </div>
+
 </template>
 
 <script setup>

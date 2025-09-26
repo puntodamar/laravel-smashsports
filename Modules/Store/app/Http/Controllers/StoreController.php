@@ -13,7 +13,7 @@ class StoreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $productType = null, $subProduct = null)
     {
 
 //        $baseProduct = Product::query()
@@ -36,17 +36,32 @@ class StoreController extends Controller
                 'img.path as primary_image_path',
             ])->inRandomOrder()->limit(4);
 
-        return Inertia::render('Module/Store/Index', [
+        $data = [];
+
+        if ($productType == null && $subProduct == null) {
+            $data = [
 //            'racket' => $baseProduct
 //                ->whereHas('type.parent', fn ($q) => $q->where('slug', 'raket'))
 //                ->get(),
 
-            'racket' => $baseProduct->where('pt.slug', 'ILIKE', 'raket%')->get(),
-            'shoes' => $baseProduct->where('pt.slug', 'ILIKE', 'sepatu%')->get(),
-            'bag' => $baseProduct->where('pt.slug', 'ILIKE', 'tas%')->get(),
-            'apparel' => $baseProduct->where('pt.slug', 'ILIKE', 'apparel%')->get(),
-            'shuttlecocks' => $baseProduct->where('pt.slug', 'ILIKE', 'shuttlecocks%')->get()
-        ]);
+                'raket' => $baseProduct->where('pt.slug', 'ILIKE', 'raket%')->get(),
+                'sepatu' => $baseProduct->where('pt.slug', 'ILIKE', 'sepatu%')->get(),
+                'tas' => $baseProduct->where('pt.slug', 'ILIKE', 'tas%')->get(),
+                'apparel' => $baseProduct->where('pt.slug', 'ILIKE', 'apparel%')->get(),
+                'shuttlecocks' => $baseProduct->where('pt.slug', 'ILIKE', 'shuttlecocks%')->get(),
+                'showMore' => true
+            ];
+        } else {
+            $data = [
+                $productType => $baseProduct->where('pt.slug', 'ILIKE', empty($subProduct) ? "{$productType}.%" : "{$productType}.{$subProduct}%")->get(),
+                'showMore' => false
+            ];
+
+        }
+
+        return Inertia::render('Module/Store/Index',$data);
+
+
     }
 
     /**

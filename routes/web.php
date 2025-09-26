@@ -6,10 +6,10 @@ use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
-use Modules\Store\Http\Controllers\StoreController;
 
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/booking', [IndexController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', fn () => Inertia::render('Auth/Login', ['mode' => 'login']))->name('login');
