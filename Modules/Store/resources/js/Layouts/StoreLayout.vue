@@ -1,5 +1,5 @@
 <template>
-    <Head :title="`${appName} | ${props.title}`" />
+    <Head :title="`${appName} | ${ page.props?.title || props.title}`" />
     <StoreHeader :app-name="appName" />
     <div class="h-40 md:h-20"></div>
     <main class="bg-red">
@@ -10,7 +10,7 @@
             </div>
         </Transition>
         <div class="fixed bottom-8 right-8 z-10">
-            <PageTheme bg="bg-navy" text="text-white" />
+            <PageTheme bg="bg-gold dark:bg-gold" text="text-black" />
         </div>
     </main>
 

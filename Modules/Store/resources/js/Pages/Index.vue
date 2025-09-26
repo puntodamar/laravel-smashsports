@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ProductGrid title="Raket" :icon="IconRacket" />
+        <ProductGrid title="Raket" :icon="IconRacket" :items="props.racket" />
         <ProductGrid title="Sepatu" :icon="IconShoe"  />
         <ProductGrid title="Tas"  :icon="IconBag" />
         <ProductGrid title="Apparel" :icon="IconShirt" />
@@ -13,6 +13,11 @@
 import StoreLayout from '../Layouts/StoreLayout.vue'
 import ProductGrid from '../components/layout/ProductGrid.vue';
 import { IconRacket, IconShoe, IconShirt, IconShuttlecock, IconBag} from '@js/icons.js';
+
+const props = defineProps({
+    racket: {type: Array},
+    shoes: {type: Array}
+})
 
 
 defineOptions({

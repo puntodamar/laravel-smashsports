@@ -30,7 +30,7 @@ const open = ref(false); provide('open', open);
 
 const rotatorText = [
     `Dapatkan harga khusus dengan menjadi <a href="#" class="underline text-gold dark:brightness-80" data-inertia>member!</a>`,
-    `Para sultan merapat! Nanoflare 1000ZZ bisa dibeli <a href="${route('store.product.detail', { product_type: 'raket', product: 'test' })}" class="text-gold underline" data-inertia>di sini</a>.`,
+    `Para sultan merapat! Nanoflare 1000ZZ bisa dibeli <a href="${route('store.product.detail', { product_type: 'raket', sub_product: 'yonex', product: 'yonex-1000-z' })}" class="text-gold underline" data-inertia>di sini</a>.`,
     `Cobain deh, menu baru spesial: <span class="text-gold">Ayam Katsu Blackpepper</span>`,
 ]
 

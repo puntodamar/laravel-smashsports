@@ -10,7 +10,7 @@
 
                 <!-- Product info -->
                 <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-                    <h1 class="text-4xl font-bold tracking-tight text-navy dark:text-white">{{ product.name }}</h1>
+                    <h1 class="text-4xl font-bold tracking-tight text-navy dark:text-white">{{ props.product.name }}</h1>
 
                     <div class="mt-3">
                         <h2 class="sr-only">Product information</h2>
@@ -19,17 +19,20 @@
                             <span class="block text-xs line-through text-red-500">Rp 3.300.000</span>
                             <span class="items-center rounded-sm bg-red-300 text-red-800 px-2 py-1 text-xs font-light">-30%</span>
                         </div>
-                        <span class="block text-2xl font-semibold tracking-tight text-green-700 mt-2">{{ product.price }}</span>
+                        <span class="block text-2xl font-semibold tracking-tight text-green-700 mt-2">{{ currencyFormatter(props.product.price) }}</span>
                     </div>
 
 
-                    <div class="mt-3">
-                        <span class="font-light text-gray-500 dark:text-gray text-xs">Stok: {{product.stock}}</span>
-                    </div>
+                    <div class="mt-3 flex flex-row items-start gap-x-2 ">
+                        <span class="font-light text-gray-500 dark:text-gray text-xs">Pilih varian:</span>
+                        <div class="grid grid-cols-5 gap-2">
+                            <button v-for="variant in props.product.variants" :key="variant.id"
+                                    class=" rounded-md p-2 outline-1 text-sm 'text-gray-500  ' "
+                                    :class="[variant.amount > 0 ? 'hover:cursor-pointer outline-navy' : 'bg-gray hover:cursor-not-allowed opacity-50' ]">
+                                {{variant.name}}
+                            </button>
+                        </div>
 
-                    <div class="mt-6">
-                        <h3 class="sr-only">Description</h3>
-                        <div class="space-y-6 text-base text-gray-500 dark:text-gray" v-html="product.description" />
                     </div>
 
                     <form @submit.prevent="addToCart" class="mt-6">
@@ -85,6 +88,11 @@
 
                     </Transition>
 
+                    <section class="mt-6">
+                        <h3 class="sr-only">Description</h3>
+                        <div class="space-y-6 text-base text-gray-500 dark:text-gray" v-html="props.product.description" />
+                    </section>
+
                     <section aria-labelledby="summary-heading" class="mt-6 md:mt-16">
                         <h2 id="summary-heading" class="text-lg font-bold text-navy dark:text-white">Spesifikasi</h2>
 
@@ -107,7 +115,12 @@
             </div>
 
             <section aria-labelledby="related-heading" class="mt-10 border-t border-gray-200 px-4 py-16 sm:px-0">
-                <ProductGrid title="Produk terkait" :icon="IconRacket" />
+                <ProductGrid
+                    v-if="props.relatedProducts"
+                    title="Produk terkait"
+                    :icon="IconRacket"
+                    :items="props.relatedProducts"
+                />
             </section>
         </div>
     </main>
@@ -115,7 +128,7 @@
 </template>
 
 <script setup>
-import { computed, defineOptions, reactive, ref } from 'vue';
+import { defineOptions, reactive, ref } from 'vue';
 import { HeartIcon, ShoppingCartIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from'@heroicons/vue/24/solid';
 import StoreLayout from '@store/js/Layouts/StoreLayout.vue';
@@ -131,6 +144,14 @@ import raket4 from '@assets/images/raket4.webp'
 import Breadcrumbs from '@store/js/components/layout/detail/Breadcrumbs.vue';
 import { useTokoStore } from '@store/js/stores/toko_store.js';
 import LoadingSpinner from '@/components/UI/LoadingSpinner.vue';
+import { currencyFormatter } from '@js/composables/currencyFormatter.js';
+
+const props = defineProps({
+    product: {type: Object},
+    relatedProducts: {type: Array,},
+})
+
+console.log(props.product)
 
 const product = {
     name: 'Astrox 1000 Z',
@@ -208,7 +229,7 @@ const toggleWishlist = () => {
 
 defineOptions({
     layout: (h, page) =>
-        h(StoreLayout, {title: 'Astrox 1000 ZZ'}, {
+        h(StoreLayout, null, {
             default: () => page,
         }),
 })

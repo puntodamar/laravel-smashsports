@@ -5,33 +5,38 @@
             <div class="md:flex md:items-center md:justify-between">
                 <h2 class="flex flex-row items-center gap-2 text-2xl font-bold tracking-tight text-navy dark:text-white">
                     <component :is="props.icon" class="size-5" />{{props.title}}</h2>
-                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gray md:block">
+                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gray hover:text-magenta dark:hover:text-electric-magenta md:block">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
             </div>
 
-            <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-                <div v-for="product in products" :key="product.id" class="group relative">
+            <div class=" mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+                <div v-for="item in props.items" :key="item.id" class="group relative">
                     <div class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
-<!--                        <img :src="product.imageSrc" :alt="product.imageAlt" class="size-full object-cover" />-->
-                        <svg class="size-full border border-gray-300 bg-white text-gray-300 dark:border-white/15 dark:bg-gray-900 dark:text-white/15" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true">
+                        <img
+                            v-if="item.primary_image"
+                            :src="item.item"
+                            class="size-full object-cover" />
+                        <svg
+                            v-else
+                            class="size-full border border-gray-300 bg-white text-gray-300 dark:border-white/15 dark:bg-gray-900 dark:text-white/15" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true">
                             <path vector-effect="non-scaling-stroke" stroke-width="1" d="M0 0l200 200M0 200L200 0" />
                         </svg>
                     </div>
                     <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">
-                        <Link :href="product.href">
+                        <Link :href="formatProductHref(item.sub_product, item.slug)">
                             <span class="absolute inset-0" />
-                            {{ product.name }}
+                            <span class="group-hover:text-magenta dark:group-hover:text-electric-magenta">{{ item.name }}</span>
                         </Link>
                     </h3>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray">{{ product.color }}</p>
-                    <p class="mt-1 text-sm font-medium text-gray-900 dark:text-white">{{ product.price }}</p>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray">{{ item.color }}</p>
+                    <p class="mt-1 text-sm font-medium text-pocari-blue dark:text-white group-hover:text-magenta dark:group-hover:text-electric-magenta">{{ currencyFormatter(item.price) }}</p>
                 </div>
             </div>
 
             <div class="mt-8 text-sm md:hidden">
-                <Link href="#" class="font-medium text-navy dark:text-gray 0">
+                <Link href="#" class="font-medium text-navy hover:text-magenta dark:hover:text-electric-magenta dark:text-gray 0">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
@@ -44,49 +49,16 @@
 
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
+import { currencyFormatter } from '@js/composables/currencyFormatter.js';
 
 const props = defineProps({
     title: {type: String, required: true},
-    icon: {type: Object, required: true}
-
+    icon: {type: Object, required: true},
+    items: {type: Array}
 })
 
-const products = [
-    {
-        id: 1,
-        name: 'Produk 1',
-        color: 'Natural',
-        price: 'Rp 100.000',
-        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-        imageAlt: 'lorem   ',
-    },
-    {
-        id: 2,
-        name: 'Produk 2',
-        color: 'Black',
-        price: 'Rp 100.000',
-        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-03.jpg',
-        imageAlt: '12-sided, machined black pencil and pen.',
-    },
-    {
-        id: 3,
-        name: 'Produk 3',
-        color: 'Light Brown',
-        price: 'Rp 100.000',
-        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-04.jpg',
-        imageAlt: 'Set of three light and dark brown mini sketch books.',
-    },
-    {
-        id: 4,
-        name: 'Produk 4',
-        color: 'Walnut',
-        price: 'Rp 100.000',
-        href: route('store.product.detail', { product_type: 'raket', product: 'test' }),
-        imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-04-trending-product-01.jpg',
-        imageAlt: 'Beautiful walnut organizer set with multiple white compartments',
-    },
-]
+const formatProductHref = (slug, itemSlug) => {
+    slug = slug.split(".")
+    return route('store.product.detail', { product_type: slug[0], sub_product: slug[1], product: itemSlug })
+}
 </script>

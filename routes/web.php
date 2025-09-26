@@ -17,9 +17,9 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'register'])->name('register.store');
 });
 
-Route::prefix('toko')->name('store.')->group(function () {
-   Route::get('/', [StoreController::class, 'index'])->name('index');
-});
+//Route::prefix('toko')->name('store.')->group(function () {
+//   Route::get('/', [StoreController::class, 'index'])->name('index');
+//});
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 

@@ -13,7 +13,7 @@ class ProductSpec extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['product_id', 'label', 'description', 'sort_order'];
 
     // protected static function newFactory(): ProductSpecFactory
     // {
