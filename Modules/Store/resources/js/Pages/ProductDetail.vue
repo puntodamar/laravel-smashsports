@@ -10,7 +10,7 @@
 
                 <!-- Product info -->
                 <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-                    <h1 class="text-4xl font-bold tracking-tight text-navy dark:text-white">{{ props.product.name }}</h1>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-navy dark:text-white">{{ props.product.name }}</h1>
 
                     <div class="mt-3">
                         <h2 class="sr-only">Product information</h2>
@@ -19,46 +19,63 @@
                             <span class="block text-xs line-through text-red-500">Rp 3.300.000</span>
                             <span class="items-center rounded-sm bg-red-300 text-red-800 px-2 py-1 text-xs font-light">-30%</span>
                         </div>
-                        <span class="block text-2xl font-semibold tracking-tight text-green-700 mt-2">{{ currencyFormatter(props.product.price) }}</span>
+                        <span class="block text-xl md:text-2xl font-semibold tracking-tight text-green-700 mt-2">{{ currencyFormatter(props.product.price) }}</span>
                     </div>
 
 
-                    <div class="mt-3 flex flex-row items-start gap-x-2 ">
-                        <span class="font-light text-gray-500 dark:text-gray text-xs">Pilih varian:</span>
-                        <div class="grid grid-cols-5 gap-2">
-                            <button v-for="variant in props.product.variants" :key="variant.id"
-                                    class=" rounded-md p-2 outline-1 text-sm 'text-gray-500  ' "
-                                    :class="[variant.amount > 0 ? 'hover:cursor-pointer outline-navy' : 'bg-gray hover:cursor-not-allowed opacity-50' ]">
-                                {{variant.name}}
-                            </button>
+                    <div class="mt-3 flex flex-col items-start gap-x-2 ">
+                        <span class="font-light text-gray-500 dark:text-gray text-xs">Stok : {{product.variants[selectedVariant].amount}}</span>
+                        <div class="flex flex-row mt-3 gap-x-2">
+                            <span class="font-light text-gray-500 dark:text-gray text-xs">Pilih varian:</span>
+                            <div class="grid grid-cols-5 gap-2">
+                                <label
+                                    v-for="(variant, i) in props.product.variants"
+                                    :key="variant.id"
+                                    class="rounded-md p-2 outline-1 text-sm text-gray-500 dark:text-gray"
+                                    :class="btnVariantClass(variant)"
+                                >
+                                    <input
+                                        @click="setVariant(i)"
+                                        type="radio"
+                                        name="variant"
+                                        class="sr-only"
+                                        :value="variant.id"
+                                    />
+                                    {{ variant.name }}
+                                </label>
+                            </div>
                         </div>
-
                     </div>
 
-                    <form @submit.prevent="addToCart" class="mt-6">
 
-                        <div class="mt-10 flex">
 
+                    <form @submit.prevent="addToCartProcess" class="mt-6">
+
+                        <div class="mt-6 flex flex-row">
+                            <button
+                                @click="addToComparison"
+                                type="button"
+                                class="btn-secondary text-xs rounded-md hover:cursor-pointer mr-2 whitespace-nowrap min-h-[2rem] p-0 min-w-[7.5rem] shrink-0 inline-flex items-center justify-center">
+                                <div v-if="addToComparisonProgress.inProgress" class="flex flex-row items-center gap-x-2 text-xs md:text-base md:text-md"><LoadingSpinner height="h-5" width="w-5" /></div>
+                                <div v-else class="text-xs md:text-sm">Bandingkan</div>
+                            </button>
 
                             <button
-                                v-if="product.stock > 0"
+                                v-if="product.variants[selectedVariant].amount > 0"
                                 type="submit"
-                                class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gold dark:opacity-80 px-8 py-3 text-base font-medium text-navy  sm:w-full hover:opacity-100 hover:cursor-pointer">
-                                <div v-if="addToCartProgress.inProgress" class="flex flex-row items-center gap-x-2"><LoadingSpinner height="h-5" width="w-5" /> Menambahkan</div>
-                                <div v-else class="flex flex-row items-center gap-x-2"><ShoppingCartIcon class="size-5"/> Masukkan keranjang </div>
+                                class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gold dark:md:opacity-80 px-8 md:py-3 text-base font-medium text-navy   min-h-[2rem] md:hover:opacity-100 hover:cursor-pointer">
+                                <div v-if="addToCartProgress.inProgress" class="flex flex-row items-center gap-x-2 text-xs md:text-md"><LoadingSpinner height="h-5" width="w-5" /> Mohon tunggu</div>
+                                <div v-else class="flex flex-row items-center gap-x-2  text-xs md:text-sm "><ShoppingCartIcon class="size-5"/> Masukkan keranjang </div>
                             </button>
 
                             <button
                                 v-else
                                 type="submit"
                                 class="flex max-w-xs flex-1 flex-row gap-2 items-center justify-center rounded-md border border-transparent bg-gray px-8 py-3 text-base font-medium opacity-50 text-navy  sm:w-full hover:opacity-100 hover:cursor-not-allowed">
-                                <div class="flex flex-row items-center gap-x-2"><ShoppingCartIcon class="size-5"/> Stok  habis</div>
+                                <div class="flex flex-row items-center gap-x-2 text-xs md:text-sm"><ShoppingCartIcon class="size-5"/> Stok habis</div>
                             </button>
 
-
-
                             <button type="button" class="ml-4 flex items-center justify-center rounded-md px-3 py-3 ">
-
                                 <component
                                     :is="isWishlisted ? HeartIconSolid : HeartIcon"
                                     @click="toggleWishlist"
@@ -78,36 +95,30 @@
 
                         <div class="h-5 mt-2">
                             <span
-                                v-show="addToCartProgress.inProgress && addToCartProgress.message"
-                                class="inline-flex items-center rounded-sm px-2 py-1 text-xs font-light transition-opacity duration-200 ease-out"
-                                :class="addToCartProgress.success ? 'bg-green-300 text-green-800' : 'bg-red-300 text-red-800'"
+                                v-show="(addToCartProgress.inProgress && addToCartProgress.message) || (addToComparisonProgress.inProgress && addToComparisonProgress.message)"
+                                class="inline-flex items-center rounded-sm px-2 py-1 text-xs font-light transition-opacity duration-200 ease-out "
+                                :class="addToCartProgress.success || addToComparisonProgress.success ? 'bg-green-300 text-green-800' : 'bg-red-300 text-red-800'"
                             >
-                            {{ addToCartProgress.message }}
+                            {{ addToCartProgress.message || addToComparisonProgress.message }}
                             </span>
+
+
                         </div>
 
                     </Transition>
 
                     <section class="mt-6">
                         <h3 class="sr-only">Description</h3>
-                        <div class="space-y-6 text-base text-gray-500 dark:text-gray" v-html="props.product.description" />
+                        <div class="space-y-6 text-gray-500 dark:text-gray text-sm md:text-base" v-html="props.product.description" />
                     </section>
 
                     <section aria-labelledby="summary-heading" class="mt-6 md:mt-16">
                         <h2 id="summary-heading" class="text-lg font-bold text-navy dark:text-white">Spesifikasi</h2>
 
-                        <div class="mt-6 grid grid-cols-[10rem_1fr] gap-x-10 gap-y-2">
-                            <div class="text-gray-800 dark:text-gray-400">Flex</div>
-                            <div class="text-gray-500 dark:text-gray-400 font-light">Stiff</div>
 
-                            <div class="text-navy dark:text-gray-400">Frame</div>
-                            <div class="text-gray-500 dark:text-gray-400 font-light">HM Graphite, NANOMETRIC DR, M40X, EX-HYPER MG</div>
-
-                            <div class="text-navy dark:text-gray-400">Stringing Advice</div>
-                            <div class="text-gray-500 dark:text-gray-400 font-light">4U: 20 - 28 lbs <br/> 3U: 21 - 29 lbs</div>
-
-                            <div class="text-navy dark:text-gray-400">Shaft</div>
-                            <div class="text-gray-500 dark:text-gray-400 font-light">HM Graphite, Ultra PE FIBER</div>
+                        <div v-for="specs in props.product.specs" :key="specs.label"  class="mt-6 grid grid-cols-[10rem_1fr]">
+                            <div class="text-gray-800 dark:text-gray-400 text-xs md:text-base">{{specs.label}}</div>
+                            <div class="text-gray-500 dark:text-gray-400 md:font-light text-xs md:text-base" v-html="specs.description"></div>
                         </div>
                     </section>
 
@@ -129,7 +140,7 @@
 
 <script setup>
 import { defineOptions, reactive, ref } from 'vue';
-import { HeartIcon, ShoppingCartIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon, ShoppingCartIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from'@heroicons/vue/24/solid';
 import StoreLayout from '@store/js/Layouts/StoreLayout.vue';
 import ImageGallery from '@store/js/components/layout/detail/ImageGallery.vue';
@@ -145,19 +156,15 @@ import Breadcrumbs from '@store/js/components/layout/detail/Breadcrumbs.vue';
 import { useTokoStore } from '@store/js/stores/toko_store.js';
 import LoadingSpinner from '@/components/UI/LoadingSpinner.vue';
 import { currencyFormatter } from '@js/composables/currencyFormatter.js';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
     product: {type: Object},
     relatedProducts: {type: Array,},
 })
 
-console.log(props.product)
-
-const product = {
-    name: 'Astrox 1000 Z',
-    price: 'Rp 3.000.000',
-    rating: 4,
-    stock: 1,
+const product = reactive({
+    variants: props.product.variants,
     isWishlisted: false,
     images: [
         {
@@ -184,40 +191,49 @@ const product = {
             src: raket4,
         },
     ],
-    description: `<p>For advanced players looking for immediate access to power to maintain a relentless attack</p>`,
-}
+})
 
-const addToCartProgress = reactive({inProgress: null, success: null, message: null})
+const addToCartProgress = reactive({inProgress: null, success: null, message: null, timer: null})
+const addToComparisonProgress = reactive({inProgress: null, success: null, message: null, timer: null})
+
 const cartStore = useTokoStore()
-let timer
+const { cartItems, getComparisonItems } = storeToRefs(cartStore);
+const selectedVariant = ref(0)
+
+console.log(props.product)
 
 
-const addToCart = () => {
-    if(product.stock === 0) return;
-    clearTimeout(timer)
+const addToCartProcess = () => {
+    if(addToCartProgress.inProgress) return
+    const p = product.variants[selectedVariant.value]
+    if(p.amount === 0) return;
+    clearTimeout(addToCartProgress.timer)
     addToCartProgress.inProgress = true
-    console.log(addToCartProgress)
 
     // simulate api call
     setTimeout(() => {
-        if (product.stock > 0) {
+        if (p.amount > 0) {
+            const itemExists = cartItems.value.find(i => i.product_id === p.id && i.product_variant === p.id)
+            if(itemExists) {
+                itemExists.amount += 1
+            } else {
+                cartStore.addToCart({product_id: p.id, product_variant: p.id, amount: 1})
+            }
 
-            cartStore.addToCart(product.name)
             addToCartProgress.success = true
             addToCartProgress.message = "Berhasil ditambahkan!"
-            product.stock -= 1
+            p.amount -= 1
         } else {
             addToCartProgress.success = false
             addToCartProgress.message = "Stok tidak tersedia!"
         }
 
-        timer = setTimeout(() => {
+        addToCartProgress.timer = setTimeout(() => {
             addToCartProgress.inProgress = false
             addToCartProgress.success = null
             addToCartProgress.message = null
         }, 1000)
     },300)
-
 }
 
 const isWishlisted = ref(product.isWishlisted)
@@ -225,6 +241,44 @@ const isWishlisted = ref(product.isWishlisted)
 const toggleWishlist = () => {
     isWishlisted.value = !isWishlisted.value
 }
+
+const btnVariantClass = (v) => {
+
+    const p = product.variants[selectedVariant.value]
+    if (v.amount === 0) return 'bg-gray dark:bg-gray-900 hover:cursor-not-allowed opacity-50'
+    if (p.id === v.id ) {
+        return 'hover:cursor-pointer outline-2'
+    } else {
+        return 'hover:cursor-pointer'
+    }
+
+};
+
+const addToComparison = () => {
+    if(addToComparisonProgress.inProgress) return
+    clearTimeout(addToComparisonProgress.timer)
+    addToComparisonProgress.inProgress = true
+
+    setTimeout(() => {
+
+        const p = getComparisonItems.value.find(i => i.product_id === props.product.id)
+        if (!p) {
+            cartStore.addToComparison({product_id: props.product.id})
+        }
+
+        addToComparisonProgress.success = true
+        addToComparisonProgress.message = "Berhasil ditambahkan!"
+
+        addToComparisonProgress.timer = setTimeout(() => {
+            addToComparisonProgress.inProgress = false
+            addToComparisonProgress.success = null
+            addToComparisonProgress.message = null
+        }, 1000)
+    }, 500)
+
+}
+
+const setVariant = (index) => selectedVariant.value = index;
 
 
 defineOptions({
