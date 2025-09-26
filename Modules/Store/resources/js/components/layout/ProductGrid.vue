@@ -2,10 +2,10 @@
 
     <div :id="props.title.concat(' ', '')" class="mb-20 md:mt-0 md:mb-0">
         <div class="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <div v-if="showMore"  class="md:flex md:items-center md:justify-between">
-                <h2 class="flex flex-row items-center gap-2 text-2xl font-bold tracking-tight text-navy dark:text-white">
+            <div   class="md:flex md:items-center md:justify-between">
+                <h2 class="flex flex-row items-center gap-2 text-xl md:text-2xl font-bold tracking-tight text-navy dark:text-white">
                     <component :is="props.icon" class="size-5" />{{props.title}}</h2>
-                <Link href="#" class="hidden text-sm font-medium text-navy 0 dark:text-gray hover:text-magenta dark:hover:text-electric-magenta md:block">
+                <Link v-if="showMore"  :href="route('store.product.filter-by-type', {product_type: props.title.toLowerCase()})" class="hidden text-sm font-medium text-navy 0 dark:text-gray hover:text-magenta dark:hover:text-electric-magenta md:block">
                     Lihat lebih banyak
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
@@ -13,7 +13,7 @@
 
             <div class=" mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
                 <div v-for="item in props.items" :key="item.id" class="group relative">
-                    <div class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
+                    <div class="h-40 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-65">
                         <img
                             v-if="item.primary_image"
                             :src="item.item"
@@ -27,11 +27,11 @@
                     <h3 class="mt-4 text-sm text-gray-700 dark:text-gray-300">
                         <Link :href="formatProductHref(item.sub_product, item.slug)">
                             <span class="absolute inset-0" />
-                            <span class="group-hover:text-magenta dark:group-hover:text-electric-magenta">{{ item.name }}</span>
+                            <span class="group-hover:text-magenta dark:group-hover:text-electric-magenta text-xs md:text-base">{{ item.name }}</span>
                         </Link>
                     </h3>
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray">{{ item.color }}</p>
-                    <p class="mt-1 text-sm font-medium text-pocari-blue dark:text-white group-hover:text-magenta dark:group-hover:text-electric-magenta">{{ currencyFormatter(item.price) }}</p>
+                    <p class="mt-1 text-sm font-medium text-pocari-blue dark:text-white group-hover:text-magenta dark:group-hover:text-electric-magenta text-xs md:text-base">{{ currencyFormatter(item.price) }}</p>
                 </div>
             </div>
 

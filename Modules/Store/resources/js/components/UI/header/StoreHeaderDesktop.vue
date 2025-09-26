@@ -93,15 +93,15 @@
                                 <!-- Search -->
                                 <a href="#" class="ml-2 p-2 text-gray-500  hover:text-gray-300">
                                     <span class="sr-only">Search</span>
-                                    <MagnifyingGlassIcon class="size-6" aria-hidden="true" />
+                                    <MagnifyingGlassIcon class="size-4 md:size-5" aria-hidden="true" />
                                 </a>
                             </div>
 
                             <!-- Logo (lg-) -->
-                            <a href="#" class="lg:hidden">
-                                <span class="sr-only">{{appName}}</span>
-                                <img :src="tokoStore.getCompanyLogo" alt="" class="h-8 w-auto" />
-                            </a>
+                            <Link :href="route('home')" class="lg:hidden">
+                                <span class="sr-only">{{props.appName}}</span>
+                                <img class="h-8 w-auto" :src="tokoStore.companyLogo" alt="" />
+                            </Link>
 
                             <div class="flex flex-1 items-center justify-end">
                                 <div class="flex items-center lg:ml-8">
@@ -129,15 +129,14 @@
                                         <a href="#" class="group -m-2 flex items-center p-2">
                                         <span class="relative inline-block">
                                           <ShoppingCartIcon
-                                              class="size-6 shrink-0 text-gray-400 hover:text-gray-500  dark:text-gray-500 dark:hover:text-gray-400"
+                                              class="size-4 md:size-5 shrink-0 text-gray-400 hover:text-gray-500  dark:text-gray-500 dark:hover:text-gray-400"
                                               aria-hidden="true"
                                           />
                                         <span
-                                            v-if="cartCount === 0"
-                                            class="absolute -bottom-1 -right-1 inline-flex h-4 min-w-[1rem] items-center justify-center
-                                                 rounded-full bg-red-700 px-1 text-[10px] font-medium leading-none text-red-50
+                                            class="absolute -bottom-1 -right-1 inline-flex h-3 md:h-4 w-3 md:min-w-[1rem] items-center justify-center
+                                                 rounded-full bg-red-700 px-1 text-[8px] md:text-[10px] font-medium leading-none text-red-50
                                                  opacity-70 dark:opacity-80 group-hover:opacity-100 transition-opacity duration-200">
-                                          {{ cartCount }}
+                                          {{ totalItems }}
                                         </span>
                                         </span>
                                             <span class="sr-only">items in cart, view bag</span>
@@ -158,21 +157,18 @@
 import { route } from 'ziggy-js';
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue';
 import InfoRotator from '../../layout/InfoRotator.vue';
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/outline';
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
-import { computed, inject } from 'vue';
+import { inject } from 'vue';
 import { useTokoStore } from '@store/js/stores/toko_store.js';
 import { useUserStore } from '@store/js/stores/user_store.js';
 import UserDropdown from '@/components/UI/navbar/UserDropdown.vue';
+import { storeToRefs } from 'pinia';
 
 const tokoStore = useTokoStore();
-const cartStore = useTokoStore()
 const userStore = useUserStore()
-
+const { totalItems } = storeToRefs(tokoStore);
 const currentNavigation = route().params.product_type
-
-
-const cartCount = computed(() => cartStore.cartItems.length)
 const props = defineProps({
     appName: {type: String, required: true},
     rotatorText: {type: Array, required: true},

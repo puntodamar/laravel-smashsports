@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { route } from 'ziggy-js';
 import { BuildingStorefrontIcon, PencilSquareIcon } from '@heroicons/vue/24/outline/index.js';
 import { IconBag, IconRacket, IconShirt, IconShoe, IconShuttlecock } from '@/icons.js';
+import { markRaw } from 'vue';
 
 export const useTokoStore = defineStore('toko', {
     state: () => ({
@@ -10,7 +11,7 @@ export const useTokoStore = defineStore('toko', {
             categories: [
                 {
                     name: 'Raket',
-                    icon: IconRacket,
+                    icon: markRaw(IconRacket),
                     collection: [
                         { name: 'Terbaru', href: '#' },
                         { name: 'Diskon', href: '#' },
@@ -29,7 +30,7 @@ export const useTokoStore = defineStore('toko', {
                 },
                 {
                     name: 'Sepatu',
-                    icon: IconShoe,
+                    icon: markRaw(IconShoe),
                     collection: [
                         { name: 'Terbaru', href: '#' },
                         { name: 'Diskon', href: '#' },
@@ -43,7 +44,7 @@ export const useTokoStore = defineStore('toko', {
 
                 {
                     name: 'Tas',
-                    icon: IconBag,
+                    icon: markRaw(IconBag),
                     collection: [
                         { name: 'Terbaru', href: '#' },
                         { name: 'Diskon', href: '#' },
@@ -55,10 +56,10 @@ export const useTokoStore = defineStore('toko', {
                     ],
                 },
 
-                { name: "Apparel", icon: IconShirt },
+                { name: "Apparel", icon: markRaw(IconShirt) },
                 {
                     name: "Shuttlecocks",
-                    icon: IconShuttlecock,
+                    icon: markRaw(IconShuttlecock),
                     brands: [
                         { name: 'Yonex', href: '#' },
                         { name: 'Lining', href: '#' },
@@ -68,16 +69,23 @@ export const useTokoStore = defineStore('toko', {
 
             ],
             pages: [
-                { name: 'Booking', href: route('schedule.booking'), icon: PencilSquareIcon },
-                { name: 'Resto', href: '#', icon: BuildingStorefrontIcon },
+                { name: 'Booking', href: route('schedule.booking'), icon: markRaw(PencilSquareIcon), },
+                { name: 'Resto', href: '#', icon: markRaw(BuildingStorefrontIcon) },
             ],
         },
-        companyLogo: null
+        companyLogo: null,
+        comparison: []
 
     }),
     getters: {
         cartItems () {
             return this.cart
+        },
+        totalItems() {
+            return this.cart.reduce((n, i) => n + (Number(i.amount) || 0), 0)
+        },
+        getComparisonItems () {
+          return this.comparison
         },
         getCompanyLogo () {
             return this.companyLogo
@@ -86,6 +94,9 @@ export const useTokoStore = defineStore('toko', {
     actions: {
         addToCart(item) {
             this.cart.push(item);
+        },
+        addToComparison(item) {
+            this.comparison.push(item)
         },
         clear() {
             this.cart = [];

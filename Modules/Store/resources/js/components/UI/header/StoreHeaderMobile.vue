@@ -15,11 +15,19 @@
                             </button>
                         </div>
 
+                        <div class="space-y-6 px-4 py-6 border-gray-200 ">
+                            <Link :href="route('store.index')" class="flex flex-row items-start gap-x-1 -m-2 p-2text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                <HomeIcon class="size-5"></HomeIcon>
+                                Beranda Toko
+                            </Link>
+                        </div>
+
                         <CategoryDropdown :navigation="tokoStore.navigation" />
                         <div class="border-t border-gray-200  dark:border-gold"></div>
                         <div class="space-y-6 px-4 py-6 border-gray-200 ">
+
                             <div v-for="page in tokoStore.navigation.pages" :key="page.name" class="flow-root">
-                                <Link :href="page.href" class="flex flex-row items-start gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                <Link :href="page.href" class="flex flex-row items-start gap-x-1 -m-2 p-2 text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
                                     <component :is="page.icon" class="size-5"></component>
                                     {{ page.name }}
                                 </Link>
@@ -35,7 +43,7 @@
                                     as="button"
                                     replace
                                     @click="open = false"
-                                    class="flex flex-row items-center gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                    class="flex flex-row items-center gap-x-1 -m-2 p-2 text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
                                     <ArrowRightEndOnRectangleIcon class="size-5" />
                                     Logout
                                 </Link>
@@ -43,7 +51,7 @@
                                 <Link
                                     v-else
                                     :href="route('login')"
-                                    class="flex flex-row items-center gap-x-1 -m-2 p-2 font-medium text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
+                                    class="flex flex-row items-center gap-x-1 -m-2 p-2text-navy dark:text-gray-200 hover:bg-gold dark:hover:text-black  rounded-md">
                                     <UserIcon class="size-5" />
                                     Masuk/Daftar
                                 </Link>
@@ -60,7 +68,7 @@
 </template>
 <script setup>
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
-import { UserIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { UserIcon, XMarkIcon, HomeIcon } from '@heroicons/vue/24/outline';
 import CategoryDropdown from '../..//UI/navbar/CategoryDropdown.vue';
 import { Link } from '@inertiajs/vue3';
 import {inject} from 'vue'

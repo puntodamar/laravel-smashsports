@@ -10,7 +10,7 @@
             >
                 <Link
                     :href="category.href ?? '#'"
-                    class="flex flex-row items-center gap-x-2 w-full rounded-lg py-2 text-left text-base/7 font-semibold text-black group-hover:text-black dark:text-gray-200 dark:group-hover:text-black"
+                    class="flex flex-row items-center gap-x-2 w-full rounded-lg py-2 text-left text-base/7 text-black group-hover:text-black dark:text-gray-200 dark:group-hover:text-black"
                 >
                     <component :is="category.icon" class="size-5"></component>
                     {{ category.name }}

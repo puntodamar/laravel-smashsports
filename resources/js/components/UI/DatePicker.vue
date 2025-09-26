@@ -55,7 +55,7 @@
                             @click="showPicker = false">
                         Batal
                     </button>
-                    <button type="button" class="rounded-md bg-gold px-3 py-1.5 text-sm font-semibold text-black hover:brightness-95"
+                    <button type="button" class="rounded-md bg-pocari-blue px-3 py-1.5 text-sm font-semibold text-white hover:brightness-95"
                             @click="applyPicker">
                         Pilih
                     </button>
@@ -129,7 +129,7 @@ const pickerDateSelected = ref(false)
 const datePickerButtonClass = computed(() => {
 
     if (pickerDateSelected.value) {
-        return ['dark:border', 'border-gold', 'border-2']
+        return ['dark:border', 'border-pocari-blue', 'border-2']
     } else {
         return ['border-navy']
     }
