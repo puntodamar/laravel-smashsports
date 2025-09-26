@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Store\Models\Product;
+use Modules\Store\Models\ProductSpec;
 use Modules\Store\Models\ProductType;
 
 class StoreController extends Controller
@@ -36,19 +37,24 @@ class StoreController extends Controller
                 'img.path as primary_image_path',
             ])->inRandomOrder()->limit(4);
 
-        $data = [];
 
         if ($productType == null && $subProduct == null) {
+
+            $pick = fn (string $prefix) => (clone $baseProduct)
+                ->where('pt.slug', 'ilike', "{$prefix}%")
+                ->get();
+
+
             $data = [
 //            'racket' => $baseProduct
 //                ->whereHas('type.parent', fn ($q) => $q->where('slug', 'raket'))
 //                ->get(),
 
-                'raket' => $baseProduct->where('pt.slug', 'ILIKE', 'raket%')->get(),
-                'sepatu' => $baseProduct->where('pt.slug', 'ILIKE', 'sepatu%')->get(),
-                'tas' => $baseProduct->where('pt.slug', 'ILIKE', 'tas%')->get(),
-                'apparel' => $baseProduct->where('pt.slug', 'ILIKE', 'apparel%')->get(),
-                'shuttlecocks' => $baseProduct->where('pt.slug', 'ILIKE', 'shuttlecocks%')->get(),
+                'raket' => $pick('raket'),
+                'sepatu' => $pick('sepatu'),
+                'tas' => $pick('tas'),
+                'apparel' => $pick('apparel'),
+                'shuttlecocks' => $pick('shuttlecocks'),
                 'showMore' => true
             ];
         } else {
@@ -58,6 +64,7 @@ class StoreController extends Controller
             ];
 
         }
+
 
         return Inertia::render('Module/Store/Index',$data);
 
@@ -82,6 +89,11 @@ class StoreController extends Controller
      */
     public function show(string $productType, string $subProduct, Product $product)
     {
+        $product->loadMissing([
+            'variants' => fn ($q) => $q->select('id', 'product_id', 'name', 'amount')->orderBy('amount', 'desc'),
+            'specs' => fn ($q) => $q->select('product_id','label', 'description')->orderBy('id'),
+        ]);
+
         return Inertia::render('Module/Store/ProductDetail', [
             'product' => $product,
             'title' => $product->name,

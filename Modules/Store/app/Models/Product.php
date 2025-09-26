@@ -5,6 +5,7 @@ namespace Modules\Store\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -19,7 +20,7 @@ class Product extends Model
      */
     protected $fillable = ['name', 'product_type', 'description', 'price'];
 
-    public function images()
+    public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class)->orderBy('sort_order');
     }
@@ -39,7 +40,7 @@ class Product extends Model
         return $this->hasOne(ProductImage::class)->where('is_primary', true);
     }
 
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(ProductType::class, 'product_type_id');
     }
@@ -57,9 +58,9 @@ class Product extends Model
             ->where('products.' . ($field ?? $this->getRouteKeyName()), $value)
             ->when($productType, fn ($q) => $q->where('pt.slug', $productType.".".$subProduct))
             ->when($product, fn ($q) => $q->where('products.slug', $product))
-            ->with([
-                'variants' => fn ($q) => $q->select('id', 'product_id', 'name', 'amount')->orderBy('amount', 'desc')
-            ])
+//            ->with([
+//                'variants' => fn ($q) => $q->select('id', 'product_id', 'name', 'amount')->orderBy('amount', 'desc'),
+//            ])
             // handle soft delete
 //            ->when(in_array('Illuminate\\Database\\Eloquent\\SoftDeletes', class_uses_recursive(static::class)),
 //                fn ($q) => $q->whereNull('products.deleted_at')
