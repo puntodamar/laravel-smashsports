@@ -35,7 +35,7 @@
             <Transition name="acc">
                 <div v-show="isOpen(i)" :id="`panel-${i}`" class="px-4 pb-2">
                     <div v-if="category?.collection?.length" class="mt-2 pl-4">
-                        <p class="pl-4 text-xs font-light dark:text-gray underline">Koleksi</p>
+                        <p class="pl-4 text-xs font-light text-gold underline">Koleksi</p>
                         <ul class="mt-1 space-y-1">
                             <li v-for="(item, idx) in category.collection" :key="`collection-${idx}`" class="pl-4">
                                 <Link :href="item.href" class="text-sm font-light text-gray-900 dark:text-gray-200">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div v-if="category?.brands?.length" class="mt-8 pl-4">
-                        <p class="pl-4 text-xs font-light dark:text-gray underline">Merk</p>
+                        <p class="pl-4 text-xs font-light text-gold underline">Merk</p>
                         <ul class="mt-1 space-y-1">
                             <li v-for="(brand, b) in category.brands" :key="`brand-${b}`" class="pl-4">
                                 <Link :href="brand.href" class="text-sm font-light text-gray-900 dark:text-gray-200">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div v-if="category?.categories?.length" class="mt-8 pl-4">
-                        <p class="pl-4 text-xs font-light dark:text-gray underline">Sub Kategori</p>
+                        <p class="pl-4 text-xs font-light text-gold underline">Sub Kategori</p>
                         <ul class="mt-1 space-y-1">
                             <li v-for="(sub, s) in category.categories" :key="`sub-${s}`" class="pl-4">
                                 <Link :href="sub.href" class="text-sm font-light text-gray-900 dark:text-gray-200">

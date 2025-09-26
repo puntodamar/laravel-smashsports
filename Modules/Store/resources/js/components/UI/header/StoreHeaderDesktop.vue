@@ -27,9 +27,9 @@
 
                                                 <PopoverButton
                                                     class="hover:cursor-pointer"
-                                                    :class="[open || currentNavigation === category.name.toLowerCase() ? 'text-magenta dark:text-electric-magenta' : 'text-gray-700 dark:text-gray-300 hover:text-magenta dark:hover:text-electric-magenta', 'relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out space-x-2']">
+                                                    :class="[open || currentNavigation === category.name.toLowerCase() ? 'text-gold' : 'text-gray-700 dark:text-gray-300 hover:text-gold relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out space-x-2']">
                                                     {{ category.name }}
-                                                    <span :class="[open || currentNavigation === category.name.toLowerCase() ? 'bg-magenta dark:bg-electric-magenta' : 'hover:text-magenta dark:hover:text-electric-magenta', 'absolute inset-x-0 -bottom-px z-30 h-0.5 transition duration-200 ease-out']" aria-hidden="true" />
+                                                    <span :class="[open || currentNavigation === category.name.toLowerCase() ? 'bg-gold' : 'hover:text-goldta', 'absolute inset-x-0 -bottom-px z-30 h-0.5 transition duration-200 ease-out']" aria-hidden="true" />
                                                 </PopoverButton>
                                             </div>
                                             <transition v-if="category.collection || category.brands || category.categories" enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0" enter-to-class="" leave-active-class="transition ease-in duration-150" leave-from-class="" leave-to-class="opacity-0">
@@ -42,7 +42,7 @@
                                                                 <div v-if="category.categories">
 
                                                                     <div >
-                                                                        <p id="desktop-categories-heading" class="font-medium text-magenta dark:text-electric-magenta">Kategori</p>
+                                                                        <p id="desktop-categories-heading" class="font-medium text-gold">Kategori</p>
                                                                         <ul role="list" aria-labelledby="desktop-categories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                             <li v-for="item in category.categories" :key="item.name" class="flex">
                                                                                 <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-white">
@@ -53,7 +53,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div v-if="category.collection">
-                                                                    <p id="desktop-collection-heading" class="font-medium text-magenta dark:text-electric-magenta">Koleksi</p>
+                                                                    <p id="desktop-collection-heading" class="font-medium text-gold">Koleksi</p>
                                                                     <ul role="list" aria-labelledby="desktop-collection-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.collection" :key="item.name" class="flex">
                                                                             <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-gray-300">{{ item.name }}</a>
@@ -62,7 +62,7 @@
                                                                 </div>
 
                                                                 <div v-if="category.brands">
-                                                                    <p id="desktop-brand-heading" class="font-medium text-magenta dark:text-electric-magenta">Merk</p>
+                                                                    <p id="desktop-brand-heading" class="font-medium text-gold">Merk</p>
                                                                     <ul role="list" aria-labelledby="desktop-brand-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                         <li v-for="item in category.brands" :key="item.name" class="flex">
                                                                             <a :href="item.href" class="dark:text-gray hover:text-gray-800 dark:hover:text-gray-300">{{ item.name }}</a>
@@ -76,7 +76,7 @@
                                             </transition>
                                         </Popover>
 
-                                        <Link v-for="page in tokoStore.navigation.pages" :key="page.name" :href="page.href" class="flex items-center text-sm font-medium text-navy dark:text-gray-300 hover:text-magenta dark:hover:text-electric-magenta">
+                                        <Link v-for="page in tokoStore.navigation.pages" :key="page.name" :href="page.href" class="flex items-center text-sm font-medium text-navy dark:text-gray-300 hover:text-gold">
                                             {{ page.name }}
                                         </Link>
                                     </div>
