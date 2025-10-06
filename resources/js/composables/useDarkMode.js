@@ -27,7 +27,7 @@ export function useDarkMode() {
         if (initialized) return
         initialized = true
 
-        const saved = localStorage.getItem('color-theme') // 'dark' | 'light' | null
+        const saved = localStorage.getItem('color-theme') 
         mql = window.matchMedia('(prefers-color-scheme: dark)')
         isDark.value = saved ? saved === 'dark' : mql.matches
         apply(isDark.value)
